@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="/_slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="/_slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="/_slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="/_slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="/_slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="/_slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="/_slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Nástěnka </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item active">
+            <a
+              class="sidebar-nav-link active"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/member/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Členové </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/club/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Kluby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/region/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Regiony </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/season/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Sezóny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/team/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Družstva </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/location/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Hrací místa </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league/"
+            >
+              <i class="icon ion-ios-trophy-outline"></i>
+              <span> Ligové súťaže </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league-registration/"
+            >
+              <i class="icon ion-ios-list-box-outline"></i>
+              <span> Prihlášky do Ligových súťaží </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/competition/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Ligové skupiny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/target-provider/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Poskytovatele tercu </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/administrator/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Administrátoři </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/payments/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Platby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/charges/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Poplatky </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Turnaje </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament-type/"
+            >
+              <i class="icon ion-ios-home-outline"></i>
+              <span> Typy turnajů </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+            >
+              <i class="icon ion-ios-swap"></i>
+              <span> Prestupy </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+                  class="nav-sub-link"
+                >
+                  Čakajúce schválenia
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/"
+                  class="nav-sub-link"
+                >
+                  Prehľad prestupov
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+            >
+              <i class="icon ion-ios-football-outline"></i>
+              <span> Utkání </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+                  class="nav-sub-link"
+                >
+                  Rozlosování utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/match/"
+                  class="nav-sub-link"
+                >
+                  Výpis utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="slim-pageheader">
+            <ol class="breadcrumb slim-breadcrumb"></ol>
+
+            <h6 class="slim-pagetitle">Vytvoření regionu</h6>
+          </div>
+          <!-- slim-pageheader -->
+
+          <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <h6 class="slim-pagetitle mg-y-25"></h6>
+
+              <div class="card overflow-visible">
+                <div class="card-body" data-menu-type="primary">
+                  <form
+                    action="/admin/region/create"
+                    method="post"
+                    enctype="multipart/form-data"
+                    id="frm-regionForm"
+                  >
+                    <fieldset>
+                      <legend>Základní informace</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-name" class="required">Název regionu:</label>
+                          <input
+                            type="text"
+                            name="name"
+                            maxlength="100"
+                            id="frm-regionForm-name"
+                            required
+                            data-nette-rules='[{"op":":filled","msg":"Zadejte název regionu."},{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-abbreviation">Zkratka:</label>
+                          <input
+                            type="text"
+                            name="abbreviation"
+                            maxlength="20"
+                            id="frm-regionForm-abbreviation"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-media_id">Logo:</label>
+                          <input
+                            type="file"
+                            name="media_id"
+                            id="frm-regionForm-media_id"
+                            data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 2097152 bytes.","arg":2097152}]'
+                            class="text"
+                          />
+                          <label for="frm-memberForm-media_id" class="custom-file-upload">
+                            Choose file
+                          </label>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-company_id">IČO:</label>
+                          <input
+                            type="text"
+                            name="company_id"
+                            maxlength="50"
+                            id="frm-regionForm-company_id"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 50 znaků.","arg":50}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-tax_id">DIČ:</label>
+                          <input
+                            type="text"
+                            name="tax_id"
+                            maxlength="50"
+                            id="frm-regionForm-tax_id"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 50 znaků.","arg":50}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-website">Webová stránka:</label>
+                          <input
+                            type="text"
+                            name="website"
+                            maxlength="255"
+                            id="frm-regionForm-website"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Adresa</legend>
+                      <div class="row">
+                        <div class="col-12 mb-2">
+                          <label for="frm-regionForm-address_street">Ulice:</label>
+                          <input
+                            type="text"
+                            name="address_street"
+                            maxlength="255"
+                            id="frm-regionForm-address_street"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-address_city">Město:</label>
+                          <input
+                            type="text"
+                            name="address_city"
+                            maxlength="100"
+                            id="frm-regionForm-address_city"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-address_zip">PSČ:</label>
+                          <input
+                            type="text"
+                            name="address_zip"
+                            maxlength="20"
+                            id="frm-regionForm-address_zip"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Kontaktní osoba</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-contact_person_first_name"
+                            >Jméno kontaktní osoby:</label
+                          >
+                          <input
+                            type="text"
+                            name="contact_person_first_name"
+                            maxlength="100"
+                            id="frm-regionForm-contact_person_first_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-contact_person_last_name"
+                            >Příjmení kontaktní osoby:</label
+                          >
+                          <input
+                            type="text"
+                            name="contact_person_last_name"
+                            maxlength="100"
+                            id="frm-regionForm-contact_person_last_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-contact_person_mobile"
+                            >Mobil kontaktní osoby:</label
+                          >
+                          <input
+                            type="text"
+                            name="contact_person_mobile"
+                            maxlength="20"
+                            id="frm-regionForm-contact_person_mobile"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-contact_person_phone"
+                            >Telefon kontaktní osoby:</label
+                          >
+                          <input
+                            type="text"
+                            name="contact_person_phone"
+                            maxlength="20"
+                            id="frm-regionForm-contact_person_phone"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-12 mb-2">
+                          <label for="frm-regionForm-contact_person_note"
+                            >Poznámka o kontaktní osobě:</label
+                          >
+                          <textarea
+                            name="contact_person_note"
+                            id="frm-regionForm-contact_person_note"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Předseda</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-chairman_first_name">Jméno předsedy:</label>
+                          <input
+                            type="text"
+                            name="chairman_first_name"
+                            maxlength="100"
+                            id="frm-regionForm-chairman_first_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-chairman_last_name">Příjmení předsedy:</label>
+                          <input
+                            type="text"
+                            name="chairman_last_name"
+                            maxlength="100"
+                            id="frm-regionForm-chairman_last_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-12 mb-2">
+                          <label for="frm-regionForm-chairman_address">Adresa předsedy:</label>
+                          <textarea
+                            name="chairman_address"
+                            id="frm-regionForm-chairman_address"
+                          ></textarea>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-chairman_mobile">Mobil předsedy:</label>
+                          <input
+                            type="text"
+                            name="chairman_mobile"
+                            maxlength="20"
+                            id="frm-regionForm-chairman_mobile"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-chairman_phone">Telefon předsedy:</label>
+                          <input
+                            type="text"
+                            name="chairman_phone"
+                            maxlength="20"
+                            id="frm-regionForm-chairman_phone"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Předseda sportovní disciplinární komise</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-discipline_chairman_first_name"
+                            >Jméno předsedy komise:</label
+                          >
+                          <input
+                            type="text"
+                            name="discipline_chairman_first_name"
+                            maxlength="100"
+                            id="frm-regionForm-discipline_chairman_first_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-discipline_chairman_last_name"
+                            >Příjmení předsedy komise:</label
+                          >
+                          <input
+                            type="text"
+                            name="discipline_chairman_last_name"
+                            maxlength="100"
+                            id="frm-regionForm-discipline_chairman_last_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-12 mb-2">
+                          <label for="frm-regionForm-discipline_chairman_address"
+                            >Adresa předsedy komise:</label
+                          >
+                          <textarea
+                            name="discipline_chairman_address"
+                            id="frm-regionForm-discipline_chairman_address"
+                          ></textarea>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-discipline_chairman_mobile"
+                            >Mobil předsedy komise:</label
+                          >
+                          <input
+                            type="text"
+                            name="discipline_chairman_mobile"
+                            maxlength="20"
+                            id="frm-regionForm-discipline_chairman_mobile"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-discipline_chairman_phone"
+                            >Telefon předsedy komise:</label
+                          >
+                          <input
+                            type="text"
+                            name="discipline_chairman_phone"
+                            maxlength="20"
+                            id="frm-regionForm-discipline_chairman_phone"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Sekretář regionu</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-secretary_first_name">Jméno sekretáře:</label>
+                          <input
+                            type="text"
+                            name="secretary_first_name"
+                            maxlength="100"
+                            id="frm-regionForm-secretary_first_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-secretary_last_name"
+                            >Příjmení sekretáře:</label
+                          >
+                          <input
+                            type="text"
+                            name="secretary_last_name"
+                            maxlength="100"
+                            id="frm-regionForm-secretary_last_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-12 mb-2">
+                          <label for="frm-regionForm-secretary_address">Adresa sekretáře:</label>
+                          <textarea
+                            name="secretary_address"
+                            id="frm-regionForm-secretary_address"
+                          ></textarea>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-secretary_mobile">Mobil sekretáře:</label>
+                          <input
+                            type="text"
+                            name="secretary_mobile"
+                            maxlength="20"
+                            id="frm-regionForm-secretary_mobile"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-secretary_phone">Telefon sekretáře:</label>
+                          <input
+                            type="text"
+                            name="secretary_phone"
+                            maxlength="20"
+                            id="frm-regionForm-secretary_phone"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Bankovní údaje</legend>
+                      <div class="row">
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-bank_account">Bankovní účet:</label>
+                          <input
+                            type="text"
+                            name="bank_account"
+                            maxlength="100"
+                            id="frm-regionForm-bank_account"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <label for="frm-regionForm-bank_name">Název banky:</label>
+                          <input
+                            type="text"
+                            name="bank_name"
+                            maxlength="100"
+                            id="frm-regionForm-bank_name"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Sociální sítě</legend>
+                      <div class="row">
+                        <div class="col-lg-4 mb-2">
+                          <label for="frm-regionForm-social_facebook">Facebook:</label>
+                          <input
+                            type="text"
+                            name="social_facebook"
+                            maxlength="255"
+                            id="frm-regionForm-social_facebook"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-4 mb-2">
+                          <label for="frm-regionForm-social_youtube">YouTube:</label>
+                          <input
+                            type="text"
+                            name="social_youtube"
+                            maxlength="255"
+                            id="frm-regionForm-social_youtube"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-lg-4 mb-2">
+                          <label for="frm-regionForm-social_instagram">Instagram:</label>
+                          <input
+                            type="text"
+                            name="social_instagram"
+                            maxlength="255"
+                            id="frm-regionForm-social_instagram"
+                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Provozovatelé</legend>
+
+                      <div>
+                        <tr>
+                          <div class="form-label mt-2">
+                            <label for="frm-regionForm-operators">Provozovatelé:</label>
+                          </div>
+
+                          <div class="mb-10">
+                            <textarea name="operators" id="frm-regionForm-operators"></textarea>
+                          </div>
+                        </tr>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <div>
+                        <tr>
+                          <div class="form-label mt-2"></div>
+
+                          <div class="mb-10">
+                            <input
+                              type="submit"
+                              name="send"
+                              value="Vytvořit"
+                              class="btn btn-primary"
+                            />
+                          </div>
+                        </tr>
+                      </div>
+                    </fieldset>
+
+                    <input type="hidden" name="_do" value="regionForm-submit" />
+                  </form>
+                </div>
+                <!-- card-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </div>
+      <!-- slim-mainpanel -->
+    </div>
+    <!-- slim-body -->
+
+    <script src="/_slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="/_slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="/_slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="/_slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="/_slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="/_slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="/_slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="/_slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="/_slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="/_slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="/_slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="/_slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="/_slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="/_slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="/_slimadmin/vendors/js/netteForms.js"></script>
+    <script src="/_slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="/_slimadmin/vendors/js/datagrid.js"></script>
+    <script src="/_slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="/_slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="/_slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="/_slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="/_slimadmin/vendors/js/custom.js"></script>
+    <script src="/_slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="/_slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>

@@ -1,0 +1,83 @@
+.form-control {
+  height: 44px;
+  border-radius: 4px;
+}
+input[type='date'],
+input[type='file'] {
+  margin: 0;
+  height: 44px;
+  width: 100%;
+  background: transparent;
+  opacity: 1;
+}
+.datagrid tbody td {
+  padding: 8px 12px;
+}
+.datagrid .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 1px;
+}
+.card-body .datagrid thead .select2.select2-container {
+  max-width: 300px;
+}
+.card-body .datagrid thead tr:last-child th {
+  vertical-align: middle;
+}
+.datagrid .btn-secondary {
+  background: #2d2f36;
+  padding: 4px 10px;
+}
+.datagrid .datagrid-toolbar {
+  gap: 8px;
+}
+.card-body .datagrid tr.row-group-actions .datagrid-exports {
+  margin-left: 0;
+}
+/* select styles  */
+.select2-container--default .select2-selection--single {
+  background: #212529;
+  border-radius: 4px;
+  border-color: #495057;
+  height: 44px;
+  cursor: pointer;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #fff;
+  height: 100%;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 3px;
+}
+.select2-container .select2-results > .select2-results__options {
+  background: #282d31;
+  margin: 1px 0 0 0;
+}
+.select2-container--default .select2-results__option[aria-selected='true'] {
+  background: #1b84e7;
+  color: #fff;
+}
+/* input type file  */
+input[type='file'] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #495057;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  background: #212529;
+  border-radius: 4px;
+  height: 44px;
+  margin: 0;
+  padding: 0.594rem 0.75rem;
+}
+
+/* input date  */
+
+input[type='date'] {
+  height: 44px;
+  margin: 0;
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
