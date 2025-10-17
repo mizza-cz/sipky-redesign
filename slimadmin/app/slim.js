@@ -1,6 +1,27 @@
 $(function () {
   'use strict';
 
+  const $body = $('body');
+  const $icon = $('#theme-icon');
+
+  // Проверяем сохранённую тему
+  if (localStorage.getItem('theme') === 'dark') {
+    $body.addClass('dark-theme');
+    $icon.removeClass('fa-sun-o').addClass('fa-moon-o');
+  }
+
+  // Переключатель темы
+  $('#theme-toggle').on('click', function () {
+    $body.toggleClass('dark-theme');
+
+    if ($body.hasClass('dark-theme')) {
+      $icon.removeClass('fa-sun-o').addClass('fa-moon-o');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      $icon.removeClass('fa-moon-o').addClass('fa-sun-o');
+      localStorage.setItem('theme', 'light');
+    }
+  });
   // showing 2nd level sub menu while hiding others
   $('.sidebar-nav-link').on('click', function (e) {
     var subMenu = $(this).next();

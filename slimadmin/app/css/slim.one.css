@@ -668,7 +668,7 @@ hr {
   border-color: #495057;
 }
 .pagination:not([class*=' pagination-']) .page-item.active .page-link {
-  background-color: #1b84e7;
+  background-color: var(--primary-color);
   border-color: transparent;
   color: #fff;
 }
@@ -898,7 +898,7 @@ hr {
 /******************** TABLE BASIC ********************/
 .table:not([class*=' table-colored']) thead tr th,
 .table:not([class*=' table-colored']) thead tr td {
-  background-color: #343a40;
+  background-color: var(--custom-white);
 }
 .table:not([class*=' table-colored']) thead tr th,
 .table:not([class*=' table-colored']) thead tr td,

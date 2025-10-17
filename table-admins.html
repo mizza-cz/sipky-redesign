@@ -375,7 +375,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Vytvoření klubu</h6>
+            <h6 class="slim-pagetitle">Administrátoři</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -387,270 +387,220 @@
 
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <form
-                    action="/admin/club/create"
-                    method="post"
-                    enctype="multipart/form-data"
-                    id="frm-clubForm"
-                  >
-                    <fieldset>
-                      <legend>Základní informace</legend>
-                      <div class="row">
-                        <div class="col-12 mb-2">
-                          <label for="frm-clubForm-name">Název klubu:</label>
-                          <input
-                            type="text"
-                            name="name"
-                            class="form-control bg-light form-control"
-                            title='Na zmenu názvu použite tlačidlo "Zmeniť názov" v zozname klubov'
-                            id="frm-clubForm-name"
-                            disabled
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-region_id" class="required">Region:</label>
-                          <select
-                            class="js-select"
-                            name="region_id"
-                            id="frm-clubForm-region_id"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."}]'
-                          >
-                            <option value="1">Pražský svaz šipkařů</option>
-                            <option value="2">Moravskoslezský svaz šipkařů</option>
-                            <option value="3">Středočeský svaz šipkařů</option>
-                            <option value="4">Jihočeský svaz šipkařů</option>
-                            <option value="5">Západočeský svaz šipkařů</option>
-                            <option value="6">TEST Praha</option>
-                            <option value="7">TEST Morava</option>
-                            <option value="8">TEST Čechy</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-media_id">Logo:</label>
-                          <input
-                            type="file"
-                            name="media_id"
-                            id="frm-clubForm-media_id"
-                            data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 2097152 bytes.","arg":2097152}]'
-                            class="text"
-                          />
-                        </div>
-                        <div class="col-12">
-                          <label for="frm-clubForm-active"
-                            ><input
-                              type="checkbox"
-                              name="active"
-                              id="frm-clubForm-active"
-                            />Aktivní</label
-                          >
-                        </div>
-                      </div>
-                    </fieldset>
+                  <div class="datagrid datagrid-administratorGrid">
+                    <div id="snippet-administratorGrid-grid">
+                      <form
+                        action="/admin/administrator/"
+                        method="post"
+                        id="frm-administratorGrid-filter"
+                        class="ajax"
+                      >
+                        <table
+                          class="table table-hover table-sm"
+                          id="snippet-administratorGrid-table"
+                        >
+                          <colgroup>
+                            <col style="width: 50px" />
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                            <col style="width: 100px" />
+                          </colgroup>
+                          <thead>
+                            <tr class="row-group-actions">
+                              <th colspan="6" class="ublaboo-datagrid-th-form-inline">
+                                <div class="datagrid-toolbar">
+                                  <div id="snippet-administratorGrid-toolbarButtons">
+                                    <span id="snippet-administratorGrid-toolbar">
+                                      <a
+                                        href="/admin/administrator/create"
+                                        class="btn-sm btn-primary-light d-block"
+                                        >Vytvořit administrátora</a
+                                      >
+                                    </span>
+                                  </div>
+                                  <span
+                                    class="datagrid-exports"
+                                    id="snippet-administratorGrid-exports"
+                                  >
+                                    <a
+                                      class="btn-sm btn-primary-light d-block"
+                                      title="Exportovat"
+                                      href="/admin/administrator/?administratorGrid-id=1&amp;do=administratorGrid-export"
+                                      >Exportovat</a
+                                    >
+                                  </span>
+                                  <span class="datagrid-exports" id="snippet-colsrGrid-exports">
+                                    <a
+                                      class="btn-sm btn-primary-light d-block"
+                                      title="Vlastní sloupce"
+                                      href="#"
+                                      >Vlastní sloupce</a
+                                    >
+                                  </span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr>
+                              <th class="text-center col-administrator_id">ID</th>
+                              <th class="text-left col-administrator_name">Administrátor</th>
+                              <th class="text-left col-email">E-mail</th>
+                              <th class="text-left col-phone">Telefon</th>
+                              <th class="text-left col-note">Poznámka</th>
+                              <th class="col-action text-center">Akce</th>
+                            </tr>
+                          </thead>
 
-                    <fieldset>
-                      <legend>Identifikace</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-company_id">IČO:</label>
-                          <input
-                            type="text"
-                            name="company_id"
-                            maxlength="20"
-                            id="frm-clubForm-company_id"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-tax_id">DIČ:</label>
-                          <input
-                            type="text"
-                            name="tax_id"
-                            maxlength="20"
-                            id="frm-clubForm-tax_id"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
+                          <tbody id="snippet-administratorGrid-tbody">
+                            <tr data-id="1">
+                              <td class="text-center">1</td>
+                              <td class="text-left">Jan Novák</td>
+                              <td class="text-left">jan.novak@sipky.test</td>
+                              <td class="text-left">+420 606 123 456</td>
+                              <td class="text-left">Hlavní administrátor systému</td>
+                              <td class="text-center">
+                                <a
+                                  href="/admin/administrator/update/1"
+                                  class="btn btn-sm btn-primary"
+                                >
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a
+                                  href="/admin/administrator/delete/1"
+                                  class="btn btn-sm btn-danger"
+                                >
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                              </td>
+                            </tr>
 
-                    <fieldset>
-                      <legend>Adresa</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-street">Ulice:</label>
-                          <input
-                            type="text"
-                            name="street"
-                            maxlength="255"
-                            id="frm-clubForm-street"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-city">Město:</label>
-                          <input
-                            type="text"
-                            name="city"
-                            maxlength="255"
-                            id="frm-clubForm-city"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-district">Okres:</label>
-                          <input
-                            type="text"
-                            name="district"
-                            maxlength="255"
-                            id="frm-clubForm-district"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-postal_code">PSČ:</label>
-                          <input
-                            type="text"
-                            name="postal_code"
-                            maxlength="10"
-                            id="frm-clubForm-postal_code"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 10 znaků.","arg":10}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
+                            <tr data-id="2">
+                              <td class="text-center">2</td>
+                              <td class="text-left">Petr Svoboda</td>
+                              <td class="text-left">petr.svoboda@sipky.test</td>
+                              <td class="text-left">+420 607 234 567</td>
+                              <td class="text-left">Administrátor pro Prahu</td>
+                              <td class="text-center">
+                                <a
+                                  href="/admin/administrator/update/2"
+                                  class="btn btn-sm btn-primary"
+                                >
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a
+                                  href="/admin/administrator/delete/2"
+                                  class="btn btn-sm btn-danger"
+                                >
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                              </td>
+                            </tr>
 
-                    <fieldset>
-                      <legend>Kontaktní údaje</legend>
-                      <div class="row">
-                        <div class="col-12 mb-2">
-                          <label for="frm-clubForm-website">Webová stránka:</label>
-                          <input
-                            type="text"
-                            name="website"
-                            maxlength="255"
-                            id="frm-clubForm-website"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-chairman">Předseda:</label>
-                          <input
-                            type="text"
-                            name="chairman"
-                            maxlength="255"
-                            id="frm-clubForm-chairman"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-email" class="required">Email:</label>
-                          <input
-                            type="email"
-                            name="email"
-                            maxlength="255"
-                            id="frm-clubForm-email"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Zadejte platnou emailovou adresu."},{"op":":email","msg":"Please enter a valid email address."},{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-phone_1">Telefon 1:</label>
-                          <input
-                            type="text"
-                            name="phone_1"
-                            maxlength="15"
-                            id="frm-clubForm-phone_1"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 15 znaků.","arg":15}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-phone_2">Telefon 2:</label>
-                          <input
-                            type="text"
-                            name="phone_2"
-                            maxlength="15"
-                            id="frm-clubForm-phone_2"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 15 znaků.","arg":15}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
+                            <tr data-id="3">
+                              <td class="text-center">3</td>
+                              <td class="text-left">Marie Dvořáková</td>
+                              <td class="text-left">marie.dvorakova@sipky.test</td>
+                              <td class="text-left">+420 608 345 678</td>
+                              <td class="text-left">Administrátorka pro Moravu</td>
+                              <td class="text-center">
+                                <a
+                                  href="/admin/administrator/update/3"
+                                  class="btn btn-sm btn-primary"
+                                >
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a
+                                  href="/admin/administrator/delete/3"
+                                  class="btn btn-sm btn-danger"
+                                >
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                              </td>
+                            </tr>
 
-                    <fieldset>
-                      <legend>Bankovní údaje</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-bank_account">Bankovní účet:</label>
-                          <input
-                            type="text"
-                            name="bank_account"
-                            maxlength="100"
-                            id="frm-clubForm-bank_account"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-bank_name">Název banky:</label>
-                          <input
-                            type="text"
-                            name="bank_name"
-                            maxlength="100"
-                            id="frm-clubForm-bank_name"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
+                            <tr data-id="4">
+                              <td class="text-center">4</td>
+                              <td class="text-left">Tomáš Černý</td>
+                              <td class="text-left">tomas.cerny@sipky.test</td>
+                              <td class="text-left">+420 609 456 789</td>
+                              <td class="text-left">Pozastavený účet</td>
+                              <td class="text-center">
+                                <a
+                                  href="/admin/administrator/update/4"
+                                  class="btn btn-sm btn-primary"
+                                >
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a
+                                  href="/admin/administrator/delete/4"
+                                  class="btn btn-sm btn-danger"
+                                >
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                              </td>
+                            </tr>
 
-                    <fieldset>
-                      <legend>Další</legend>
-
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2">
-                            <label for="frm-clubForm-note">Poznámka:</label>
-                          </div>
-
-                          <div class="mb-10">
-                            <textarea name="note" id="frm-clubForm-note"></textarea>
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <input
-                              type="submit"
-                              name="send"
-                              value="Vytvořit"
-                              class="btn btn-primary"
-                            />
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <input type="hidden" name="_do" value="clubForm-submit" />
-                  </form>
+                            <tr data-id="5">
+                              <td class="text-center">5</td>
+                              <td class="text-left">Eva Procházková</td>
+                              <td class="text-left">eva.prochazkova@sipky.test</td>
+                              <td class="text-left">+420 601 567 890</td>
+                              <td class="text-left">Administrátorka pro Slovensko</td>
+                              <td class="text-center">
+                                <a
+                                  href="/admin/administrator/update/5"
+                                  class="btn btn-sm btn-primary"
+                                >
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a
+                                  href="/admin/administrator/delete/5"
+                                  class="btn btn-sm btn-danger"
+                                >
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot id="snippet-administratorGrid-pagination">
+                            <tr>
+                              <td colspan="9" class="row-grid-bottom">
+                                <div class="col-items">
+                                  <small class="text-muted"> ( Položky: 1 - 5 z 5 ) </small>
+                                </div>
+                                <div class="col-pagination text-center"></div>
+                                <div class="col-per-page text-right">
+                                  <select
+                                    name="perPage"
+                                    id="frm-administratorGrid-filter-perPage"
+                                    data-autosubmit-per-page
+                                    class="form-control input-sm form-control-sm js-select"
+                                  >
+                                    <option value="10" selected>10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="all">všechny</option>
+                                  </select>
+                                  <input
+                                    type="submit"
+                                    name="perPage_submit"
+                                    value="OK"
+                                    formnovalidate
+                                    data-nette-validation-scope='["perPage"]'
+                                    class="datagrid-per-page-submit btn-primary"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                        <input type="hidden" name="_do" value="administratorGrid-filter-submit" />
+                      </form>
+                    </div>
+                  </div>
                 </div>
                 <!-- card-body -->
               </div>

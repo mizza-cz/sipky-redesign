@@ -375,7 +375,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Členové</h6>
+            <h6 class="slim-pagetitle">Kluby</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -388,446 +388,324 @@
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
                   <div
-                    class="datagrid datagrid-memberGrid"
-                    data-refresh-state="/admin/member/?do=memberGrid-refreshState"
+                    class="datagrid datagrid-clubGrid"
+                    data-refresh-state="/admin/club/?do=clubGrid-refreshState"
                   >
-                    <div id="snippet-memberGrid-grid">
+                    <div id="snippet-clubGrid-grid">
                       <form
-                        action="/admin/member/"
+                        action="/admin/club/"
                         method="post"
-                        id="frm-memberGrid-filter"
+                        id="frm-clubGrid-filter"
                         class="ajax"
                       >
-                        <table class="table table-hover table-sm" id="snippet-memberGrid-table">
+                        <table class="table table-hover table-sm" id="snippet-clubGrid-table">
                           <colgroup>
                             <col style="width: 50px" />
-                            <col style="width: 260px" />
-                            <col style="width: 100px" />
                             <col />
+                            <col style="width: 100px" />
+
                             <col style="width: 100px" />
                           </colgroup>
                           <thead>
                             <tr class="row-group-actions">
-                              <th colspan="5" class="ublaboo-datagrid-th-form-inline">
+                              <th colspan="4" class="ublaboo-datagrid-th-form-inline">
                                 <div class="datagrid-toolbar">
-                                  <div id="snippet-memberGrid-toolbarButtons">
-                                    <span id="snippet-memberGrid-toolbar">
+                                  <div id="snippet-clubGrid-toolbarButtons">
+                                    <span id="snippet-clubGrid-toolbar">
                                       <a
-                                        href="/admin/member/create"
+                                        href="/admin/club/create"
                                         class="btn-sm btn-primary-light d-block"
-                                        >Vytvoriť člena</a
+                                        >Vytvořit klub</a
                                       >
                                     </span>
                                   </div>
-
-                                  <span class="datagrid-exports" id="snippet-memberGrid-exports">
+                                  <span class="datagrid-exports" id="snippet-clubGrid-exports">
                                     <a
                                       class="btn-sm btn-primary-light d-block"
-                                      title="Exportovať do CSV"
-                                      href="/admin/member/?memberGrid-id=1&amp;do=memberGrid-export"
-                                      >Exportovať do CSV</a
+                                      title="Exportovat do CSV"
+                                      href="/admin/club/?clubGrid-id=1&amp;do=clubGrid-export"
                                     >
-                                  </span>
-                                  <span class="datagrid-exports" id="snippet-colsrGrid-exports">
-                                    <a
-                                      class="btn-sm btn-primary-light d-block"
-                                      title="Vlastní sloupce"
-                                      href="#"
-                                      >Vlastní sloupce</a
-                                    >
+                                      Exportovat do CSV
+                                    </a>
                                   </span>
                                 </div>
                               </th>
                             </tr>
+
                             <tr>
-                              <th class="text-center col-member_id">
+                              <th class="text-center col-club_id">
                                 <a
                                   class="ajax"
-                                  href="/admin/member/?memberGrid-sort%5Bmember_id%5D=ASC&amp;do=memberGrid-sort"
-                                  id="datagrid-sort-member_id"
+                                  href="/admin/club/?clubGrid-sort%5Bclub_id%5D=ASC&amp;do=clubGrid-sort"
+                                  id="datagrid-sort-club_id"
                                 >
-                                  ID
-                                  <i class="fa fa-sort"></i>
+                                  ID <i class="fa fa-sort"></i>
                                 </a>
                               </th>
-                              <th class="text-left col-member_name">
+                              <th class="text-left col-name">
                                 <a
                                   class="ajax"
-                                  href="/admin/member/?memberGrid-sort%5Bmember_name%5D=ASC&amp;do=memberGrid-sort"
-                                  id="datagrid-sort-member_name"
+                                  href="/admin/club/?clubGrid-sort%5Bname%5D=ASC&amp;do=clubGrid-sort"
+                                  id="datagrid-sort-name"
                                 >
-                                  Člen
-                                  <i class="fa fa-sort"></i>
+                                  Název klubu <i class="fa fa-sort"></i>
                                 </a>
                               </th>
-                              <th class="text-left col-date_of_birth">
+                              <th class="text-left col-region_name">
                                 <a
                                   class="ajax"
-                                  href="/admin/member/?memberGrid-sort%5Bdate_of_birth%5D=ASC&amp;do=memberGrid-sort"
-                                  id="datagrid-sort-date_of_birth"
+                                  href="/admin/club/?clubGrid-sort%5Bregion_name%5D=ASC&amp;do=clubGrid-sort"
+                                  id="datagrid-sort-region_name"
                                 >
-                                  Dátum narodenia
-                                  <i class="fa fa-sort"></i>
+                                  Region <i class="fa fa-sort"></i>
                                 </a>
-                              </th>
-                              <th class="text-left col-club_name">
-                                <a
-                                  class="ajax"
-                                  href="/admin/member/?memberGrid-sort%5Bclub_name%5D=ASC&amp;do=memberGrid-sort"
-                                  id="datagrid-sort-club_name"
-                                >
-                                  Klub
-                                  <i class="fa fa-sort"></i>
-                                </a>
-                                <select
-                                  name="filter[club_name]"
-                                  data-autosubmit
-                                  class="form-control input-sm form-control-sm js-select"
-                                  id="frm-memberGrid-filter-filter-club_name"
-                                >
-                                  <option value="">Všetky kluby</option>
-                                  <option value="__null__">bez klubové příslušnosti</option>
-                                  <option value="1">SK Šipky Praha Střed</option>
-                                  <option value="2">TJ Šipkaři Vinohrady</option>
-                                  <option value="3">Dart Club Smíchov</option>
-                                  <option value="4">SK Darts Brno</option>
-                                  <option value="5">TJ Moravské šipky</option>
-                                  <option value="6">SK Šipky Kladno</option>
-                                  <option value="7">Dart Team Středočeši</option>
-                                  <option value="8">SK Budějovické šipky</option>
-                                  <option value="9">TJ Dart Jihočeši</option>
-                                  <option value="10">SK Plzeňské šipky</option>
-                                  <option value="11">Dart Club West Bohemia</option>
-                                  <option value="12">SK Bývalé šipky Praha</option>
-                                  <option value="13">TEST Sparta Praha</option>
-                                  <option value="14">TEST Slavia Praha</option>
-                                  <option value="15">TEST Bohemians Praha</option>
-                                  <option value="16">TEST Dukla Praha</option>
-                                  <option value="17">TEST Kladno</option>
-                                  <option value="18">TEST Mladá Boleslav</option>
-                                  <option value="19">TEST Brno</option>
-                                  <option value="20">TEST Olomouc</option>
-                                </select>
                               </th>
                               <th class="col-action text-center">Akce</th>
                             </tr>
+
+                            <tr>
+                              <th class="text-center col-club_id"></th>
+                              <th class="text-left col-name">
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-clubGrid-filter-filter-name"
+                                />
+                              </th>
+                              <th class="text-left col-region_name"></th>
+                              <th class="col-action text-center"></th>
+                            </tr>
                           </thead>
 
-                          <tbody id="snippet-memberGrid-tbody">
-                            <tr data-id="1" id="snippet-memberGrid-item-1">
-                              <td class="text-center col-member_id">1</td>
-                              <td class="text-left col-member_name">František Novák</td>
-                              <td class="text-left col-date_of_birth">15.3.1975</td>
-                              <td class="text-left col-club_name">SK Šipky Praha Střed</td>
+                          <tbody id="snippet-clubGrid-tbody">
+                            <tr data-id="1" id="snippet-clubGrid-item-1">
+                              <td class="text-center col-club_id">1</td>
+                              <td class="text-left col-name">SK Šipky Praha Střed</td>
+                              <td class="text-left col-region_name">Pražský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/1"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/1" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=1"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/1" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/1" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/1"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/1" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="2" id="snippet-memberGrid-item-2">
-                              <td class="text-center col-member_id">2</td>
-                              <td class="text-left col-member_name">Pavel Svoboda</td>
-                              <td class="text-left col-date_of_birth">22.7.1982</td>
-                              <td class="text-left col-club_name">SK Šipky Praha Střed</td>
+                            <tr data-id="2" id="snippet-clubGrid-item-2">
+                              <td class="text-center col-club_id">2</td>
+                              <td class="text-left col-name">TJ Šipkaři Vinohrady</td>
+                              <td class="text-left col-region_name">Pražský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/2"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/2" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=2"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/2" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/2" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/2"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/2" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="3" id="snippet-memberGrid-item-3">
-                              <td class="text-center col-member_id">3</td>
-                              <td class="text-left col-member_name">Marie Dvořáková</td>
-                              <td class="text-left col-date_of_birth">8.11.1990</td>
-                              <td class="text-left col-club_name">SK Šipky Praha Střed</td>
+                            <tr data-id="3" id="snippet-clubGrid-item-3">
+                              <td class="text-center col-club_id">3</td>
+                              <td class="text-left col-name">Dart Club Smíchov</td>
+                              <td class="text-left col-region_name">Pražský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/3"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/3" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=3"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/3" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/3" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/3"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/3" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="4" id="snippet-memberGrid-item-4">
-                              <td class="text-center col-member_id">4</td>
-                              <td class="text-left col-member_name">Tomáš Procházka</td>
-                              <td class="text-left col-date_of_birth">12.5.1978</td>
-                              <td class="text-left col-club_name">TJ Šipkaři Vinohrady</td>
+                            <tr data-id="4" id="snippet-clubGrid-item-4">
+                              <td class="text-center col-club_id">4</td>
+                              <td class="text-left col-name">SK Darts Brno</td>
+                              <td class="text-left col-region_name">Moravskoslezský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/4"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/4" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=4"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/4" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/4" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/4"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/4" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="5" id="snippet-memberGrid-item-5">
-                              <td class="text-center col-member_id">5</td>
-                              <td class="text-left col-member_name">Eva Černá</td>
-                              <td class="text-left col-date_of_birth">30.9.1985</td>
-                              <td class="text-left col-club_name">TJ Šipkaři Vinohrady</td>
+                            <tr data-id="5" id="snippet-clubGrid-item-5">
+                              <td class="text-center col-club_id">5</td>
+                              <td class="text-left col-name">TJ Moravské šipky</td>
+                              <td class="text-left col-region_name">Moravskoslezský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/5"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/5" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=5"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/5" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/5" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/5"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/5" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="6" id="snippet-memberGrid-item-6">
-                              <td class="text-center col-member_id">6</td>
-                              <td class="text-left col-member_name">Miroslav Krejčí</td>
-                              <td class="text-left col-date_of_birth">3.12.1973</td>
-                              <td class="text-left col-club_name">SK Darts Brno</td>
+                            <tr data-id="6" id="snippet-clubGrid-item-6">
+                              <td class="text-center col-club_id">6</td>
+                              <td class="text-left col-name">SK Šipky Kladno</td>
+                              <td class="text-left col-region_name">Středočeský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/6"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/6" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=6"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/6" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/6" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/6"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/6" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="7" id="snippet-memberGrid-item-7">
-                              <td class="text-center col-member_id">7</td>
-                              <td class="text-left col-member_name">Rudolf Horák</td>
-                              <td class="text-left col-date_of_birth">18.4.1980</td>
-                              <td class="text-left col-club_name">SK Darts Brno</td>
+                            <tr data-id="7" id="snippet-clubGrid-item-7">
+                              <td class="text-center col-club_id">7</td>
+                              <td class="text-left col-name">Dart Team Středočeši</td>
+                              <td class="text-left col-region_name">Středočeský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/7"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/7" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=7"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/7" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/7" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/7"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/7" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="8" id="snippet-memberGrid-item-8">
-                              <td class="text-center col-member_id">8</td>
-                              <td class="text-left col-member_name">Věra Nováková</td>
-                              <td class="text-left col-date_of_birth">25.8.1987</td>
-                              <td class="text-left col-club_name">TJ Moravské šipky</td>
+                            <tr data-id="8" id="snippet-clubGrid-item-8">
+                              <td class="text-center col-club_id">8</td>
+                              <td class="text-left col-name">SK Budějovické šipky</td>
+                              <td class="text-left col-region_name">Jihočeský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/8"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/8" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=8"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/8" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/8" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/8"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/8" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="9" id="snippet-memberGrid-item-9">
-                              <td class="text-center col-member_id">9</td>
-                              <td class="text-left col-member_name">Zdeněk Veselý</td>
-                              <td class="text-left col-date_of_birth">14.6.1976</td>
-                              <td class="text-left col-club_name">SK Šipky Kladno</td>
+                            <tr data-id="9" id="snippet-clubGrid-item-9">
+                              <td class="text-center col-club_id">9</td>
+                              <td class="text-left col-name">TJ Dart Jihočeši</td>
+                              <td class="text-left col-region_name">Jihočeský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/9"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/9" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=9"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/9" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/9" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/9"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/9" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
 
-                            <tr data-id="10" id="snippet-memberGrid-item-10">
-                              <td class="text-center col-member_id">10</td>
-                              <td class="text-left col-member_name">Oldřich Svoboda</td>
-                              <td class="text-left col-date_of_birth">7.10.1983</td>
-                              <td class="text-left col-club_name">Dart Team Středočeši</td>
+                            <tr data-id="10" id="snippet-clubGrid-item-10">
+                              <td class="text-center col-club_id">10</td>
+                              <td class="text-left col-name">SK Plzeňské šipky</td>
+                              <td class="text-left col-region_name">Západočeský</td>
                               <td class="col-action">
-                                <a
-                                  href="/admin/member/update/10"
-                                  class="btn btn-sm btn-primary"
-                                  title="Upravit administrátora"
+                                <a href="/admin/club/update/10" class="btn btn-sm btn-primary"
                                   ><span class="fa fa-pencil"></span
                                 ></a>
-                                <a
-                                  href="/admin/team/member-history?memberId=10"
-                                  class="btn btn-sm btn-info"
-                                  title="História súpisiek"
+                                <a href="/admin/club/delete/10" class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                                <a href="/admin/club/history/10" class="btn btn-sm btn-info"
                                   ><span class="fa fa-history"></span
                                 ></a>
-                                <a
-                                  href="/admin/member/delete/10"
-                                  class="btn btn-sm btn-danger"
-                                  title="Smazat administrátora"
-                                  ><span class="fa fa-trash"></span
+                                <a href="/admin/club/change-name/10" class="btn btn-sm btn-success"
+                                  ><span class="fa fa-edit"></span
                                 ></a>
                               </td>
                             </tr>
                           </tbody>
-                          <tfoot id="snippet-memberGrid-pagination">
+
+                          <tfoot id="snippet-clubGrid-pagination">
                             <tr>
-                              <td colspan="21" class="row-grid-bottom">
+                              <td colspan="19" class="row-grid-bottom">
                                 <div class="col-items">
-                                  <small class="text-muted"> ( Položky: 1 - 10 z 71 ) </small>
+                                  <small class="text-muted"> ( Položky: 1 - 10 z 20 ) </small>
                                 </div>
                                 <div class="col-pagination text-center">
                                   <ul class="pagination justify-content-center mg-b-0">
                                     <li class="page-item active">
-                                      <a
-                                        class="page-link ajax"
-                                        href="/admin/member/?do=memberGrid-page"
+                                      <a class="page-link ajax" href="/admin/club/?do=clubGrid-page"
                                         >1</a
                                       >
                                     </li>
                                     <li class="page-item">
                                       <a
                                         class="page-link ajax"
-                                        href="/admin/member/?memberGrid-page=2&amp;do=memberGrid-page"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
                                         >2</a
-                                      >
-                                    </li>
-                                    <li class="page-item">
-                                      <a
-                                        class="page-link ajax"
-                                        href="/admin/member/?memberGrid-page=3&amp;do=memberGrid-page"
-                                        >3</a
-                                      >
-                                    </li>
-                                    <li class="page-item disabled">
-                                      <span class="page-link">…</span>
-                                    </li>
-                                    <li class="page-item">
-                                      <a
-                                        class="page-link ajax"
-                                        href="/admin/member/?memberGrid-page=8&amp;do=memberGrid-page"
-                                        >8</a
                                       >
                                     </li>
 
                                     <li class="page-item">
                                       <a
                                         class="page-link ajax"
-                                        href="/admin/member/?memberGrid-page=2&amp;do=memberGrid-page"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
                                         rel="prev"
                                       >
                                         <i class="fa fa-angle-right"></i>
@@ -838,7 +716,7 @@
                                 <div class="col-per-page text-right">
                                   <select
                                     name="perPage"
-                                    id="frm-memberGrid-filter-perPage"
+                                    id="frm-clubGrid-filter-perPage"
                                     data-autosubmit-per-page
                                     class="form-control input-sm form-control-sm js-select"
                                   >
@@ -862,7 +740,7 @@
                             </tr>
                           </tfoot>
                         </table>
-                        <input type="hidden" name="_do" value="memberGrid-filter-submit" />
+                        <input type="hidden" name="_do" value="clubGrid-filter-submit" />
                       </form>
                     </div>
                   </div>
