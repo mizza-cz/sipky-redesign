@@ -381,13 +381,114 @@
                         class="ajax"
                       >
                         <table class="table table-hover table-sm" id="snippet-teamGrid-table">
+                          <colgroup>
+                            <col style="width: 50px" />
+                            <col />
+                            <col />
+                            <col />
+                          </colgroup>
+
                           <thead>
+                            <tr class="row-group-actions">
+                              <th colspan="4" class="ublaboo-datagrid-th-form-inline">
+                                <div class="datagrid-toolbar">
+                                  <div id="snippet-clubGrid-toolbarButtons">
+                                    <span id="snippet-clubGrid-toolbar">
+                                      <a
+                                        href="/admin/club/create"
+                                        class="btn-sm btn-primary-light d-block"
+                                        >Vytvořit klub</a
+                                      >
+                                    </span>
+                                  </div>
+                                  <span class="datagrid-exports" id="snippet-clubGrid-exports">
+                                    <a
+                                      class="btn-sm btn-primary-light d-block"
+                                      title="Exportovat do CSV"
+                                      href="/admin/club/?clubGrid-id=1&amp;do=clubGrid-export"
+                                    >
+                                      Exportovat do CSV
+                                    </a>
+                                  </span>
+                                  <div class="datagrid-settings">
+                                    <div class="btn-group">
+                                      <button
+                                        type="button"
+                                        class="btn btn-xs btn-default btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        <i class="fa fa-cog"></i>
+                                      </button>
+                                      <ul
+                                        class="dropdown-menu dropdown-menu-right dropdown-menu--grid"
+                                      >
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=season_id&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            ID
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=name&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Název sezóny
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=start_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum začátku
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=end_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum konce
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=is_completed&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Dokončeno
+                                          </a>
+                                        </li>
+                                        <li role="separator" class="divider dropdown-divider"></li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?do=seasonGrid-showAllColumns"
+                                            class="ajax dropdown-item"
+                                            ><i class="fa fa-eye"></i> Zobrazit všechny sloupce</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
                             <tr>
                               <th class="text-center col-team_id">
                                 <a
                                   class="ajax"
                                   href="/admin/team/?teamGrid-sort%5Bteam_id%5D=ASC&amp;do=teamGrid-sort"
-                                  >ID družstva</a
+                                  >ID</a
                                 >
                               </th>
                               <th class="text-left col-name">
@@ -502,10 +603,61 @@
                               <td>JSŠ</td>
                             </tr>
                           </tbody>
-                          <tfoot>
+                          <tfoot id="snippet-clubGrid-pagination">
                             <tr>
-                              <td colspan="4" class="text-center">
-                                <small class="text-muted">(Položky: 1 - 10 z 15)</small>
+                              <td colspan="19" class="row-grid-bottom">
+                                <div class="col-items">
+                                  <small class="text-muted"> ( Položky: 1 - 10 z 20 ) </small>
+                                </div>
+                                <div class="col-pagination text-center">
+                                  <ul class="pagination justify-content-center mg-b-0">
+                                    <li class="page-item active">
+                                      <a class="page-link ajax" href="/admin/club/?do=clubGrid-page"
+                                        >1</a
+                                      >
+                                    </li>
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
+                                        >2</a
+                                      >
+                                    </li>
+
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
+                                        rel="prev"
+                                      >
+                                        <i class="fa fa-angle-right"></i>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="col-per-page text-right">
+                                  <select
+                                    name="perPage"
+                                    id="frm-clubGrid-filter-perPage"
+                                    data-autosubmit-per-page
+                                    class="form-control input-sm form-control-sm js-select"
+                                  >
+                                    <option value="10" selected>10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="all">všechny</option>
+                                  </select>
+                                  <input
+                                    type="submit"
+                                    name="perPage_submit"
+                                    value="OK"
+                                    formnovalidate
+                                    data-nette-validation-scope='["perPage"]'
+                                    class="datagrid-per-page-submit btn-primary"
+                                  />
+                                </div>
                               </td>
                             </tr>
                           </tfoot>

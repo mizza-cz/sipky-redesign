@@ -8561,7 +8561,7 @@ textarea.parsley-error:active {
   border-radius: 0;
   border-color: #ced4da; }
   .pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
-    background-color: #e9ecef; }
+    background-color: var(--primary05); }
 
 .pagination .active .page-link, .pagination .active .page-link:hover, .pagination .active .page-link:focus {
   color: #fff;

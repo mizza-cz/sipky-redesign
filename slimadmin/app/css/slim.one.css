@@ -664,8 +664,9 @@ hr {
 }
 .pagination:not([class*=' pagination-']) .page-item .page-link:hover,
 .pagination:not([class*=' pagination-']) .page-item .page-link:focus {
-  background-color: #343a40;
-  border-color: #495057;
+  background-color: var(--bs-purple);
+  border: 1px solid var(--bs-purple);
+  color: #fff;
 }
 .pagination:not([class*=' pagination-']) .page-item.active .page-link {
   background-color: var(--primary-color);

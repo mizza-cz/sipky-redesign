@@ -10383,13 +10383,13 @@ textarea.parsley-error:active {
 }
 .pagination .page-item .page-link:hover,
 .pagination .page-item .page-link:focus {
-  background-color: #e9ecef;
+  background-color: var(--primary05);
 }
 .pagination .active .page-link,
 .pagination .active .page-link:hover,
 .pagination .active .page-link:focus {
   color: #fff;
-  background-color: #1b84e7;
+  background-color: var(--primary05);
   border-color: transparent;
 }
 .pagination-dark .page-item.disabled .page-link {
