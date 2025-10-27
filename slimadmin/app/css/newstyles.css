@@ -211,3 +211,13 @@ input[type='date'] {
 }
 
 /* light theme  */
+
+.card-body .datagrid .table .select2 .select2-selection--single,
+.card-body .datagrid .select2 .select2-selection--single .select2-selection__arrow,
+.table tr .form-control {
+  height: 32px;
+}
+.card-body .datagrid .table .select2.select2-container {
+  width: 100%;
+  max-width: 100%;
+}

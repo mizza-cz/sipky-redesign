@@ -87,7 +87,7 @@ select,
 input[type='checkbox'] {
   background-color: #343a40;
   border: 1px solid var(--input-border);
-  color: #e0e0e0;
+  color: var(--default-text-color);
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
