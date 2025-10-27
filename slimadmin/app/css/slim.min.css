@@ -285,7 +285,7 @@ legend {
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
   line-height: inherit;
-  color: inherit;
+  color: var(--default-text-color);
   white-space: normal;
 }
 progress {
@@ -2205,7 +2205,7 @@ fieldset:disabled a.btn {
   color: #fff;
   border-color: var(--bs-purple);
 }
- 
+
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
@@ -15753,14 +15753,14 @@ textarea.parsley-success:focus {
 }
 .sidebar-nav-link:hover,
 .sidebar-nav-link:focus {
-  background-color: #282d31;
+  background-color: rgba(255, 255, 255, 0.05);
   color: #fff;
 }
 .sidebar-nav-link.active {
   background-image: none;
-  background-color: #282d31;
+  background-color: rgba(255, 255, 255, 0.06);
   border-bottom-width: 1px;
-  color: #1b84e7;
+  color: #fff;
 }
 .sidebar-nav-link.active i {
   color: #1b84e7;

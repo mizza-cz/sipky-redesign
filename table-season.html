@@ -360,7 +360,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Kluby</h6>
+            <h6 class="slim-pagetitle">Sezóny</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -372,47 +372,38 @@
 
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <div
-                    class="datagrid datagrid-clubGrid"
-                    data-refresh-state="/admin/club/?do=clubGrid-refreshState"
-                  >
-                    <div id="snippet-clubGrid-grid">
+                  <div class="datagrid datagrid-administratorGrid">
+                    <div id="snippet-administratorGrid-grid">
                       <form
-                        action="/admin/club/"
+                        action="/admin/season/"
                         method="post"
-                        id="frm-clubGrid-filter"
+                        id="frm-seasonGrid-filter"
                         class="ajax"
                       >
-                        <table class="table table-hover table-sm" id="snippet-clubGrid-table">
-                          <colgroup>
-                            <col style="width: 50px" />
-                            <col />
-                            <col style="width: 100px" />
-
-                            <col style="width: 100px" />
-                          </colgroup>
+                        <table class="table table-hover table-sm" id="snippet-seasonGrid-table">
                           <thead>
                             <tr class="row-group-actions">
-                              <th colspan="4" class="ublaboo-datagrid-th-form-inline">
+                              <th colspan="6" class="ublaboo-datagrid-th-form-inline">
                                 <div class="datagrid-toolbar">
-                                  <div id="snippet-clubGrid-toolbarButtons">
-                                    <span id="snippet-clubGrid-toolbar">
+                                  <div id="snippet-seasonGrid-toolbarButtons">
+                                    <span id="snippet-seasonGrid-toolbar">
                                       <a
-                                        href="/admin/club/create"
+                                        href="/admin/season/create"
                                         class="btn-sm btn-primary-light d-block"
-                                        >Vytvořit klub</a
+                                        >Vytvoriť sezonu</a
                                       >
                                     </span>
                                   </div>
-                                  <span class="datagrid-exports" id="snippet-clubGrid-exports">
+
+                                  <span class="datagrid-exports" id="snippet-seasonGrid-exports">
                                     <a
                                       class="btn-sm btn-primary-light d-block"
-                                      title="Exportovat do CSV"
-                                      href="/admin/club/?clubGrid-id=1&amp;do=clubGrid-export"
+                                      title="Exportovať do CSV"
+                                      href="/admin/season/?seasonGrid-id=1&amp;do=seasonGrid-export"
+                                      >Exportovať do CSV</a
                                     >
-                                      Exportovat do CSV
-                                    </a>
                                   </span>
+
                                   <div class="datagrid-settings">
                                     <div class="btn-group">
                                       <button
@@ -486,256 +477,518 @@
                                 </div>
                               </th>
                             </tr>
-
                             <tr>
-                              <th class="text-center col-club_id">
+                              <th class="text-center col-season_id">
                                 <a
                                   class="ajax"
-                                  href="/admin/club/?clubGrid-sort%5Bclub_id%5D=ASC&amp;do=clubGrid-sort"
-                                  id="datagrid-sort-club_id"
+                                  href="/admin/season/?seasonGrid-sort%5Bseason_id%5D=ASC&amp;do=seasonGrid-sort"
+                                  id="datagrid-sort-season_id"
                                 >
-                                  ID <i class="fa fa-sort"></i>
+                                  ID
+
+                                  <i class="fa fa-sort"></i>
                                 </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/season/?seasonGrid-column=season_id&amp;do=seasonGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/season/?seasonGrid-key=season_id&amp;do=seasonGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="season_id"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
                               </th>
                               <th class="text-left col-name">
                                 <a
                                   class="ajax"
-                                  href="/admin/club/?clubGrid-sort%5Bname%5D=ASC&amp;do=clubGrid-sort"
+                                  href="/admin/season/?seasonGrid-sort%5Bname%5D=ASC&amp;do=seasonGrid-sort"
                                   id="datagrid-sort-name"
                                 >
-                                  Název klubu <i class="fa fa-sort"></i>
+                                  Název sezóny
+
+                                  <i class="fa fa-sort"></i>
                                 </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/season/?seasonGrid-column=name&amp;do=seasonGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/season/?seasonGrid-key=name&amp;do=seasonGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="name"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
                               </th>
-                              <th class="text-left col-region_name">
+                              <th class="text-right col-start_date">
                                 <a
                                   class="ajax"
-                                  href="/admin/club/?clubGrid-sort%5Bregion_name%5D=ASC&amp;do=clubGrid-sort"
-                                  id="datagrid-sort-region_name"
+                                  href="/admin/season/?seasonGrid-sort%5Bstart_date%5D=ASC&amp;do=seasonGrid-sort"
+                                  id="datagrid-sort-start_date"
                                 >
-                                  Region <i class="fa fa-sort"></i>
+                                  Datum začátku
+
+                                  <i class="fa fa-sort"></i>
                                 </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/season/?seasonGrid-column=start_date&amp;do=seasonGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/season/?seasonGrid-key=start_date&amp;do=seasonGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="start_date"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-right col-end_date">
+                                <a
+                                  class="ajax"
+                                  href="/admin/season/?seasonGrid-sort%5Bend_date%5D=ASC&amp;do=seasonGrid-sort"
+                                  id="datagrid-sort-end_date"
+                                >
+                                  Datum konce
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/season/?seasonGrid-column=end_date&amp;do=seasonGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/season/?seasonGrid-key=end_date&amp;do=seasonGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="end_date"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-is_completed">
+                                <a
+                                  class="ajax"
+                                  href="/admin/season/?seasonGrid-sort%5Bis_completed%5D=ASC&amp;do=seasonGrid-sort"
+                                  id="datagrid-sort-is_completed"
+                                >
+                                  Dokončeno
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/season/?seasonGrid-column=is_completed&amp;do=seasonGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/season/?seasonGrid-key=is_completed&amp;do=seasonGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="is_completed"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
                               </th>
                               <th class="col-action text-center">Akce</th>
                             </tr>
-
                             <tr>
-                              <th class="text-center col-club_id"></th>
+                              <th class="text-center col-season_id"></th>
                               <th class="text-left col-name">
                                 <input
                                   type="text"
                                   name="filter[name]"
                                   data-autosubmit
                                   class="form-control input-sm form-control-sm"
-                                  id="frm-clubGrid-filter-filter-name"
+                                  id="frm-seasonGrid-filter-filter-name"
                                 />
                               </th>
-                              <th class="text-left col-region_name"></th>
+                              <th class="text-right col-start_date"></th>
+                              <th class="text-right col-end_date"></th>
+                              <th class="text-left col-is_completed"></th>
                               <th class="col-action text-center"></th>
                             </tr>
                           </thead>
 
-                          <tbody id="snippet-clubGrid-tbody">
-                            <tr data-id="1" id="snippet-clubGrid-item-1">
-                              <td class="text-center col-club_id">1</td>
-                              <td class="text-left col-name">SK Šipky Praha Střed</td>
-                              <td class="text-left col-region_name">Pražský</td>
+                          <tbody id="snippet-seasonGrid-tbody">
+                            <tr data-id="1" id="snippet-seasonGrid-item-1">
+                              <td class="text-center col-season_id">1</td>
+
+                              <td class="text-left col-name">Sezóna 2021/2022</td>
+
+                              <td class="text-right col-start_date">1.9.2021</td>
+
+                              <td class="text-right col-end_date">30.6.2022</td>
+
+                              <td class="text-left col-is_completed">
+                                <div class="dropdown">
+                                  <button
+                                    class="dropdown-toggle btn-success btn btn-xs"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                  >
+                                    Ano <i class="caret"></i>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=1&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=1&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ano
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=1&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=0&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ne
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
                               <td class="col-action">
-                                <a href="/admin/club/update/1" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/1" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/1" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/1" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                                <a
+                                  href="/admin/season/update/1"
+                                  title="Upravit administrátora"
+                                  class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
+                                >
+                                <a
+                                  href="/admin/season/delete/1"
+                                  title="Smazat administrátora"
+                                  class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
+                                >
                               </td>
                             </tr>
 
-                            <tr data-id="2" id="snippet-clubGrid-item-2">
-                              <td class="text-center col-club_id">2</td>
-                              <td class="text-left col-name">TJ Šipkaři Vinohrady</td>
-                              <td class="text-left col-region_name">Pražský</td>
+                            <tr data-id="2" id="snippet-seasonGrid-item-2">
+                              <td class="text-center col-season_id">2</td>
+
+                              <td class="text-left col-name">Sezóna 2022/2023</td>
+
+                              <td class="text-right col-start_date">1.9.2022</td>
+
+                              <td class="text-right col-end_date">30.6.2023</td>
+
+                              <td class="text-left col-is_completed">
+                                <div class="dropdown">
+                                  <button
+                                    class="dropdown-toggle btn-success btn btn-xs"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                  >
+                                    Ano <i class="caret"></i>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=2&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=1&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ano
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=2&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=0&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ne
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
                               <td class="col-action">
-                                <a href="/admin/club/update/2" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/2" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/2" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/2" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                                <a
+                                  href="/admin/season/update/2"
+                                  title="Upravit administrátora"
+                                  class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
+                                >
+                                <a
+                                  href="/admin/season/delete/2"
+                                  title="Smazat administrátora"
+                                  class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
+                                >
                               </td>
                             </tr>
 
-                            <tr data-id="3" id="snippet-clubGrid-item-3">
-                              <td class="text-center col-club_id">3</td>
-                              <td class="text-left col-name">Dart Club Smíchov</td>
-                              <td class="text-left col-region_name">Pražský</td>
+                            <tr data-id="3" id="snippet-seasonGrid-item-3">
+                              <td class="text-center col-season_id">3</td>
+
+                              <td class="text-left col-name">Sezóna 2023/2024</td>
+
+                              <td class="text-right col-start_date">1.9.2023</td>
+
+                              <td class="text-right col-end_date">30.6.2024</td>
+
+                              <td class="text-left col-is_completed">
+                                <div class="dropdown">
+                                  <button
+                                    class="dropdown-toggle btn-success btn btn-xs"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                  >
+                                    Ano <i class="caret"></i>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=3&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=1&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ano
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=3&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=0&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ne
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
                               <td class="col-action">
-                                <a href="/admin/club/update/3" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/3" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/3" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/3" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                                <a
+                                  href="/admin/season/update/3"
+                                  title="Upravit administrátora"
+                                  class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
+                                >
+                                <a
+                                  href="/admin/season/delete/3"
+                                  title="Smazat administrátora"
+                                  class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
+                                >
                               </td>
                             </tr>
 
-                            <tr data-id="4" id="snippet-clubGrid-item-4">
-                              <td class="text-center col-club_id">4</td>
-                              <td class="text-left col-name">SK Darts Brno</td>
-                              <td class="text-left col-region_name">Moravskoslezský</td>
+                            <tr data-id="4" id="snippet-seasonGrid-item-4">
+                              <td class="text-center col-season_id">4</td>
+
+                              <td class="text-left col-name">Sezóna 2024/2025</td>
+
+                              <td class="text-right col-start_date">1.9.2024</td>
+
+                              <td class="text-right col-end_date">30.6.2025</td>
+
+                              <td class="text-left col-is_completed">
+                                <div class="dropdown">
+                                  <button
+                                    class="dropdown-toggle btn-warning btn btn-xs"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                  >
+                                    Ne <i class="caret"></i>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=4&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=1&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ano
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=4&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=0&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ne
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
                               <td class="col-action">
-                                <a href="/admin/club/update/4" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/4" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/4" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/4" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                                <a
+                                  href="/admin/season/update/4"
+                                  title="Upravit administrátora"
+                                  class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
+                                >
+                                <a
+                                  href="/admin/season/delete/4"
+                                  title="Smazat administrátora"
+                                  class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
+                                >
                               </td>
                             </tr>
 
-                            <tr data-id="5" id="snippet-clubGrid-item-5">
-                              <td class="text-center col-club_id">5</td>
-                              <td class="text-left col-name">TJ Moravské šipky</td>
-                              <td class="text-left col-region_name">Moravskoslezský</td>
-                              <td class="col-action">
-                                <a href="/admin/club/update/5" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/5" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/5" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/5" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
-                              </td>
-                            </tr>
+                            <tr data-id="5" id="snippet-seasonGrid-item-5">
+                              <td class="text-center col-season_id">5</td>
 
-                            <tr data-id="6" id="snippet-clubGrid-item-6">
-                              <td class="text-center col-club_id">6</td>
-                              <td class="text-left col-name">SK Šipky Kladno</td>
-                              <td class="text-left col-region_name">Středočeský</td>
-                              <td class="col-action">
-                                <a href="/admin/club/update/6" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/6" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/6" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/6" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
-                              </td>
-                            </tr>
+                              <td class="text-left col-name">Sezóna 2025/2026</td>
 
-                            <tr data-id="7" id="snippet-clubGrid-item-7">
-                              <td class="text-center col-club_id">7</td>
-                              <td class="text-left col-name">Dart Team Středočeši</td>
-                              <td class="text-left col-region_name">Středočeský</td>
-                              <td class="col-action">
-                                <a href="/admin/club/update/7" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/7" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/7" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/7" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
-                              </td>
-                            </tr>
+                              <td class="text-right col-start_date">1.9.2025</td>
 
-                            <tr data-id="8" id="snippet-clubGrid-item-8">
-                              <td class="text-center col-club_id">8</td>
-                              <td class="text-left col-name">SK Budějovické šipky</td>
-                              <td class="text-left col-region_name">Jihočeský</td>
-                              <td class="col-action">
-                                <a href="/admin/club/update/8" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/8" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/8" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/8" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
-                              </td>
-                            </tr>
+                              <td class="text-right col-end_date">30.6.2026</td>
 
-                            <tr data-id="9" id="snippet-clubGrid-item-9">
-                              <td class="text-center col-club_id">9</td>
-                              <td class="text-left col-name">TJ Dart Jihočeši</td>
-                              <td class="text-left col-region_name">Jihočeský</td>
-                              <td class="col-action">
-                                <a href="/admin/club/update/9" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/9" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/9" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/9" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                              <td class="text-left col-is_completed">
+                                <div class="dropdown">
+                                  <button
+                                    class="dropdown-toggle btn-warning btn btn-xs"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                  >
+                                    Ne <i class="caret"></i>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=5&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=1&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ano
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="/admin/season/?seasonGrid-id=5&amp;seasonGrid-key=is_completed&amp;seasonGrid-value=0&amp;do=seasonGrid-changeStatus"
+                                        class="ajax dropdown-item"
+                                      >
+                                        Ne
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
                               </td>
-                            </tr>
-
-                            <tr data-id="10" id="snippet-clubGrid-item-10">
-                              <td class="text-center col-club_id">10</td>
-                              <td class="text-left col-name">SK Plzeňské šipky</td>
-                              <td class="text-left col-region_name">Západočeský</td>
                               <td class="col-action">
-                                <a href="/admin/club/update/10" class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span
-                                ></a>
-                                <a href="/admin/club/delete/10" class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span
-                                ></a>
-                                <a href="/admin/club/history/10" class="btn btn-sm btn-info"
-                                  ><span class="fa fa-history"></span
-                                ></a>
-                                <a href="/admin/club/change-name/10" class="btn btn-sm btn-success"
-                                  ><span class="fa fa-edit"></span
-                                ></a>
+                                <a
+                                  href="/admin/season/update/5"
+                                  title="Upravit administrátora"
+                                  class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
+                                >
+                                <a
+                                  href="/admin/season/delete/5"
+                                  title="Smazat administrátora"
+                                  class="btn btn-sm btn-danger"
+                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
+                                >
                               </td>
                             </tr>
                           </tbody>
-
                           <tfoot id="snippet-clubGrid-pagination">
                             <tr>
                               <td colspan="19" class="row-grid-bottom">
@@ -795,7 +1048,7 @@
                             </tr>
                           </tfoot>
                         </table>
-                        <input type="hidden" name="_do" value="clubGrid-filter-submit" />
+                        <input type="hidden" name="_do" value="seasonGrid-filter-submit" />
                       </form>
                     </div>
                   </div>

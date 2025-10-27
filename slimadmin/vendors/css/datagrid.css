@@ -44,18 +44,18 @@
 }
 
 .datagrid .datagrid-row-columns-summary td {
-  border-top: 2px solid var(--input-border: #313335);
-  border-left: 1px solid var(--input-border: #313335);
-  border-right: 1px solid var(--input-border: #313335);
+  border-top: 2px solid var(--input-border);
+  border-left: 1px solid var(--input-border);
+  border-right: 1px solid var(--input-border);
   font-weight: bold;
 }
 
 .datagrid .datagrid-row-columns-summary td:first-child {
-  border-left: 1px solid var(--input-border: #313335);
+  border-left: 1px solid var(--input-border);
 }
 
 .datagrid .datagrid-row-columns-summary td:last-child {
-  border-right: 1px solid var(--input-border: #313335);
+  border-right: 1px solid var(--input-border);
 }
 
 .datagrid .datagrid-toolbar {
@@ -63,7 +63,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 12px;
-  background-color: var(--custom-white);
+  background-color: rgb(var(--bg-table-bg));
   justify-content: flex-start; /* Zarovnání vlevo */
   width: 100%; /* Zajistí plnou šířku */
   box-sizing: border-box; /* Padding se započítá do šířky */
@@ -647,7 +647,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px; /* Dostatečný padding pro lepší vzhled */
-  background-color: var(--custom-white);
+  background-color: rgb(var(--bg-table-bg));
   color: var(--default-text-color); /* Světlý text */
   border: 1px solid #444; /* Jemný okraj */
   border-top: none; /* Odstranění horního okraje, aby se nezobrazoval dvojnásobně */

@@ -172,7 +172,7 @@ body {
 
 /******************** GLOBAL STYLES ********************/
 .slim-pagetitle {
-  color: #fff;
+  color: var(--default-text-color);
 }
 
 .slim-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
@@ -428,16 +428,16 @@ hr {
 /******************** CARD ********************/
 .card:not([class*=' bg-']) {
   background-color: #212529;
-  border-color: #343a40;
+  border-color: var(--border-color);
 }
 
 .card-header,
 .card-footer {
-  border-color: #343a40;
+  border-color: var(--border-color);
 }
 
 .card-header-tabs::before {
-  border-color: #343a40;
+  border-color: var(--border-color);
 }
 .card-header-tabs .nav-link {
   color: #868ba1;
@@ -459,7 +459,7 @@ hr {
 
 /******************** ACCORDION ********************/
 .accordion-one .card-header a {
-  border-color: #343a40;
+  border-color: var(--border-color);
 }
 .accordion-one .card-header a.collapsed {
   background-color: #343a40;
@@ -898,13 +898,13 @@ hr {
 /******************** TABLE BASIC ********************/
 .table:not([class*=' table-colored']) thead tr th,
 .table:not([class*=' table-colored']) thead tr td {
-  background-color: var(--custom-white);
+  background-color: rgb(var(--bg-table-bg));
 }
 .table:not([class*=' table-colored']) thead tr th,
 .table:not([class*=' table-colored']) thead tr td,
 .table:not([class*=' table-colored']) tbody tr th,
 .table:not([class*=' table-colored']) tbody tr td {
-  border-color: #343a40;
+  border-color: var(--border-color);
   color: #868ba1;
 }
 
@@ -915,7 +915,7 @@ hr {
 
 .table-bordered tbody tr:last-child th,
 .table-bordered tbody tr:last-child td {
-  border-bottom-color: #343a40;
+  border-bottom-color: var(--border-color);
 }
 
 /******************** DATA BASIC ********************/

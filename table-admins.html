@@ -66,6 +66,9 @@
         </div>
         <!-- slim-header-left -->
         <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
           <div class="dropdown dropdown-c">
             <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
               <i class="icon ion-person tx-primary"></i>
@@ -167,7 +170,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Nástěnka </span>
             </a>
           </li>
@@ -176,7 +178,6 @@
               class="sidebar-nav-link active"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/member/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Členové </span>
             </a>
           </li>
@@ -185,7 +186,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/club/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Kluby </span>
             </a>
           </li>
@@ -194,7 +194,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/region/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Regiony </span>
             </a>
           </li>
@@ -203,7 +202,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/season/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Sezóny </span>
             </a>
           </li>
@@ -212,7 +210,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/team/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Družstva </span>
             </a>
           </li>
@@ -221,7 +218,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/location/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Hrací místa </span>
             </a>
           </li>
@@ -230,7 +226,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league/"
             >
-              <i class="icon ion-ios-trophy-outline"></i>
               <span> Ligové súťaže </span>
             </a>
           </li>
@@ -239,7 +234,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league-registration/"
             >
-              <i class="icon ion-ios-list-box-outline"></i>
               <span> Prihlášky do Ligových súťaží </span>
             </a>
           </li>
@@ -248,7 +242,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/competition/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Ligové skupiny </span>
             </a>
           </li>
@@ -257,7 +250,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/target-provider/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Poskytovatele tercu </span>
             </a>
           </li>
@@ -266,7 +258,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/administrator/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Administrátoři </span>
             </a>
           </li>
@@ -275,7 +266,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/payments/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Platby </span>
             </a>
           </li>
@@ -284,7 +274,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/charges/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Poplatky </span>
             </a>
           </li>
@@ -293,7 +282,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Turnaje </span>
             </a>
           </li>
@@ -302,7 +290,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament-type/"
             >
-              <i class="icon ion-ios-home-outline"></i>
               <span> Typy turnajů </span>
             </a>
           </li>
@@ -311,7 +298,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
             >
-              <i class="icon ion-ios-swap"></i>
               <span> Prestupy </span>
             </a>
 
@@ -341,7 +327,6 @@
               class="sidebar-nav-link"
               href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
             >
-              <i class="icon ion-ios-football-outline"></i>
               <span> Utkání </span>
             </a>
 
@@ -431,14 +416,76 @@
                                       >Exportovat</a
                                     >
                                   </span>
-                                  <span class="datagrid-exports" id="snippet-colsrGrid-exports">
-                                    <a
-                                      class="btn-sm btn-primary-light d-block"
-                                      title="Vlastní sloupce"
-                                      href="#"
-                                      >Vlastní sloupce</a
-                                    >
-                                  </span>
+                                  <div class="datagrid-settings">
+                                    <div class="btn-group">
+                                      <button
+                                        type="button"
+                                        class="btn btn-xs btn-default btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        <i class="fa fa-cog"></i>
+                                      </button>
+                                      <ul
+                                        class="dropdown-menu dropdown-menu-right dropdown-menu--grid"
+                                      >
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=season_id&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            ID
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=name&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Název sezóny
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=start_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum začátku
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=end_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum konce
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=is_completed&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Dokončeno
+                                          </a>
+                                        </li>
+                                        <li role="separator" class="divider dropdown-divider"></li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?do=seasonGrid-showAllColumns"
+                                            class="ajax dropdown-item"
+                                            ><i class="fa fa-eye"></i> Zobrazit všechny sloupce</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
                                 </div>
                               </th>
                             </tr>

@@ -1,19 +1,23 @@
 .slim-sidebar {
-    padding: 0px 0;
+  padding: 0px 0;
 }
 .logged-user {
-    color: #fff;
+  color: #fff;
 }
-.table:not([class*=" table-colored"]) thead tr th, .table:not([class*=" table-colored"]) thead tr td, .table:not([class*=" table-colored"]) tbody tr th, .table:not([class*=" table-colored"]) tbody tr td {
-     color: #e1e1e1;
+.table:not([class*=' table-colored']) thead tr th,
+.table:not([class*=' table-colored']) thead tr td,
+.table:not([class*=' table-colored']) tbody tr th,
+.table:not([class*=' table-colored']) tbody tr td {
+  color: var(--default-text-color);
 }
 .datagrid table thead tr th .datagrid-column-header-additions {
-    display: none;
+  display: none;
 }
 .card-body .datagrid thead tr:last-child th {
-    padding-bottom: 10px;
-    text-align: left !important;
+  padding-bottom: 10px;
+  text-align: left !important;
 }
-.card-body .datagrid td:last-child, .card-body .datagrid th:last-child {
-    padding-right: 15px;
+.card-body .datagrid td:last-child,
+.card-body .datagrid th:last-child {
+  padding-right: 15px;
 }

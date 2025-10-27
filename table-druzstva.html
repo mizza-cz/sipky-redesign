@@ -360,7 +360,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Vytvoření klubu</h6>
+            <h6 class="slim-pagetitle">Družstva</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -372,271 +372,149 @@
 
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <form
-                    action="/admin/club/create"
-                    method="post"
-                    enctype="multipart/form-data"
-                    id="frm-clubForm"
-                  >
-                    <fieldset>
-                      <legend>Základní informace</legend>
-                      <div class="row">
-                        <div class="col-12 mb-2">
-                          <label for="frm-clubForm-name">Název klubu:</label>
-                          <input
-                            type="text"
-                            name="name"
-                            class="form-control bg-light form-control"
-                            title='Na zmenu názvu použite tlačidlo "Zmeniť názov" v zozname klubov'
-                            id="frm-clubForm-name"
-                            disabled
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-region_id" class="required">Region:</label>
-                          <select
-                            class="js-select"
-                            name="region_id"
-                            id="frm-clubForm-region_id"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."}]'
-                          >
-                            <option value="1">Pražský svaz šipkařů</option>
-                            <option value="2">Moravskoslezský svaz šipkařů</option>
-                            <option value="3">Středočeský svaz šipkařů</option>
-                            <option value="4">Jihočeský svaz šipkařů</option>
-                            <option value="5">Západočeský svaz šipkařů</option>
-                            <option value="6">TEST Praha</option>
-                            <option value="7">TEST Morava</option>
-                            <option value="8">TEST Čechy</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-media_id">Logo:</label>
-                          <input
-                            type="file"
-                            name="media_id"
-                            id="frm-clubForm-media_id"
-                            data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 2097152 bytes.","arg":2097152}]'
-                            class="text"
-                          />
-                        </div>
-                        <div class="col-12">
-                          <label for="frm-clubForm-active"
-                            ><input
-                              type="checkbox"
-                              name="active"
-                              id="frm-clubForm-active"
-                            />Aktivní</label
-                          >
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Identifikace</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-company_id">IČO:</label>
-                          <input
-                            type="text"
-                            name="company_id"
-                            maxlength="20"
-                            id="frm-clubForm-company_id"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-tax_id">DIČ:</label>
-                          <input
-                            type="text"
-                            name="tax_id"
-                            maxlength="20"
-                            id="frm-clubForm-tax_id"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 20 znaků.","arg":20}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Adresa</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-street">Ulice:</label>
-                          <input
-                            type="text"
-                            name="street"
-                            maxlength="255"
-                            id="frm-clubForm-street"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-city">Město:</label>
-                          <input
-                            type="text"
-                            name="city"
-                            maxlength="255"
-                            id="frm-clubForm-city"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-district">Okres:</label>
-                          <input
-                            type="text"
-                            name="district"
-                            maxlength="255"
-                            id="frm-clubForm-district"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-postal_code">PSČ:</label>
-                          <input
-                            type="text"
-                            name="postal_code"
-                            maxlength="10"
-                            id="frm-clubForm-postal_code"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 10 znaků.","arg":10}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Kontaktní údaje</legend>
-                      <div class="row">
-                        <div class="col-12 mb-2">
-                          <label for="frm-clubForm-website">Webová stránka:</label>
-                          <input
-                            type="text"
-                            name="website"
-                            maxlength="255"
-                            id="frm-clubForm-website"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-chairman">Předseda:</label>
-                          <input
-                            type="text"
-                            name="chairman"
-                            maxlength="255"
-                            id="frm-clubForm-chairman"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-email" class="required">Email:</label>
-                          <input
-                            type="email"
-                            name="email"
-                            maxlength="255"
-                            id="frm-clubForm-email"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Zadejte platnou emailovou adresu."},{"op":":email","msg":"Please enter a valid email address."},{"op":":maxLength","msg":"Maximální délka je 255 znaků.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-phone_1">Telefon 1:</label>
-                          <input
-                            type="text"
-                            name="phone_1"
-                            maxlength="15"
-                            id="frm-clubForm-phone_1"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 15 znaků.","arg":15}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-phone_2">Telefon 2:</label>
-                          <input
-                            type="text"
-                            name="phone_2"
-                            maxlength="15"
-                            id="frm-clubForm-phone_2"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 15 znaků.","arg":15}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Bankovní údaje</legend>
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-bank_account">Bankovní účet:</label>
-                          <input
-                            type="text"
-                            name="bank_account"
-                            maxlength="100"
-                            id="frm-clubForm-bank_account"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-clubForm-bank_name">Název banky:</label>
-                          <input
-                            type="text"
-                            name="bank_name"
-                            maxlength="100"
-                            id="frm-clubForm-bank_name"
-                            data-nette-rules='[{"op":":maxLength","msg":"Maximální délka je 100 znaků.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Další</legend>
-
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2">
-                            <label for="frm-clubForm-note">Poznámka:</label>
-                          </div>
-
-                          <div class="mb-10">
-                            <textarea name="note" id="frm-clubForm-note"></textarea>
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <input
-                              type="submit"
-                              name="send"
-                              value="Vytvořit"
-                              class="btn btn-primary"
-                            />
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <input type="hidden" name="_do" value="clubForm-submit" />
-                  </form>
+                  <div class="datagrid datagrid-teamGrid">
+                    <div id="snippet-teamGrid-grid">
+                      <form
+                        action="/admin/team/"
+                        method="post"
+                        id="frm-teamGrid-filter"
+                        class="ajax"
+                      >
+                        <table class="table table-hover table-sm" id="snippet-teamGrid-table">
+                          <thead>
+                            <tr>
+                              <th class="text-center col-team_id">
+                                <a
+                                  class="ajax"
+                                  href="/admin/team/?teamGrid-sort%5Bteam_id%5D=ASC&amp;do=teamGrid-sort"
+                                  >ID družstva</a
+                                >
+                              </th>
+                              <th class="text-left col-name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/team/?teamGrid-sort%5Bname%5D=ASC&amp;do=teamGrid-sort"
+                                  >Název družstva</a
+                                >
+                              </th>
+                              <th class="text-left col-club_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/team/?teamGrid-sort%5Bclub_name%5D=ASC&amp;do=teamGrid-sort"
+                                  >Klub</a
+                                >
+                              </th>
+                              <th class="text-left col-region_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/team/?teamGrid-sort%5Bregion_name%5D=ASC&amp;do=teamGrid-sort"
+                                  >Zkratka regionu</a
+                                >
+                              </th>
+                            </tr>
+                            <tr>
+                              <th></th>
+                              <th>
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                />
+                              </th>
+                              <th>
+                                <input
+                                  type="text"
+                                  name="filter[club_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                />
+                              </th>
+                              <th>
+                                <input
+                                  type="text"
+                                  name="filter[region_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                />
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="snippet-teamGrid-tbody">
+                            <tr>
+                              <td class="text-center">1</td>
+                              <td>SK Šipky Praha Střed A</td>
+                              <td>SK Šipky Praha Střed</td>
+                              <td>PSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">2</td>
+                              <td>SK Šipky Praha Střed B</td>
+                              <td>SK Šipky Praha Střed</td>
+                              <td>PSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">3</td>
+                              <td>TJ Šipkaři Vinohrady</td>
+                              <td>TJ Šipkaři Vinohrady</td>
+                              <td>PSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">4</td>
+                              <td>Dart Club Smíchov</td>
+                              <td>Dart Club Smíchov</td>
+                              <td>PSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">5</td>
+                              <td>SK Darts Brno A</td>
+                              <td>SK Darts Brno</td>
+                              <td>MSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">6</td>
+                              <td>SK Darts Brno B</td>
+                              <td>SK Darts Brno</td>
+                              <td>MSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">7</td>
+                              <td>TJ Moravské šipky</td>
+                              <td>TJ Moravské šipky</td>
+                              <td>MSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">8</td>
+                              <td>SK Šipky Kladno</td>
+                              <td>SK Šipky Kladno</td>
+                              <td>SSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">9</td>
+                              <td>Dart Team Středočeši</td>
+                              <td>Dart Team Středočeši</td>
+                              <td>SSŠ</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">10</td>
+                              <td>SK Budějovické šipky</td>
+                              <td>SK Budějovické šipky</td>
+                              <td>JSŠ</td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td colspan="4" class="text-center">
+                                <small class="text-muted">(Položky: 1 - 10 z 15)</small>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </form>
+                    </div>
+                  </div>
                 </div>
+
                 <!-- card-body -->
               </div>
             </div>

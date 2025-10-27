@@ -74,7 +74,7 @@ textarea:focus {
 }
 
 label {
-  color: #e0e0e0;
+  color: var(--text-muted);
   display: flex;
   align-items: center; /* Vertically align checkbox and text */
   margin: 5px 0; /* Space between checkbox labels */
@@ -112,7 +112,7 @@ input[type='checkbox'] {
   border-color: var(--input-border);
   color: #e0e0e0;
   margin-right: 10px; /* Add space between checkbox and text */
-  accent-color: #1b84e7; /* Modern way to change checkbox color */
+  accent-color: var(--primary-color); /* Modern way to change checkbox color */
   width: 18px; /* Resize checkbox */
   height: 18px;
 }
