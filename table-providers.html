@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/"
+            >
+              <span> Nástěnka </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item active">
+            <a
+              class="sidebar-nav-link active"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/member/"
+            >
+              <span> Členové </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/club/"
+            >
+              <span> Kluby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/region/"
+            >
+              <span> Regiony </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/season/"
+            >
+              <span> Sezóny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/team/"
+            >
+              <span> Družstva </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/location/"
+            >
+              <span> Hrací místa </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league/"
+            >
+              <span> Ligové súťaže </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league-registration/"
+            >
+              <span> Prihlášky do Ligových súťaží </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/competition/"
+            >
+              <span> Ligové skupiny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/target-provider/"
+            >
+              <span> Poskytovatele tercu </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/administrator/"
+            >
+              <span> Administrátoři </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/payments/"
+            >
+              <span> Platby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/charges/"
+            >
+              <span> Poplatky </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament/"
+            >
+              <span> Turnaje </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament-type/"
+            >
+              <span> Typy turnajů </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+            >
+              <span> Prestupy </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+                  class="nav-sub-link"
+                >
+                  Čakajúce schválenia
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/"
+                  class="nav-sub-link"
+                >
+                  Prehľad prestupov
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+            >
+              <span> Utkání </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+                  class="nav-sub-link"
+                >
+                  Rozlosování utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/match/"
+                  class="nav-sub-link"
+                >
+                  Výpis utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="slim-pageheader">
+            <ol class="breadcrumb slim-breadcrumb"></ol>
+
+            <h6 class="slim-pagetitle">Poskytovatelé terčů</h6>
+          </div>
+          <!-- slim-pageheader -->
+
+          <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <h6 class="slim-pagetitle mg-y-25"></h6>
+
+              <div class="card overflow-visible">
+                <div class="card-body" data-menu-type="primary">
+                  <div
+                    class="datagrid datagrid-regionGrid"
+                    data-refresh-state="/admin/region/?do=regionGrid-refreshState"
+                  >
+                    <div id="snippet-regionGrid-grid">
+                      <form
+                        action="/admin/region/"
+                        method="post"
+                        id="frm-regionGrid-filter"
+                        class="ajax"
+                      >
+                        <table class="table table-hover table-sm" id="snippet-regionGrid-table">
+                          <colgroup>
+                            <col style="width: 80px" />
+                          </colgroup>
+                          <thead>
+                            <tr class="row-group-actions">
+                              <th colspan="4" class="ublaboo-datagrid-th-form-inline">
+                                <div class="datagrid-toolbar">
+                                  <div id="snippet-clubGrid-toolbarButtons">
+                                    <span id="snippet-clubGrid-toolbar">
+                                      <a
+                                        href="/admin/club/create"
+                                        class="btn-sm btn-primary-light d-block"
+                                        >Vytvořit klub</a
+                                      >
+                                    </span>
+                                  </div>
+                                  <span class="datagrid-exports" id="snippet-clubGrid-exports">
+                                    <a
+                                      class="btn-sm btn-primary-light d-block"
+                                      title="Exportovat do CSV"
+                                      href="/admin/club/?clubGrid-id=1&amp;do=clubGrid-export"
+                                    >
+                                      Exportovat do CSV
+                                    </a>
+                                  </span>
+                                  <div class="datagrid-settings">
+                                    <div class="btn-group">
+                                      <button
+                                        type="button"
+                                        class="btn btn-xs btn-default btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        <i class="fa fa-cog"></i>
+                                      </button>
+                                      <ul
+                                        class="dropdown-menu dropdown-menu-right dropdown-menu--grid"
+                                      >
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=season_id&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            ID
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=name&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Název sezóny
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=start_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum začátku
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=end_date&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum konce
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?seasonGrid-column=is_completed&amp;do=seasonGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Dokončeno
+                                          </a>
+                                        </li>
+                                        <li role="separator" class="divider dropdown-divider"></li>
+                                        <li>
+                                          <a
+                                            href="/admin/season/?do=seasonGrid-showAllColumns"
+                                            class="ajax dropdown-item"
+                                            ><i class="fa fa-eye"></i> Zobrazit všechny sloupce</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+
+                            <tr>
+                              <th class="text-center col-region_id">
+                                <a
+                                  class="ajax"
+                                  href="/admin/region/?regionGrid-sort%5Bregion_id%5D=ASC&amp;do=regionGrid-sort"
+                                  id="datagrid-sort-region_id"
+                                >
+                                  ID
+                                  <i class="fa fa-sort"></i>
+                                </a>
+                              </th>
+                              <th class="text-left col-name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/region/?regionGrid-sort%5Bname%5D=ASC&amp;do=regionGrid-sort"
+                                  id="datagrid-sort-name"
+                                >
+                                  Název regionu
+                                  <i class="fa fa-sort"></i>
+                                </a>
+                              </th>
+                              <th class="col-action text-center">Akce</th>
+                            </tr>
+
+                            <tr>
+                              <th class="text-center col-region_id"></th>
+                              <th class="text-left col-name">
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-regionGrid-filter-filter-name"
+                                />
+                              </th>
+                              <th class="col-action text-center"></th>
+                            </tr>
+                          </thead>
+
+                          <tbody id="snippet-regionGrid-tbody">
+                            <tr data-id="1">
+                              <td class="text-center col-region_id">1</td>
+                              <td class="text-left col-name">Pražský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/1" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/1" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="2">
+                              <td class="text-center col-region_id">2</td>
+                              <td class="text-left col-name">Moravskoslezský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="3">
+                              <td class="text-center col-region_id">3</td>
+                              <td class="text-left col-name">Středočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/3" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/3" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="4">
+                              <td class="text-center col-region_id">4</td>
+                              <td class="text-left col-name">Jihočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/4" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/4" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="5">
+                              <td class="text-center col-region_id">5</td>
+                              <td class="text-left col-name">Západočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/5" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/5" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="6">
+                              <td class="text-center col-region_id">6</td>
+                              <td class="text-left col-name">TEST Praha</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/6" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/6" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="7">
+                              <td class="text-center col-region_id">7</td>
+                              <td class="text-left col-name">TEST Morava</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/7" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/7" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="8">
+                              <td class="text-center col-region_id">8</td>
+                              <td class="text-left col-name">TEST Čechy</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/8" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/8" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot id="snippet-clubGrid-pagination">
+                            <tr>
+                              <td colspan="19" class="row-grid-bottom">
+                                <div class="col-items">
+                                  <small class="text-muted"> ( Položky: 1 - 10 z 20 ) </small>
+                                </div>
+                                <div class="col-pagination text-center">
+                                  <ul class="pagination justify-content-center mg-b-0">
+                                    <li class="page-item active">
+                                      <a class="page-link ajax" href="/admin/club/?do=clubGrid-page"
+                                        >1</a
+                                      >
+                                    </li>
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
+                                        >2</a
+                                      >
+                                    </li>
+
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/club/?clubGrid-page=2&amp;do=clubGrid-page"
+                                        rel="prev"
+                                      >
+                                        <i class="fa fa-angle-right"></i>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="col-per-page text-right">
+                                  <select
+                                    name="perPage"
+                                    id="frm-clubGrid-filter-perPage"
+                                    data-autosubmit-per-page
+                                    class="form-control input-sm form-control-sm js-select"
+                                  >
+                                    <option value="10" selected>10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="all">všechny</option>
+                                  </select>
+                                  <input
+                                    type="submit"
+                                    name="perPage_submit"
+                                    value="OK"
+                                    formnovalidate
+                                    data-nette-validation-scope='["perPage"]'
+                                    class="datagrid-per-page-submit btn-primary"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                        <input type="hidden" name="_do" value="regionGrid-filter-submit" />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- card-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </div>
+      <!-- slim-mainpanel -->
+    </div>
+    <!-- slim-body -->
+
+    <script src="slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="slimadmin/vendors/js/netteForms.js"></script>
+    <script src="slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="slimadmin/vendors/js/datagrid.js"></script>
+    <script src="slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="slimadmin/vendors/js/custom.js"></script>
+    <script src="slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>
