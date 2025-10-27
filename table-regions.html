@@ -360,7 +360,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Družstva</h6>
+            <h6 class="slim-pagetitle">Regiony</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -372,22 +372,21 @@
 
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <div class="datagrid datagrid-teamGrid">
-                    <div id="snippet-teamGrid-grid">
+                  <div
+                    class="datagrid datagrid-regionGrid"
+                    data-refresh-state="/admin/region/?do=regionGrid-refreshState"
+                  >
+                    <div id="snippet-regionGrid-grid">
                       <form
-                        action="/admin/team/"
+                        action="/admin/region/"
                         method="post"
-                        id="frm-teamGrid-filter"
+                        id="frm-regionGrid-filter"
                         class="ajax"
                       >
-                        <table class="table table-hover table-sm" id="snippet-teamGrid-table">
+                        <table class="table table-hover table-sm" id="snippet-regionGrid-table">
                           <colgroup>
                             <col style="width: 80px" />
-                            <col />
-                            <col />
-                            <col />
                           </colgroup>
-
                           <thead>
                             <tr class="row-group-actions">
                               <th colspan="4" class="ublaboo-datagrid-th-form-inline">
@@ -483,124 +482,149 @@
                                 </div>
                               </th>
                             </tr>
+
                             <tr>
-                              <th class="text-center col-team_id">
+                              <th class="text-center col-region_id">
                                 <a
                                   class="ajax"
-                                  href="/admin/team/?teamGrid-sort%5Bteam_id%5D=ASC&amp;do=teamGrid-sort"
-                                  >ID</a
+                                  href="/admin/region/?regionGrid-sort%5Bregion_id%5D=ASC&amp;do=regionGrid-sort"
+                                  id="datagrid-sort-region_id"
                                 >
+                                  ID
+                                  <i class="fa fa-sort"></i>
+                                </a>
                               </th>
                               <th class="text-left col-name">
                                 <a
                                   class="ajax"
-                                  href="/admin/team/?teamGrid-sort%5Bname%5D=ASC&amp;do=teamGrid-sort"
-                                  >Název družstva</a
+                                  href="/admin/region/?regionGrid-sort%5Bname%5D=ASC&amp;do=regionGrid-sort"
+                                  id="datagrid-sort-name"
                                 >
+                                  Název regionu
+                                  <i class="fa fa-sort"></i>
+                                </a>
                               </th>
-                              <th class="text-left col-club_name">
-                                <a
-                                  class="ajax"
-                                  href="/admin/team/?teamGrid-sort%5Bclub_name%5D=ASC&amp;do=teamGrid-sort"
-                                  >Klub</a
-                                >
-                              </th>
-                              <th class="text-left col-region_name">
-                                <a
-                                  class="ajax"
-                                  href="/admin/team/?teamGrid-sort%5Bregion_name%5D=ASC&amp;do=teamGrid-sort"
-                                  >Zkratka regionu</a
-                                >
-                              </th>
+                              <th class="col-action text-center">Akce</th>
                             </tr>
+
                             <tr>
-                              <th></th>
-                              <th>
+                              <th class="text-center col-region_id"></th>
+                              <th class="text-left col-name">
                                 <input
                                   type="text"
                                   name="filter[name]"
                                   data-autosubmit
                                   class="form-control input-sm form-control-sm"
+                                  id="frm-regionGrid-filter-filter-name"
                                 />
                               </th>
-                              <th>
-                                <input
-                                  type="text"
-                                  name="filter[club_name]"
-                                  data-autosubmit
-                                  class="form-control input-sm form-control-sm"
-                                />
-                              </th>
-                              <th>
-                                <input
-                                  type="text"
-                                  name="filter[region_name]"
-                                  data-autosubmit
-                                  class="form-control input-sm form-control-sm"
-                                />
-                              </th>
+                              <th class="col-action text-center"></th>
                             </tr>
                           </thead>
-                          <tbody id="snippet-teamGrid-tbody">
-                            <tr>
-                              <td class="text-center">1</td>
-                              <td>SK Šipky Praha Střed A</td>
-                              <td>SK Šipky Praha Střed</td>
-                              <td>PSŠ</td>
+
+                          <tbody id="snippet-regionGrid-tbody">
+                            <tr data-id="1">
+                              <td class="text-center col-region_id">1</td>
+                              <td class="text-left col-name">Pražský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/1" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/1" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">2</td>
-                              <td>SK Šipky Praha Střed B</td>
-                              <td>SK Šipky Praha Střed</td>
-                              <td>PSŠ</td>
+
+                            <tr data-id="2">
+                              <td class="text-center col-region_id">2</td>
+                              <td class="text-left col-name">Moravskoslezský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">3</td>
-                              <td>TJ Šipkaři Vinohrady</td>
-                              <td>TJ Šipkaři Vinohrady</td>
-                              <td>PSŠ</td>
+
+                            <tr data-id="3">
+                              <td class="text-center col-region_id">3</td>
+                              <td class="text-left col-name">Středočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/3" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/3" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">4</td>
-                              <td>Dart Club Smíchov</td>
-                              <td>Dart Club Smíchov</td>
-                              <td>PSŠ</td>
+
+                            <tr data-id="4">
+                              <td class="text-center col-region_id">4</td>
+                              <td class="text-left col-name">Jihočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/4" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/4" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">5</td>
-                              <td>SK Darts Brno A</td>
-                              <td>SK Darts Brno</td>
-                              <td>MSŠ</td>
+
+                            <tr data-id="5">
+                              <td class="text-center col-region_id">5</td>
+                              <td class="text-left col-name">Západočeský svaz šipkařů</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/5" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/5" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">6</td>
-                              <td>SK Darts Brno B</td>
-                              <td>SK Darts Brno</td>
-                              <td>MSŠ</td>
+
+                            <tr data-id="6">
+                              <td class="text-center col-region_id">6</td>
+                              <td class="text-left col-name">TEST Praha</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/6" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/6" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">7</td>
-                              <td>TJ Moravské šipky</td>
-                              <td>TJ Moravské šipky</td>
-                              <td>MSŠ</td>
+
+                            <tr data-id="7">
+                              <td class="text-center col-region_id">7</td>
+                              <td class="text-left col-name">TEST Morava</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/7" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/7" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td class="text-center">8</td>
-                              <td>SK Šipky Kladno</td>
-                              <td>SK Šipky Kladno</td>
-                              <td>SSŠ</td>
-                            </tr>
-                            <tr>
-                              <td class="text-center">9</td>
-                              <td>Dart Team Středočeši</td>
-                              <td>Dart Team Středočeši</td>
-                              <td>SSŠ</td>
-                            </tr>
-                            <tr>
-                              <td class="text-center">10</td>
-                              <td>SK Budějovické šipky</td>
-                              <td>SK Budějovické šipky</td>
-                              <td>JSŠ</td>
+
+                            <tr data-id="8">
+                              <td class="text-center col-region_id">8</td>
+                              <td class="text-left col-name">TEST Čechy</td>
+                              <td class="col-action">
+                                <a href="/admin/region/update/8" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>&nbsp;Upravit
+                                </a>
+                                <a href="/admin/region/delete/8" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>&nbsp;Smazat
+                                </a>
+                              </td>
                             </tr>
                           </tbody>
                           <tfoot id="snippet-clubGrid-pagination">
@@ -662,6 +686,7 @@
                             </tr>
                           </tfoot>
                         </table>
+                        <input type="hidden" name="_do" value="regionGrid-filter-submit" />
                       </form>
                     </div>
                   </div>
