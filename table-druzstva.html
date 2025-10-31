@@ -386,11 +386,12 @@
                             <col />
                             <col />
                             <col />
+                            <col />
                           </colgroup>
 
                           <thead>
                             <tr class="row-group-actions">
-                              <th colspan="4" class="ublaboo-datagrid-th-form-inline">
+                              <th colspan="5" class="ublaboo-datagrid-th-form-inline">
                                 <div class="datagrid-toolbar">
                                   <div id="snippet-clubGrid-toolbarButtons">
                                     <span id="snippet-clubGrid-toolbar">
@@ -512,9 +513,18 @@
                                   >Zkratka regionu</a
                                 >
                               </th>
+                              <th class="col-action text-center">Akce</th>
                             </tr>
                             <tr>
-                              <th></th>
+                              <th>
+                                <input
+                                  type="text"
+                                  name="filter[venue_id]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-venueGrid-filter-filter-venue_id"
+                                />
+                              </th>
                               <th>
                                 <input
                                   type="text"
@@ -539,6 +549,7 @@
                                   class="form-control input-sm form-control-sm"
                                 />
                               </th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody id="snippet-teamGrid-tbody">
@@ -547,60 +558,230 @@
                               <td>SK Šipky Praha Střed A</td>
                               <td>SK Šipky Praha Střed</td>
                               <td>PSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">2</td>
                               <td>SK Šipky Praha Střed B</td>
                               <td>SK Šipky Praha Střed</td>
                               <td>PSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">3</td>
                               <td>TJ Šipkaři Vinohrady</td>
                               <td>TJ Šipkaři Vinohrady</td>
                               <td>PSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">4</td>
                               <td>Dart Club Smíchov</td>
                               <td>Dart Club Smíchov</td>
                               <td>PSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">5</td>
                               <td>SK Darts Brno A</td>
                               <td>SK Darts Brno</td>
                               <td>MSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">6</td>
                               <td>SK Darts Brno B</td>
                               <td>SK Darts Brno</td>
                               <td>MSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">7</td>
                               <td>TJ Moravské šipky</td>
                               <td>TJ Moravské šipky</td>
                               <td>MSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">8</td>
                               <td>SK Šipky Kladno</td>
                               <td>SK Šipky Kladno</td>
                               <td>SSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">9</td>
                               <td>Dart Team Středočeši</td>
                               <td>Dart Team Středočeši</td>
                               <td>SSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                               <td class="text-center">10</td>
                               <td>SK Budějovické šipky</td>
                               <td>SK Budějovické šipky</td>
                               <td>JSŠ</td>
+                              <td class="col-action text-center">
+                                <a href="/admin/venue/update/2" class="btn btn-sm btn-primary">
+                                  <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-success">
+                                  <span class="fa fa-users"></span>
+                                </a>
+                                <a href="/admin/venue/delete/2" class="btn btn-sm btn-danger">
+                                  <span class="fa fa-trash"></span>
+                                </a>
+                                <a href="/admin/venue/history/2" class="btn btn-sm btn-info">
+                                  <span class="fa fa-history"></span>
+                                </a>
+                                <a href="/admin/venue/rename/2" class="btn btn-sm btn-warning">
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
                             </tr>
                           </tbody>
                           <tfoot id="snippet-clubGrid-pagination">

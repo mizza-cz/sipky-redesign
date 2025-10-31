@@ -381,6 +381,14 @@
                         class="ajax"
                       >
                         <table class="table table-hover table-sm" id="snippet-seasonGrid-table">
+                          <colgroup>
+                            <col style="width: 80px" />
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                          </colgroup>
                           <thead>
                             <tr class="row-group-actions">
                               <th colspan="6" class="ublaboo-datagrid-th-form-inline">
@@ -701,7 +709,15 @@
                               <th class="col-action text-center">Akce</th>
                             </tr>
                             <tr>
-                              <th class="text-center col-season_id"></th>
+                              <th class="text-center col-season_id">
+                                <input
+                                  type="text"
+                                  name="filter[venue_id]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-venueGrid-filter-filter-venue_id"
+                                />
+                              </th>
                               <th class="text-left col-name">
                                 <input
                                   type="text"
@@ -711,8 +727,24 @@
                                   id="frm-seasonGrid-filter-filter-name"
                                 />
                               </th>
-                              <th class="text-right col-start_date"></th>
-                              <th class="text-right col-end_date"></th>
+                              <th class="text-right col-start_date">
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-seasonGrid-filter-start-date"
+                                />
+                              </th>
+                              <th class="text-right col-end_date">
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-seasonGrid-filter-end-date"
+                                />
+                              </th>
                               <th class="text-left col-is_completed"></th>
                               <th class="col-action text-center"></th>
                             </tr>
@@ -762,14 +794,14 @@
                                   href="/admin/season/update/1"
                                   title="Upravit administrátora"
                                   class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
-                                >
+                                  ><span class="fa fa-pencil"></span
+                                ></a>
                                 <a
                                   href="/admin/season/delete/1"
                                   title="Smazat administrátora"
                                   class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
-                                >
+                                  ><span class="fa fa-trash"></span
+                                ></a>
                               </td>
                             </tr>
 
@@ -816,14 +848,14 @@
                                   href="/admin/season/update/2"
                                   title="Upravit administrátora"
                                   class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
-                                >
+                                  ><span class="fa fa-pencil"></span
+                                ></a>
                                 <a
                                   href="/admin/season/delete/2"
                                   title="Smazat administrátora"
                                   class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
-                                >
+                                  ><span class="fa fa-trash"></span
+                                ></a>
                               </td>
                             </tr>
 
@@ -870,14 +902,14 @@
                                   href="/admin/season/update/3"
                                   title="Upravit administrátora"
                                   class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
-                                >
+                                  ><span class="fa fa-pencil"></span
+                                ></a>
                                 <a
                                   href="/admin/season/delete/3"
                                   title="Smazat administrátora"
                                   class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
-                                >
+                                  ><span class="fa fa-trash"></span
+                                ></a>
                               </td>
                             </tr>
 
@@ -924,14 +956,14 @@
                                   href="/admin/season/update/4"
                                   title="Upravit administrátora"
                                   class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
-                                >
+                                  ><span class="fa fa-pencil"></span
+                                ></a>
                                 <a
                                   href="/admin/season/delete/4"
                                   title="Smazat administrátora"
                                   class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
-                                >
+                                  ><span class="fa fa-trash"></span
+                                ></a>
                               </td>
                             </tr>
 
@@ -978,14 +1010,14 @@
                                   href="/admin/season/update/5"
                                   title="Upravit administrátora"
                                   class="btn btn-sm btn-primary"
-                                  ><span class="fa fa-pencil"></span>&nbsp;Upravit</a
-                                >
+                                  ><span class="fa fa-pencil"></span
+                                ></a>
                                 <a
                                   href="/admin/season/delete/5"
                                   title="Smazat administrátora"
                                   class="btn btn-sm btn-danger"
-                                  ><span class="fa fa-trash"></span>&nbsp;Smazat</a
-                                >
+                                  ><span class="fa fa-trash"></span
+                                ></a>
                               </td>
                             </tr>
                           </tbody>

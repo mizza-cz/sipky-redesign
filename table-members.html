@@ -385,7 +385,7 @@
                       >
                         <table class="table table-hover table-sm" id="snippet-memberGrid-table">
                           <colgroup>
-                            <col style="width: 50px" />
+                            <col style="width: 80px" />
                             <col style="width: 260px" />
                             <col style="width: 100px" />
                             <col />
@@ -526,6 +526,42 @@
                                   Klub
                                   <i class="fa fa-sort"></i>
                                 </a>
+                              </th>
+                              <th class="col-action text-center">Akce</th>
+                            </tr>
+
+                            <tr>
+                              <th class="text-left col-venue_id">
+                                <input
+                                  type="text"
+                                  name="filter[venue_id]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-venueGrid-filter-filter-venue_id"
+                                />
+                              </th>
+
+                              <th class="text-left col-name">
+                                <input
+                                  type="text"
+                                  name="filter[name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-venueGrid-filter-filter-name"
+                                />
+                              </th>
+
+                              <th class="text-left col-region_code">
+                                <input
+                                  type="text"
+                                  name="filter[date_code]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-venueGrid-filter-filter-date_code"
+                                />
+                              </th>
+
+                              <th class="text-left col-provider">
                                 <select
                                   name="filter[club_name]"
                                   data-autosubmit
@@ -556,7 +592,8 @@
                                   <option value="20">TEST Olomouc</option>
                                 </select>
                               </th>
-                              <th class="col-action text-center">Akce</th>
+
+                              <th class="col-action text-center"></th>
                             </tr>
                           </thead>
 
