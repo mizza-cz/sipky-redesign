@@ -43,7 +43,7 @@ form fieldset:last-of-type {
   padding-bottom: 0;
 }
 
-form legend {
+fieldset legend {
   font-size: 1.25rem; /* menší text */
   font-weight: bold;
   text-transform: uppercase;
@@ -84,7 +84,8 @@ label {
 input[type='date'],
 input[type='file'],
 select,
-input[type='checkbox'] {
+input[type='checkbox'],
+input[type='time'] {
   background-color: #343a40;
   border: 1px solid var(--input-border);
   color: var(--default-text-color);

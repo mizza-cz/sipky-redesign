@@ -112,7 +112,8 @@ body {
   color: var(--default-text-color);
 }
 input[type='date'],
-input[type='file'] {
+input[type='file'],
+input[type='time'] {
   margin: 0;
   height: 44px;
   width: 100%;

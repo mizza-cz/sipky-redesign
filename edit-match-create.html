@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/"
+            >
+              <span> Nástěnka </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item active">
+            <a
+              class="sidebar-nav-link active"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/member/"
+            >
+              <span> Členové </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/club/"
+            >
+              <span> Kluby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/region/"
+            >
+              <span> Regiony </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/season/"
+            >
+              <span> Sezóny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/team/"
+            >
+              <span> Družstva </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/location/"
+            >
+              <span> Hrací místa </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league/"
+            >
+              <span> Ligové súťaže </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league-registration/"
+            >
+              <span> Prihlášky do Ligových súťaží </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/competition/"
+            >
+              <span> Ligové skupiny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/target-provider/"
+            >
+              <span> Poskytovatele tercu </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/administrator/"
+            >
+              <span> Administrátoři </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/payments/"
+            >
+              <span> Platby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/charges/"
+            >
+              <span> Poplatky </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament/"
+            >
+              <span> Turnaje </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament-type/"
+            >
+              <span> Typy turnajů </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+            >
+              <span> Prestupy </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+                  class="nav-sub-link"
+                >
+                  Čakajúce schválenia
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/"
+                  class="nav-sub-link"
+                >
+                  Prehľad prestupov
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+            >
+              <span> Utkání </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+                  class="nav-sub-link"
+                >
+                  Rozlosování utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/match/"
+                  class="nav-sub-link"
+                >
+                  Výpis utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="slim-pageheader">
+            <ol class="breadcrumb slim-breadcrumb"></ol>
+
+            <h6 class="slim-pagetitle">Upravit zápas</h6>
+          </div>
+          <!-- slim-pageheader -->
+
+          <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <h6 class="slim-pagetitle mg-y-25"></h6>
+
+              <div class="card overflow-visible">
+                <div class="card-body" data-menu-type="primary">
+                  <fieldset>
+                    <div class="d-flex justify-content-between flex-md-nowrap flex-wrap">
+                      <div class="w-100">
+                        <legend>Soutěž: TEST Česká liga 2. divize 2025/2026</legend>
+                        <dl class="row mb-4">
+                          <dt class="col-sm-1">Kolo:</dt>
+                          <dd class="col-sm-11">8</dd>
+
+                          <dt class="col-sm-1">Datum:</dt>
+                          <dd class="col-sm-11">06.03.2026 18:00</dd>
+
+                          <dt class="col-sm-1">Vytvořeno:</dt>
+                          <dd class="col-sm-11">30.10.2025 20:58</dd>
+                        </dl>
+                      </div>
+                      <a href="/admin/match/" class="btn btn-primary mb-3 d-block h-100">
+                        Zpět na výpis zápasů
+                      </a>
+                    </div>
+                  </fieldset>
+                  <div data-load-captains-link="/admin/match/load-captains">
+                    <form action="/admin/match/update/74" method="post" id="frm-matchForm">
+                      <fieldset>
+                        <legend>Základné informace o zápase</legend>
+                        <div class="row">
+                          <div class="col-12 mb-2">
+                            <label for="frm-matchForm-competition_id" class="required"
+                              >Soutěž:</label
+                            >
+                            <select
+                              class="js-select"
+                              name="competition_id"
+                              id="frm-matchForm-competition_id"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Vyberte soutěž"}]'
+                            >
+                              <option value="" disabled hidden>-- Vyberte soutěž --</option>
+                              <option value="7">Brněnská liga mužů - divize A</option>
+                              <option value="8">Brněnská liga mužů - divize B</option>
+                              <option value="1">Česká liga mužů - 1. divize</option>
+                              <option value="17">Česká liga mužů - 1. divize 2025/2026</option>
+                              <option value="2">Česká liga žen - národní</option>
+                              <option value="18">Česká liga žen - národní 2025/2026</option>
+                              <option value="3">Česká mixed liga</option>
+                              <option value="19">Česká mixed liga 2025/2026</option>
+                              <option value="12">Český pohár jednotlivců</option>
+                              <option value="13">Juniorská liga do 18 let</option>
+                              <option value="10">Kladenská liga mužů</option>
+                              <option value="15">Liga Českých Budějovic</option>
+                              <option value="30">Ligová skupina A</option>
+                              <option value="31">Ligová skupina B</option>
+                              <option value="9">Moravská liga žen</option>
+                              <option value="16">Plzeňská regionální liga</option>
+                              <option value="4">Pražská liga mužů - 1. třída</option>
+                              <option value="20">Pražská liga mužů - 1. třída 2025/2026</option>
+                              <option value="5">Pražská liga mužů - 2. třída</option>
+                              <option value="21">Pražská liga mužů - 2. třída 2025/2026</option>
+                              <option value="6">Pražská liga žen</option>
+                              <option value="22">Pražská liga žen 2025/2026</option>
+                              <option value="14">Seniorská liga nad 50 let</option>
+                              <option value="11">Středočeská mixed liga</option>
+                              <option value="27" selected>
+                                TEST Česká liga 2. divize 2025/2026
+                              </option>
+                              <option value="23">TEST Česká liga 2025/2026</option>
+                              <option value="28">TEST Liga regionálních týmů 2025/2026</option>
+                              <option value="26">TEST Moravská liga 2025/2026</option>
+                              <option value="24">TEST Pražská liga A 2025/2026</option>
+                              <option value="25">TEST Pražská liga B 2025/2026</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-round_number" class="required">Kolo:</label>
+                            <input
+                              type="number"
+                              name="round_number"
+                              min="1"
+                              id="frm-matchForm-round_number"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Zadejte číslo kola"},{"op":":integer","msg":"Please enter a valid integer."},{"op":":min","msg":"Kolo musí být alespoň 1","arg":1}]'
+                              value="8"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-match_date" class="required"
+                              >Datum zápasu:</label
+                            >
+                            <input
+                              type="date"
+                              name="match_date"
+                              id="frm-matchForm-match_date"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Zadejte datum zápasu"}]'
+                              value="2026-03-06"
+                            />
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-match_time" class="required"
+                              >Čas zápasu:</label
+                            >
+                            <input
+                              type="time"
+                              name="match_time"
+                              id="frm-matchForm-match_time"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Zadejte čas zápasu"}]'
+                              value="18:00"
+                            />
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-home_team_id" class="required"
+                              >Domácí tým:</label
+                            >
+                            <select
+                              class="js-select"
+                              name="home_team_id"
+                              id="frm-matchForm-home_team_id"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Vyberte domácí tým"}]'
+                            >
+                              <option value="" disabled hidden>-- Vyberte tým --</option>
+                              <option value="4">Dart Club Smíchov</option>
+                              <option value="13">Dart Club West Bohemia</option>
+                              <option value="9">Dart Team Středočeši</option>
+                              <option value="10">SK Budějovické šipky</option>
+                              <option value="5">SK Darts Brno A</option>
+                              <option value="6">SK Darts Brno B</option>
+                              <option value="15">SK Darts Brno Juniors</option>
+                              <option value="12">SK Plzeňské šipky</option>
+                              <option value="8">SK Šipky Kladno</option>
+                              <option value="2">SK Šipky Praha Střed B</option>
+                              <option value="14">SK Šipky Praha Střed C</option>
+                              <option value="20">TEST Bohemians A</option>
+                              <option value="21">TEST Bohemians B</option>
+                              <option value="28">TEST Brno A</option>
+                              <option value="29">TEST Brno B</option>
+                              <option value="22">TEST Dukla A</option>
+                              <option value="23">TEST Dukla B</option>
+                              <option value="24">TEST Kladno A</option>
+                              <option value="25">TEST Kladno B</option>
+                              <option value="26">TEST Mladá Boleslav A</option>
+                              <option value="27">TEST Mladá Boleslav B</option>
+                              <option value="30">TEST Olomouc A</option>
+                              <option value="31">TEST Olomouc B</option>
+                              <option value="18">TEST Slavia A</option>
+                              <option value="19" selected>TEST Slavia B</option>
+                              <option value="16">TEST Sparta A</option>
+                              <option value="17">TEST Sparta B</option>
+                              <option value="11">TJ Dart Jihočeši</option>
+                              <option value="7">TJ Moravské šipky</option>
+                              <option value="3">TJ Šipkaři Vinohrady</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-away_team_id" class="required"
+                              >Hosťující tým:</label
+                            >
+                            <select
+                              class="js-select"
+                              name="away_team_id"
+                              id="frm-matchForm-away_team_id"
+                              required
+                              data-nette-rules='[{"op":":filled","msg":"Vyberte hosťující tým"}]'
+                            >
+                              <option value="" disabled hidden>-- Vyberte tým --</option>
+                              <option value="4">Dart Club Smíchov</option>
+                              <option value="13">Dart Club West Bohemia</option>
+                              <option value="9">Dart Team Středočeši</option>
+                              <option value="10">SK Budějovické šipky</option>
+                              <option value="5">SK Darts Brno A</option>
+                              <option value="6">SK Darts Brno B</option>
+                              <option value="15">SK Darts Brno Juniors</option>
+                              <option value="12">SK Plzeňské šipky</option>
+                              <option value="8">SK Šipky Kladno</option>
+                              <option value="2">SK Šipky Praha Střed B</option>
+                              <option value="14">SK Šipky Praha Střed C</option>
+                              <option value="20">TEST Bohemians A</option>
+                              <option value="21">TEST Bohemians B</option>
+                              <option value="28">TEST Brno A</option>
+                              <option value="29">TEST Brno B</option>
+                              <option value="22">TEST Dukla A</option>
+                              <option value="23">TEST Dukla B</option>
+                              <option value="24">TEST Kladno A</option>
+                              <option value="25">TEST Kladno B</option>
+                              <option value="26">TEST Mladá Boleslav A</option>
+                              <option value="27" selected>TEST Mladá Boleslav B</option>
+                              <option value="30">TEST Olomouc A</option>
+                              <option value="31">TEST Olomouc B</option>
+                              <option value="18">TEST Slavia A</option>
+                              <option value="19">TEST Slavia B</option>
+                              <option value="16">TEST Sparta A</option>
+                              <option value="17">TEST Sparta B</option>
+                              <option value="11">TJ Dart Jihočeši</option>
+                              <option value="7">TJ Moravské šipky</option>
+                              <option value="3">TJ Šipkaři Vinohrady</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mb-2">
+                            <label for="frm-matchForm-location_id">Hrací místo:</label>
+                            <select
+                              class="js-select"
+                              name="location_id"
+                              id="frm-matchForm-location_id"
+                            >
+                              <option value="">-- Vyberte hrací místo --</option>
+                              <option value="3">Club Dart Praha</option>
+                              <option value="6">Dart Arena Brno</option>
+                              <option value="13">Dart Club Plzeň West</option>
+                              <option value="8">Hospoda Na Růžku</option>
+                              <option value="1">Hospoda U Fleku</option>
+                              <option value="14">Hospoda U Kocoura</option>
+                              <option value="10">Pivnice U Černé věže</option>
+                              <option value="5">Pivnice U Richarda</option>
+                              <option value="12">Restaurace Gambrinus</option>
+                              <option value="4">Restaurace Na Schodech</option>
+                              <option value="11">Restaurace Slunce</option>
+                              <option value="7">Restaurace Špalíček</option>
+                              <option value="9">Sport Centrum Kladno</option>
+                              <option value="2">Sportbar Wenceslas</option>
+                              <option value="17">TEST Hala Bohemians</option>
+                              <option value="21">TEST Hala Brno</option>
+                              <option value="18">TEST Hala Dukla</option>
+                              <option value="19">TEST Hala Kladno</option>
+                              <option value="20">TEST Hala Mladá Boleslav</option>
+                              <option value="22">TEST Hala Olomouc</option>
+                              <option value="16" selected>TEST Hala Slavia</option>
+                              <option value="15">TEST Hala Sparta</option>
+                            </select>
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Elektronický zápis</legend>
+                        <div class="row">
+                          <div class="col-md-6 mb-2">
+                            <label for="frm-matchForm-home_captain_id">Kapitán domácích:</label>
+                            <select
+                              class="js-select"
+                              name="home_captain_id"
+                              id="frm-matchForm-home_captain_id"
+                            >
+                              <option value="">-- Vyberte kapitána --</option>
+                              <option value="35">Jiří Beneš</option>
+                              <option value="34">Marek Král</option>
+                              <option value="36">Adam Růžička</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="frm-matchForm-away_captain_id">Kapitán hostí:</label>
+                            <select
+                              class="js-select"
+                              name="away_captain_id"
+                              id="frm-matchForm-away_captain_id"
+                            >
+                              <option value="">-- Vyberte kapitána --</option>
+                              <option value="63">Josef Kadlec</option>
+                              <option value="62">Radek Pavlík</option>
+                              <option value="64">Stanislav Soukup</option>
+                            </select>
+                          </div>
+                          <div class="col-12">
+                            <label for="frm-matchForm-is_authorized"
+                              ><input
+                                type="checkbox"
+                                name="is_authorized"
+                                id="frm-matchForm-is_authorized"
+                              />Autorizováno</label
+                            >
+                          </div>
+                          <div class="col-12">
+                            <label for="frm-matchForm-is_technical_forfeit"
+                              ><input
+                                type="checkbox"
+                                name="is_technical_forfeit"
+                                id="frm-matchForm-is_technical_forfeit"
+                              />Technická kontumace</label
+                            >
+                          </div>
+                          <div class="col-12">
+                            <label for="frm-matchForm-is_home_forfeit"
+                              ><input
+                                type="checkbox"
+                                name="is_home_forfeit"
+                                id="frm-matchForm-is_home_forfeit"
+                              />Definitívna kontumace domácí</label
+                            >
+                          </div>
+                          <div class="col-12">
+                            <label for="frm-matchForm-is_away_forfeit"
+                              ><input
+                                type="checkbox"
+                                name="is_away_forfeit"
+                                id="frm-matchForm-is_away_forfeit"
+                              />Definitívna kontumace hosté</label
+                            >
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Výsledok</legend>
+                        <div class="row">
+                          <div class="col-md-6 mb-2">
+                            <label for="frm-matchForm-home_score">Skóre domácích:</label>
+                            <input
+                              type="number"
+                              name="home_score"
+                              min="0"
+                              id="frm-matchForm-home_score"
+                              data-nette-rules='[{"op":":integer","msg":"Please enter a valid integer."},{"op":":min","msg":"Skóre musí být alespoň 0","arg":0}]'
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="frm-matchForm-away_score">Skóre hostí:</label>
+                            <input
+                              type="number"
+                              name="away_score"
+                              min="0"
+                              id="frm-matchForm-away_score"
+                              data-nette-rules='[{"op":":integer","msg":"Please enter a valid integer."},{"op":":min","msg":"Skóre musí být alespoň 0","arg":0}]'
+                              class="form-control"
+                            />
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Poznámka</legend>
+                        <div class="row">
+                          <div class="col-12 mb-2">
+                            <label for="frm-matchForm-note">Poznámka:</label>
+                            <textarea name="note" rows="4" id="frm-matchForm-note"></textarea>
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <div class="mt-2">
+                          <input
+                            type="submit"
+                            name="save"
+                            value="Uložit zápas"
+                            class="btn btn-primary"
+                          />
+                        </div>
+                      </fieldset>
+
+                      <input type="hidden" name="_do" value="matchForm-submit" />
+                    </form>
+                  </div>
+                </div>
+                <!-- card-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </div>
+      <!-- slim-mainpanel -->
+    </div>
+    <!-- slim-body -->
+
+    <script src="slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="slimadmin/vendors/js/netteForms.js"></script>
+    <script src="slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="slimadmin/vendors/js/datagrid.js"></script>
+    <script src="slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="slimadmin/vendors/js/custom.js"></script>
+    <script src="slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>
