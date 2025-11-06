@@ -2258,13 +2258,13 @@ fieldset:disabled a.btn {
 }
 .btn-success {
   color: #fff;
-  background-color: rgb(38,191,148);
-  border-color: rgb(38,191,148);
+  background-color: rgb(38, 191, 148);
+  border-color: rgb(38, 191, 148);
 }
 .btn-success:hover {
   color: #fff;
-  background-color: rgba(38,191,148, .8);
-  border-color: rgba(38,191,148, .8);
+  background-color: rgba(38, 191, 148, 0.8);
+  border-color: rgba(38, 191, 148, 0.8);
 }
 .btn-success:focus,
 .btn-success.focus {
@@ -2322,13 +2322,13 @@ fieldset:disabled a.btn {
 }
 .btn-warning {
   color: #212529;
-  background-color: rgb(245,184,73);
-  border-color: rgb(245,184,73);
+  background-color: rgb(245, 184, 73);
+  border-color: rgb(245, 184, 73);
 }
 .btn-warning:hover {
   color: #fff;
-  background-color: rgba(245,184,73, .8);
-  border-color: rgba(245,184,73, .8);
+  background-color: rgba(245, 184, 73, 0.8);
+  border-color: rgba(245, 184, 73, 0.8);
 }
 .btn-warning:focus,
 .btn-warning.focus {
@@ -4025,6 +4025,7 @@ input[type='button'].btn-block {
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid #ced4da;
+  border-radius: 4px;
 }
 .card-header:first-child {
   border-radius: calc(3px - 1px) calc(3px - 1px) 0 0;
@@ -5400,7 +5401,7 @@ button.close {
   vertical-align: text-top !important;
 }
 .bg-primary {
-  background-color: #1b84e7 !important;
+  background-color: var(--primary-color) !important;
 }
 a.bg-primary:hover,
 a.bg-primary:focus,
@@ -7781,11 +7782,11 @@ button.bg-dark:focus {
   color: #fff !important;
 }
 .text-primary {
-  color: #1b84e7 !important;
+  color: var(--primary-color) !important;
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #146abb !important;
+  color: var(--bs-purple) !important;
 }
 .text-secondary {
   color: #6c757d !important;
@@ -8203,9 +8204,10 @@ a.text-dark:focus {
   color: #136704;
 }
 .alert-info {
-  color: #3b7eca;
-  background-color: #d4e2f3;
-  border-color: #5b93d3;
+  background-color: var(--primary01);
+  color: var(--primary-color);
+  border-color: var(--primary01);
+  border-radius: 4px;
 }
 .alert-info hr {
   border-top-color: #4786ce;

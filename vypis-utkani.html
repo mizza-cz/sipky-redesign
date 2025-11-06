@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/"
+            >
+              <span> Nástěnka </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item active">
+            <a
+              class="sidebar-nav-link active"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/member/"
+            >
+              <span> Členové </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/club/"
+            >
+              <span> Kluby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/region/"
+            >
+              <span> Regiony </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/season/"
+            >
+              <span> Sezóny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/team/"
+            >
+              <span> Družstva </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/location/"
+            >
+              <span> Hrací místa </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league/"
+            >
+              <span> Ligové súťaže </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/league-registration/"
+            >
+              <span> Prihlášky do Ligových súťaží </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/competition/"
+            >
+              <span> Ligové skupiny </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/target-provider/"
+            >
+              <span> Poskytovatele tercu </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/administrator/"
+            >
+              <span> Administrátoři </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/payments/"
+            >
+              <span> Platby </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/charges/"
+            >
+              <span> Poplatky </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament/"
+            >
+              <span> Turnaje </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/tournament-type/"
+            >
+              <span> Typy turnajů </span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+            >
+              <span> Prestupy </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/pending-approvals"
+                  class="nav-sub-link"
+                >
+                  Čakajúce schválenia
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/transfer/"
+                  class="nav-sub-link"
+                >
+                  Prehľad prestupov
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-nav-item with-sub">
+            <a
+              class="sidebar-nav-link"
+              href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+            >
+              <span> Utkání </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/draw/"
+                  class="nav-sub-link"
+                >
+                  Rozlosování utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+              <li class="nav-sub-item">
+                <a
+                  href="http://dev.is.sipky.org.esports-10-www3.superhosting.cz/admin/match/"
+                  class="nav-sub-link"
+                >
+                  Výpis utkání
+                  <span class="float-right tx-gray-400"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="slim-pageheader">
+            <ol class="breadcrumb slim-breadcrumb"></ol>
+
+            <h6 class="slim-pagetitle">Výpis utkání</h6>
+          </div>
+          <!-- slim-pageheader -->
+
+          <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <h6 class="slim-pagetitle mg-y-25"></h6>
+
+              <div class="card overflow-visible">
+                <div class="card-body" data-menu-type="primary">
+                  <div
+                    class="datagrid datagrid-matchGrid"
+                    data-refresh-state="/admin/match/?do=matchGrid-refreshState"
+                  >
+                    <div id="snippet-matchGrid-grid">
+                      <form
+                        action="/admin/match/"
+                        method="post"
+                        id="frm-matchGrid-filter"
+                        class="ajax"
+                      >
+                        <table class="table table-hover table-sm" id="snippet-matchGrid-table">
+                          <colgroup>
+                            <col style="width: 80px" />
+                            <col style="width: 120px" />
+                            <col style="width: 80px" />
+                            <col />
+                            <col />
+                            <col style="width: 100px" />
+                            <col />
+                            <col />
+                            <col />
+                          </colgroup>
+                          <thead>
+                            <tr class="row-group-actions">
+                              <th colspan="9" class="ublaboo-datagrid-th-form-inline">
+                                <div class="datagrid-toolbar">
+                                  <div id="snippet-matchGrid-toolbarButtons">
+                                    <span id="snippet-matchGrid-toolbar">
+                                      <a
+                                        href="/admin/match/create"
+                                        class="btn-sm btn-primary-light d-block"
+                                        >Vytvoriť nový zápas</a
+                                      >
+                                    </span>
+                                  </div>
+
+                                  <span class="datagrid-exports" id="snippet-matchGrid-exports">
+                                    <a
+                                      class="btn-sm btn-primary-light d-block"
+                                      title="Exportovať do CSV"
+                                      href="/admin/match/?matchGrid-id=1&amp;do=matchGrid-export"
+                                      >Exportovať do CSV</a
+                                    >
+                                  </span>
+
+                                  <div class="datagrid-settings">
+                                    <div class="btn-group">
+                                      <button
+                                        type="button"
+                                        class="btn btn-xs btn-default btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        <i class="fa fa-cog"></i>
+                                      </button>
+                                      <ul
+                                        class="dropdown-menu dropdown-menu-right dropdown-menu--grid"
+                                      >
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=round_number&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Kolo
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=match_date&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Datum
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=match_time&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Čas
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=home_team_name&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Domácí
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=away_team_name&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Hosté
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=score&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Výsledek
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=location_name&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Hrací místo
+                                          </a>
+                                        </li>
+
+                                        <li>
+                                          <a
+                                            href="/admin/match/?matchGrid-column=competition_name&amp;do=matchGrid-hideColumn"
+                                            class="ajax dropdown-item"
+                                          >
+                                            <i class="fa fa-check-square"></i>
+                                            Soutěž
+                                          </a>
+                                        </li>
+                                        <li role="separator" class="divider dropdown-divider"></li>
+                                        <li>
+                                          <a
+                                            href="/admin/match/?do=matchGrid-showAllColumns"
+                                            class="ajax dropdown-item"
+                                            ><i class="fa fa-eye"></i> Zobrazit všechny sloupce</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr>
+                              <th class="text-right col-round_number">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Bround_number%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-round_number"
+                                >
+                                  Kolo
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=round_number&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=round_number&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="round_number"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-right col-match_date">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Bmatch_date%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-match_date"
+                                >
+                                  Datum
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=match_date&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=match_date&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="match_date"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-match_time">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Bmatch_time%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-match_time"
+                                >
+                                  Čas
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=match_time&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=match_time&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="match_time"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-home_team_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Bhome_team_name%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-home_team_name"
+                                >
+                                  Domácí
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=home_team_name&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=home_team_name&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="home_team_name"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-away_team_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Baway_team_name%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-away_team_name"
+                                >
+                                  Hosté
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=away_team_name&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=away_team_name&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="away_team_name"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-score">
+                                Výsledek
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=score&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=score&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="score"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="text-left col-location_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Blocation_name%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-location_name"
+                                >
+                                  Hrací místo
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=location_name&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=location_name&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="location_name"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+
+                              <th class="text-left col-competition_name">
+                                <a
+                                  class="ajax"
+                                  href="/admin/match/?matchGrid-sort%5Bcompetition_name%5D=ASC&amp;do=matchGrid-sort"
+                                  id="datagrid-sort-competition_name"
+                                >
+                                  Soutěž
+
+                                  <i class="fa fa-sort"></i>
+                                </a>
+
+                                <div class="datagrid-column-header-additions">
+                                  <div class="btn-group column-settings-menu">
+                                    <a
+                                      class="dropdown-toggle"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      href=""
+                                    >
+                                      <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu--grid">
+                                      <li>
+                                        <a
+                                          href="/admin/match/?matchGrid-column=competition_name&amp;do=matchGrid-hideColumn"
+                                          class="ajax dropdown-item"
+                                        >
+                                          <i class="fa fa-eye-slash"></i> Skrýt sloupec</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <a
+                                    href="/admin/match/?matchGrid-key=competition_name&amp;do=matchGrid-resetColumnFilter"
+                                    data-datagrid-reset-filter-by-column="competition_name"
+                                    class="hidden ajax"
+                                    title="Resetovat filtr"
+                                  >
+                                    <i class="fa fa-remove"></i>
+                                  </a>
+                                </div>
+                              </th>
+                              <th class="col-action text-center">Akce</th>
+                            </tr>
+                            <tr>
+                              <th class="text-right col-round_number">
+                                <input
+                                  type="text"
+                                  name="filter[round_number]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  data-autosubmit-change
+                                  id="frm-matchGrid-filter-filter-round_number"
+                                />
+                              </th>
+                              <th class="text-right col-match_date">
+                                <input
+                                  type="text"
+                                  name="filter[match_date]"
+                                  data-provide="datepicker"
+                                  data-date-orientation="bottom"
+                                  data-date-format="d. m. yyyy"
+                                  data-date-today-highlight="true"
+                                  data-date-autoclose="true"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  data-autosubmit-change
+                                  id="frm-matchGrid-filter-filter-match_date"
+                                />
+                              </th>
+                              <th class="text-left col-match_time">
+                                <input
+                                  type="text"
+                                  name="filter[match_time]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-match_time"
+                                />
+                              </th>
+                              <th class="text-left col-home_team_name">
+                                <input
+                                  type="text"
+                                  name="filter[home_team_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-home_team_name"
+                                />
+                              </th>
+                              <th class="text-left col-away_team_name">
+                                <input
+                                  type="text"
+                                  name="filter[away_team_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-away_team_name"
+                                />
+                              </th>
+                              <th class="text-left col-score">
+                                <input
+                                  type="text"
+                                  name="filter[match_score]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-match_score"
+                                />
+                              </th>
+                              <th class="text-left col-location_name">
+                                <input
+                                  type="text"
+                                  name="filter[location_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-location_name"
+                                />
+                              </th>
+                              <th class="text-left col-competition_name">
+                                <input
+                                  type="text"
+                                  name="filter[competition_name]"
+                                  data-autosubmit
+                                  class="form-control input-sm form-control-sm"
+                                  id="frm-matchGrid-filter-filter-competition_name"
+                                />
+                              </th>
+                              <th class="col-action text-center"></th>
+                            </tr>
+                          </thead>
+
+                          <tbody id="snippet-matchGrid-tbody">
+                            <tr data-id="79" id="snippet-matchGrid-item-79">
+                              <td class="text-right col-round_number">10</td>
+
+                              <td class="text-right col-match_date">20.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Sparta B</td>
+
+                              <td class="text-left col-away_team_name">TEST Brno B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Sparta</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/79" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/79"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="80" id="snippet-matchGrid-item-80">
+                              <td class="text-right col-round_number">10</td>
+
+                              <td class="text-right col-match_date">20.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Olomouc B</td>
+
+                              <td class="text-left col-away_team_name">TEST Slavia B</td>
+
+                              <td class="text-left col-score">25 : 20</td>
+
+                              <td class="text-left col-location_name">TEST Hala Olomouc</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/80" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/80"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="81" id="snippet-matchGrid-item-81">
+                              <td class="text-right col-round_number">10</td>
+
+                              <td class="text-right col-match_date">20.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Mladá Boleslav B</td>
+
+                              <td class="text-left col-away_team_name">TEST Kladno B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Mladá Boleslav</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/81" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/81"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="76" id="snippet-matchGrid-item-76">
+                              <td class="text-right col-round_number">9</td>
+
+                              <td class="text-right col-match_date">13.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Slavia B</td>
+
+                              <td class="text-left col-away_team_name">TEST Brno B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Slavia</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/76" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/76"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="77" id="snippet-matchGrid-item-77">
+                              <td class="text-right col-round_number">9</td>
+
+                              <td class="text-right col-match_date">13.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Sparta B</td>
+
+                              <td class="text-left col-away_team_name">TEST Kladno B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Sparta</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/77" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/77"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="78" id="snippet-matchGrid-item-78">
+                              <td class="text-right col-round_number">9</td>
+
+                              <td class="text-right col-match_date">13.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Olomouc B</td>
+
+                              <td class="text-left col-away_team_name">TEST Mladá Boleslav B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Olomouc</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/78" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/78"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="19" id="snippet-matchGrid-item-19">
+                              <td class="text-right col-round_number">10</td>
+
+                              <td class="text-right col-match_date">06.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">SK Šipky Praha Střed B</td>
+
+                              <td class="text-left col-away_team_name">Dart Club Smíchov</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name"></td>
+
+                              <td class="text-left col-competition_name">
+                                Česká liga mužů - 1. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/19" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/19"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="73" id="snippet-matchGrid-item-73">
+                              <td class="text-right col-round_number">8</td>
+
+                              <td class="text-right col-match_date">06.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Kladno B</td>
+
+                              <td class="text-left col-away_team_name">TEST Brno B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Kladno</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/73" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/73"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="74" id="snippet-matchGrid-item-74">
+                              <td class="text-right col-round_number">8</td>
+
+                              <td class="text-right col-match_date">06.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Slavia B</td>
+
+                              <td class="text-left col-away_team_name">TEST Mladá Boleslav B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Slavia</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/74" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/74"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+
+                            <tr data-id="75" id="snippet-matchGrid-item-75">
+                              <td class="text-right col-round_number">8</td>
+
+                              <td class="text-right col-match_date">06.03.2026</td>
+
+                              <td class="text-left col-match_time">18:00</td>
+
+                              <td class="text-left col-home_team_name">TEST Sparta B</td>
+
+                              <td class="text-left col-away_team_name">TEST Olomouc B</td>
+
+                              <td class="text-left col-score">-</td>
+
+                              <td class="text-left col-location_name">TEST Hala Sparta</td>
+
+                              <td class="text-left col-competition_name">
+                                TEST Česká liga 2. divize 2025/2026
+                              </td>
+                              <td class="col-action">
+                                <a href="/admin/match/update/75" class="btn btn-sm btn-primary"
+                                  ><span class="fa fa-edit"></span
+                                ></a>
+                                <a
+                                  href="/admin/match/delete/75"
+                                  class="btn btn-sm btn-danger"
+                                  data-datagrid-confirm="Opravdu chcete smazat tento zápas?"
+                                  ><span class="fa fa-trash"></span
+                                ></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot id="snippet-matchGrid-pagination">
+                            <tr>
+                              <td colspan="10" class="row-grid-bottom">
+                                <div class="col-items">
+                                  <small class="text-muted"> ( Položky: 1 - 10 z 43 ) </small>
+                                </div>
+                                <div class="col-pagination text-center">
+                                  <ul class="pagination justify-content-center mg-b-0">
+                                    <li class="page-item active">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/match/?do=matchGrid-page"
+                                        >1</a
+                                      >
+                                    </li>
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/match/?matchGrid-page=2&amp;do=matchGrid-page"
+                                        >2</a
+                                      >
+                                    </li>
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/match/?matchGrid-page=3&amp;do=matchGrid-page"
+                                        >3</a
+                                      >
+                                    </li>
+                                    <li class="page-item disabled">
+                                      <span class="page-link">…</span>
+                                    </li>
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/match/?matchGrid-page=5&amp;do=matchGrid-page"
+                                        >5</a
+                                      >
+                                    </li>
+
+                                    <li class="page-item">
+                                      <a
+                                        class="page-link ajax"
+                                        href="/admin/match/?matchGrid-page=2&amp;do=matchGrid-page"
+                                        rel="prev"
+                                      >
+                                        <i class="fa fa-angle-right"></i>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="col-per-page text-right">
+                                  <select
+                                    name="perPage"
+                                    id="frm-matchGrid-filter-perPage"
+                                    data-autosubmit-per-page
+                                    class="js-select input-sm form-control-sm"
+                                  >
+                                    <option value="10" selected>10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="all">všechny</option>
+                                  </select>
+                                  <input
+                                    type="submit"
+                                    name="perPage_submit"
+                                    value="OK"
+                                    formnovalidate
+                                    data-nette-validation-scope='["perPage"]'
+                                    class="datagrid-per-page-submit btn-primary"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                        <input type="hidden" name="_do" value="matchGrid-filter-submit" />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- card-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </div>
+      <!-- slim-mainpanel -->
+    </div>
+    <!-- slim-body -->
+
+    <script src="slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="slimadmin/vendors/js/netteForms.js"></script>
+    <script src="slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="slimadmin/vendors/js/datagrid.js"></script>
+    <script src="slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="slimadmin/vendors/js/custom.js"></script>
+    <script src="slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>
