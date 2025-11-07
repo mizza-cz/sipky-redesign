@@ -81,6 +81,7 @@ label {
   font-size: 1rem;
 }
 
+input[type='number'],
 input[type='date'],
 input[type='file'],
 select,
@@ -134,8 +135,12 @@ select {
 }
 
 /* Blue color scheme */
+
+input[type='number']:active,
+input[type='number']:focus,
 input[type='date']:active,
-input[type='file']:active input[type='date']:focus,
+input[type='file']:active,
+input[type='date']:focus,
 input[type='file']:focus,
 select:focus,
 input[type='checkbox']:focus {
@@ -147,6 +152,7 @@ input[type='date']:focus-visible {
   outline: none;
 }
 /* Hover effects for better UX */
+input[type='number']:hover,
 input[type='date']:hover,
 input[type='file']:hover,
 select:hover,

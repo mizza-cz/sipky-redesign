@@ -376,15 +376,14 @@
                     <div class="d-flex justify-content-between flex-md-nowrap flex-wrap">
                       <div class="w-100">
                         <legend>Soutěž: TEST Česká liga 2. divize 2025/2026</legend>
-                        <dl class="row mb-4">
-                          <dt class="col-sm-1">Kolo:</dt>
-                          <dd class="col-sm-11">8</dd>
-
-                          <dt class="col-sm-1">Datum:</dt>
-                          <dd class="col-sm-11">06.03.2026 18:00</dd>
-
-                          <dt class="col-sm-1">Vytvořeno:</dt>
-                          <dd class="col-sm-11">30.10.2025 20:58</dd>
+                        <dl class="d-flex gap-4 flex-wrap mb-4">
+                          <div class=""><strong class="text-primary">Kolo: </strong> 8</div>
+                          <div class="">
+                            <strong class="text-primary">Datum: </strong> 06.03.2026 18:00
+                          </div>
+                          <div class="">
+                            <strong class="text-primary">Vytvořeno: </strong> 30.10.2025 20:58
+                          </div>
                         </dl>
                       </div>
                       <a href="/admin/match/" class="btn btn-primary mb-3 d-block h-100">
@@ -453,7 +452,7 @@
                               required
                               data-nette-rules='[{"op":":filled","msg":"Zadejte číslo kola"},{"op":":integer","msg":"Please enter a valid integer."},{"op":":min","msg":"Kolo musí být alespoň 1","arg":1}]'
                               value="8"
-                              class="form-control"
+                              class=""
                             />
                           </div>
                           <div class="col-md-4 mb-2">

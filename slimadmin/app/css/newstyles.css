@@ -111,6 +111,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.125rem 0px;
   color: var(--default-text-color);
 }
+input[type='number'],
 input[type='date'],
 input[type='file'],
 input[type='time'] {
@@ -120,6 +121,10 @@ input[type='time'] {
   background-color: rgb(var(--form-control-bg));
   opacity: 1;
 }
+input[type='number']:target,
+input[type='number']:active,
+input[type='number']:focus,
+input[type='number']:focus-visible,
 input[type='date']:target,
 input[type='date']:active,
 input[type='date']:focus,
@@ -210,7 +215,11 @@ input[type='date'] {
 ::-webkit-calendar-picker-indicator {
   filter: var(--filter-ico);
 }
-
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  margin: 0;
+  filter: var(--filter-ico); /* твой фильтр */
+}
 /* light theme  */
 
 .card-body .datagrid .table .select2 .select2-selection--single,
@@ -221,4 +230,8 @@ input[type='date'] {
 .card-body .datagrid .table .select2.select2-container {
   width: 100%;
   max-width: 100%;
+}
+.table-payment {
+  font-size: 1rem;
+  line-height: normal;
 }

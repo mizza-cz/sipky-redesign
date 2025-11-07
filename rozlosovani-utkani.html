@@ -360,7 +360,7 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Prihlášky do Ligových súťaží</h6>
+            <h6 class="slim-pagetitle">Rozlosování utkání</h6>
           </div>
           <!-- slim-pageheader -->
 
@@ -368,132 +368,244 @@
 
           <div class="row">
             <div class="col-xl-12">
+              <h6 class="slim-pagetitle mg-y-25"></h6>
+
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <fieldset>
-                    <h5 class="mb-2">
-                      <span class="text-primary">Ligová súťaž:</span>
-                      Hlavní ligová soutěž - Muži
-                    </h5>
-                    <h5 class="mb-4">
-                      <span class="text-primary">Tím:</span>
-                      TJ Moravské šipky
-                    </h5>
-                  </fieldset>
-                  <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fa fa-credit-card mr-1"></i> Pokyny k platbě</h5>
+                  <legend>Aktuální sezóna: Sezóna 2025/2026</legend>
+                  <div class="datagrid datagrid-matchGrid">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Název soutěže</th>
+                          <th>Zkratka</th>
+                          <th>Začátek 1. části</th>
+                          <th>Začátek 2. části</th>
+                          <th>Stav losování</th>
+                          <th>Zveřejněno</th>
+                          <th>Akce</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Česká liga mužů - 1. divize 2025/2026</td>
+                          <td></td>
+                          <td>15.09.2025</td>
+                          <td>01.02.2026</td>
+                          <td>
+                            <span class="badge badge-success">Již rozlosováno</span>
+                          </td>
+                          <td>
+                            <a
+                              href="/admin/draw/default/17?do=togglePublished"
+                              class="btn btn-sm btn-success"
+                            >
+                              ANO
+                            </a>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/result/17" class="btn btn-sm btn-primary">
+                              Zobrazit los
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Česká liga žen - národní 2025/2026</td>
+                          <td></td>
+                          <td>20.09.2025</td>
+                          <td>15.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/18" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Česká mixed liga 2025/2026</td>
+                          <td></td>
+                          <td>25.09.2025</td>
+                          <td>20.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/19" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Pražská liga mužů - 1. třída 2025/2026</td>
+                          <td></td>
+                          <td>10.09.2025</td>
+                          <td>20.01.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/20" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Pražská liga mužů - 2. třída 2025/2026</td>
+                          <td></td>
+                          <td>12.09.2025</td>
+                          <td>25.01.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/21" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Pražská liga žen 2025/2026</td>
+                          <td></td>
+                          <td>08.09.2025</td>
+                          <td>15.01.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/22" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Česká liga 2. divize 2025/2026</td>
+                          <td>TČLM2-25</td>
+                          <td>18.10.2025</td>
+                          <td>18.02.2026</td>
+                          <td>
+                            <span class="badge badge-success">Již rozlosováno</span>
+                          </td>
+                          <td>
+                            <a
+                              href="/admin/draw/default/27?do=togglePublished"
+                              class="btn btn-sm btn-success"
+                            >
+                              ANO
+                            </a>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/result/27" class="btn btn-sm btn-primary">
+                              Zobrazit los
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Česká liga 2025/2026</td>
+                          <td>TČLM25</td>
+                          <td>15.10.2025</td>
+                          <td>15.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/23" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Liga regionálních týmů 2025/2026</td>
+                          <td>TLRT25</td>
+                          <td>28.10.2025</td>
+                          <td>28.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/28" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Moravská liga 2025/2026</td>
+                          <td>TMLM25</td>
+                          <td>25.10.2025</td>
+                          <td>25.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/26" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Pražská liga A 2025/2026</td>
+                          <td>TPLA25</td>
+                          <td>20.10.2025</td>
+                          <td>20.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/24" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>TEST Pražská liga B 2025/2026</td>
+                          <td>TPLB25</td>
+                          <td>22.10.2025</td>
+                          <td>22.02.2026</td>
+                          <td>
+                            <span class="badge badge-warning">Zatím nerozlosováno</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-secondary" disabled>NE</button>
+                          </td>
+                          <td>
+                            <a href="/admin/draw/prepare/25" class="btn btn-sm btn-success">
+                              Losovat soutěž
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="row mt-3">
-                    <div class="col-lg-8">
-                      <table class="table table-payment">
-                        <tbody>
-                          <tr>
-                            <th style="width: 200px">Částka:</th>
-                            <td><strong class="text-primary fs-5">500 Kč</strong></td>
-                          </tr>
-                          <tr>
-                            <th>Číslo účtu:</th>
-                            <td><strong>123456789/0100</strong></td>
-                          </tr>
-                          <tr>
-                            <th>Variabilní symbol:</th>
-                            <td><strong>71</strong></td>
-                          </tr>
-                          <tr>
-                            <th>Specifický symbol:</th>
-                            <td>2025</td>
-                          </tr>
-                          <tr>
-                            <th>Zpráva pro příjemce:</th>
-                            <td>Přihláška do ligy - TJ Moravské šipky</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="alert alert-info mt-3">
-                        <i class="fa fa-info-circle mr-1"></i>
-                        Po provedení platby bude vaše přihláška automaticky označena jako zaplacená
-                        administrátorem.
-                      </div>
-                    </div>
-                    <div class="col-lg-4 text-center">
-                      <p><strong>QR kód pro platbu</strong></p>
-                      <div class="border p-3 bg-light rounded">
-                        <img
-                          src="https://via.placeholder.com/180x180?text=QR+KOD"
-                          alt="QR kód pro platbu"
-                          class="img-fluid"
-                          style="max-width: 180px"
-                        />
-                      </div>
-                      <p class="text-muted small mt-2">
-                        <i class="fa fa-mobile"></i> Naskenujte QR kód v mobilní bankovní aplikaci
-                      </p>
-                    </div>
-                  </div>
-                  <form
-                    action="/admin/league-registration/create?leagueId=1&amp;teamId=7"
-                    method="post"
-                    id="frm-leagueRegistrationForm"
-                  >
-                    <div class="row">
-                      <div class="col-lg-8 mb-2">
-                        <label
-                          for="frm-leagueRegistrationForm-selected_matchday_id"
-                          class="required"
-                          >Vyberte hrací termín</label
-                        >
-                        <select
-                          class="js-select"
-                          name="selected_matchday_id"
-                          id="frm-leagueRegistrationForm-selected_matchday_id"
-                          required
-                          data-nette-rules='[{"op":":filled","msg":"Musíte vybrať hrací termín"}]'
-                        >
-                          <option value="" disabled hidden selected>
-                            -- Vyberte hrací termín --
-                          </option>
-                          <option value="1">Pondelok, 12:00</option>
-                          <option value="3">Utorok, 18:00</option>
-                          <option value="2">Streda, 12:00</option>
-                        </select>
-                      </div>
-                      <div class="col-lg-8">
-                        <label for="frm-leagueRegistrationForm-agreement"
-                          ><input
-                            type="checkbox"
-                            name="agreement"
-                            id="frm-leagueRegistrationForm-agreement"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Musíte souhlasit s přihláškou"}]'
-                          />Souhlasím s přihláškou týmu "TJ Moravské šipky" do Ligové soutěže
-                          "Hlavní ligová soutěž - Muži"</label
-                        >
-                      </div>
-                      <div class="col-lg-8">
-                        <label for="frm-leagueRegistrationForm-payment_confirmed"
-                          ><input
-                            type="checkbox"
-                            name="payment_confirmed"
-                            id="frm-leagueRegistrationForm-payment_confirmed"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Musíte potvrdit platbu"}]'
-                          />Potvrzuji, že jsem provedl/a platbu nebo ji provedu v nejbližší
-                          době</label
-                        >
-                      </div>
-                    </div>
-
-                    <div class="mt-2">
-                      <input
-                        type="submit"
-                        name="_submit"
-                        class="btn btn-primary btn-lg btn btn-primary"
-                        value="Odeslat přihlášku"
-                      />
-                    </div>
-                    <input type="hidden" name="_do" value="leagueRegistrationForm-submit" />
-                  </form>
                 </div>
+
                 <!-- card-body -->
               </div>
             </div>

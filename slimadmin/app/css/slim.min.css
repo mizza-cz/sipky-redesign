@@ -356,7 +356,7 @@ h4,
 }
 h5,
 .h5 {
-  font-size: 1.09375rem;
+  font-size: 1rem;
 }
 h6,
 .h6 {
@@ -4344,13 +4344,13 @@ input[type='button'].btn-block {
 }
 .badge-success {
   color: #fff;
-  background-color: #23bf08;
+  background-color: rgb(38, 191, 148);
 }
 .badge-success[href]:hover,
 .badge-success[href]:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #1a8e06;
+  background-color: rgba(38, 191, 148, .8);
 }
 .badge-info {
   color: #fff;
@@ -4364,13 +4364,13 @@ input[type='button'].btn-block {
 }
 .badge-warning {
   color: #212529;
-  background-color: #f49917;
+  background-color: rgb(245, 184, 73);
 }
 .badge-warning[href]:hover,
 .badge-warning[href]:focus {
   color: #212529;
   text-decoration: none;
-  background-color: #ce7d0a;
+  background-color: rgba(245, 184, 73, .8);
 }
 .badge-danger {
   color: #fff;
@@ -52968,4 +52968,11 @@ a.hover-white-8:focus {
 }
 .mx-wd-1350 {
   max-width: 1350px;
+}
+
+.gap-3{
+  gap: .75rem;
+}
+.gap-4{
+  gap: 1rem;
 }
