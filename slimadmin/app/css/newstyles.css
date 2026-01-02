@@ -235,3 +235,40 @@ input[type='number']::-webkit-outer-spin-button {
   font-size: 1rem;
   line-height: normal;
 }
+.sidebar-nav-item.with-sub > .sidebar-nav-sub {
+  display: none;
+}
+.sidebar-nav-item.with-sub.open > .sidebar-nav-sub {
+  display: block;
+}
+
+/* ДОБАВИТЬ: 3 уровень */
+.nav-sub-item.with-sub > .sidebar-nav-sub {
+  display: none;
+}
+.nav-sub-item.with-sub.open > .sidebar-nav-sub {
+  display: block;
+}
+
+.nav-sub-link:focus,
+.nav-sub-link:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+}
+.nav-sub-link {
+  color: #a3aed1 !important;
+}
+.nav-sub-item.with-sub .nav-sub-link {
+  position: relative;
+}
+.nav-sub-item.with-sub .nav-sub-link[href^='javascript']::after {
+  position: absolute;
+  content: '\f3d0';
+  font-family: 'Ionicons';
+  margin-left: auto;
+  position: relative;
+  opacity: 0.75;
+}
+.sidebar-nav-sub .nav-sub-link {
+  padding-left: 32px !important;
+}
