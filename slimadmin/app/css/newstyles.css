@@ -249,7 +249,9 @@ input[type='number']::-webkit-outer-spin-button {
 .nav-sub-item.with-sub.open > .sidebar-nav-sub {
   display: block;
 }
-
+.nav-sub-item.with-sub.open > .sidebar-nav-sub .nav-sub-link {
+  padding-left: 44px !important;
+}
 .nav-sub-link:focus,
 .nav-sub-link:hover {
   background-color: rgba(255, 255, 255, 0.05) !important;
