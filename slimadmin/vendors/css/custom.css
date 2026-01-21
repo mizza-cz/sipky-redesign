@@ -4,6 +4,15 @@
 .logged-user {
   color: #fff;
 }
+
+/* Required field asterisk */
+label.required::after,
+.required label::after,
+.form-label.required label::after {
+  content: " *" !important;
+  color: #dc3545 !important;
+  font-weight: bold !important;
+}
 .table:not([class*=' table-colored']) thead tr th,
 .table:not([class*=' table-colored']) thead tr td,
 .table:not([class*=' table-colored']) tbody tr th,
@@ -20,4 +29,18 @@
 .card-body .datagrid td:last-child,
 .card-body .datagrid th:last-child {
   padding-right: 15px;
+}
+
+/* Form labels and groups visibility fix */
+.form-label,
+.form-control-label,
+label,
+fieldset legend {
+  color: var(--default-text-color) !important;
+}
+
+/* Form groups should be visible */
+.card-body form > div,
+.card-body fieldset {
+  color: var(--default-text-color);
 }

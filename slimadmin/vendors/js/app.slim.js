@@ -1365,13 +1365,17 @@ window.uiHandlers.onUnload(function() {
 
 	// showing 2nd level sub menu while hiding others
 	$('.sidebar-nav-link').on('click', function(e) {
-		let subMenu = $(this).next();
+		let $parent = $(this).parent();
+		let subMenu = $(this).next('.sidebar-nav-sub');
 
-		$(this).parent().siblings().find('.sidebar-nav-sub').slideUp(100);
-		$('.sub-with-sub ul').slideUp(100);
+		// Close other 1st level submenus
+		$parent.siblings().removeClass('open').find('.sidebar-nav-sub').slideUp(100);
+		// Close all 3rd level submenus
+		$('.nav-sub-item.with-sub').removeClass('open').find('.sidebar-nav-sub').slideUp(100);
 
 		if (subMenu.length) {
 			e.preventDefault();
+			$parent.toggleClass('open');
 			subMenu.slideToggle(100);
 		}
 	});
@@ -1386,10 +1390,16 @@ window.uiHandlers.onUnload(function() {
 	});
 
 	// showing 3rd level sub menu while hiding others
-	$('.sub-with-sub .nav-sub-link').on('click', function(e) {
+	$('.nav-sub-item.with-sub > .nav-sub-link').on('click', function(e) {
 		e.preventDefault();
-		$(this).parent().siblings().find('ul').slideUp();
-		$(this).next().slideDown();
+		let $parent = $(this).parent();
+		let subMenu = $(this).next('.sidebar-nav-sub');
+
+		// Close other 3rd level submenus at the same level
+		$parent.siblings('.with-sub').removeClass('open').find('.sidebar-nav-sub').slideUp(100);
+
+		$parent.toggleClass('open');
+		subMenu.slideToggle(100);
 	});
 
 	// datagrids reset when switching through menu

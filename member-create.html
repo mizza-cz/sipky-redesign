@@ -303,626 +303,190 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Vytvoření člena</h6>
+            <h6 class="slim-pagetitle">SK Šipky Praha Střed</h6>
           </div>
           <!-- slim-pageheader -->
 
           <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
 
-          <div class="row">
-            <div class="col-xl-12">
-              <h6 class="slim-pagetitle mg-y-25"></h6>
-
+          <div class="row g-2">
+            <div class="col-lg-6">
               <div class="card overflow-visible">
                 <div class="card-body" data-menu-type="primary">
-                  <form
-                    action="/admin/member/create"
-                    method="post"
-                    enctype="multipart/form-data"
-                    id="frm-memberForm"
-                  >
-                    <fieldset>
-                      <legend>Základní údaje</legend>
-
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <div class="form-label mt-2">
-                            <label for="frm-memberForm-club_id">Club:</label>
-                            <select class="js-select" name="club_id" id="frm-memberForm-club_id">
-                              <option value="">bez klubové příslušnosti</option>
-                              <option value="1">SK Šipky Praha Střed</option>
-                              <option value="2">TJ Šipkaři Vinohrady</option>
-                              <option value="3">Dart Club Smíchov</option>
-                              <option value="4">SK Darts Brno</option>
-                              <option value="5">TJ Moravské šipky</option>
-                              <option value="6">SK Šipky Kladno</option>
-                              <option value="7">Dart Team Středočeši</option>
-                              <option value="8">SK Budějovické šipky</option>
-                              <option value="9">TJ Dart Jihočeši</option>
-                              <option value="10">SK Plzeňské šipky</option>
-                              <option value="11">Dart Club West Bohemia</option>
-                              <option value="12">SK Bývalé šipky Praha</option>
-                              <option value="13">TEST Sparta Praha</option>
-                              <option value="14">TEST Slavia Praha</option>
-                              <option value="15">TEST Bohemians Praha</option>
-                              <option value="16">TEST Dukla Praha</option>
-                              <option value="17">TEST Kladno</option>
-                              <option value="18">TEST Mladá Boleslav</option>
-                              <option value="19">TEST Brno</option>
-                              <option value="20">TEST Olomouc</option>
-                            </select>
+                  <div class="row justify-content-between">
+                    <div class="col-lg-3">
+                      <img
+                        class="object-fit-contain w-100"
+                        src="images/header/logo_uso.png"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="d-flex gap-3">
+                        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                        <div class="d-flex flex-column gap-2">
+                          <h5 class="m-0">Základní údaje</h5>
+                          <div class="pc-line">
+                            <span class="pc-label"> Název:</span> SK Šipky Praha Střed
                           </div>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-member_category" class="required"
-                            >Member category:
-                          </label>
-                          <select
-                            class="js-select"
-                            name="member_category"
-                            id="frm-memberForm-member_category"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Please select a member category."}]'
-                          >
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="N">Bez kategorie</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-first_name" class="required">
-                            First Name:
-                          </label>
-                          <input
-                            type="text"
-                            name="first_name"
-                            maxlength="255"
-                            id="frm-memberForm-first_name"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":maxLength","msg":"Max. 255 characters.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-last_name" class="required">Last Name:</label>
-                          <input
-                            type="text"
-                            name="last_name"
-                            maxlength="255"
-                            id="frm-memberForm-last_name"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":maxLength","msg":"Max. 255 characters.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-email" class="required">Email:</label>
-                          <input
-                            type="email"
-                            name="email"
-                            maxlength="255"
-                            id="frm-memberForm-email"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":email","msg":"Please enter a valid email address."},{"op":":maxLength","msg":"Max. 255 characters.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-media_id">Photo:</label>
-                          <input
-                            type="file"
-                            name="media_id"
-                            id="frm-memberForm-media_id"
-                            data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 2097152 bytes.","arg":2097152}]'
-                            class="text custom-file-input"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Osobní údaje</legend>
-
-                      <div class="row">
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-gender" class="required">Gender:</label>
-                          <select
-                            class="js-select"
-                            name="gender"
-                            id="frm-memberForm-gender"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."}]'
-                          >
-                            <option value="M">Muž</option>
-                            <option value="F">Žena</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-nationality" class="required"
-                            >Nationality:</label
-                          >
-                          <select
-                            class="js-select"
-                            name="nationality"
-                            id="frm-memberForm-nationality"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"Please enter nationality."}]'
-                          >
-                            <option value="CZE">České</option>
-                            <option value="SVK">Slovenské</option>
-                            <option value="ABW">Aruba</option>
-                            <option value="AFG">Afghánistán</option>
-                            <option value="ALA">Ålandy</option>
-                            <option value="ALB">Albánie</option>
-                            <option value="DZA">Alžírsko</option>
-                            <option value="ASM">Americká Samoa</option>
-                            <option value="VIR">Americké Panenské ostrovy</option>
-                            <option value="AND">Andorra</option>
-                            <option value="AGO">Angola</option>
-                            <option value="AIA">Anguilla</option>
-                            <option value="ATA">Antarktida</option>
-                            <option value="ATG">Antigua a Barbuda</option>
-                            <option value="ARG">Argentina</option>
-                            <option value="ARM">Arménie</option>
-                            <option value="AUS">Austrálie</option>
-                            <option value="AZE">Ázerbájdžán</option>
-                            <option value="BHS">Bahamy</option>
-                            <option value="BHR">Bahrajn</option>
-                            <option value="BGD">Bangladéš</option>
-                            <option value="BRB">Barbados</option>
-                            <option value="BEL">Belgie</option>
-                            <option value="BLZ">Belize</option>
-                            <option value="BLR">Bělorusko</option>
-                            <option value="BEN">Benin</option>
-                            <option value="BMU">Bermudy</option>
-                            <option value="BTN">Bhútán</option>
-                            <option value="BOL">Bolívie</option>
-                            <option value="BES">Bonaire, Svatý Eustach a Saba</option>
-                            <option value="BIH">Bosna a Hercegovina</option>
-                            <option value="BWA">Botswana</option>
-                            <option value="BVT">Bouvetův ostrov</option>
-                            <option value="BRA">Brazílie</option>
-                            <option value="IOT">Britské indickooceánské território</option>
-                            <option value="VGB">Britské Panenské ostrovy</option>
-                            <option value="BRN">Brunej</option>
-                            <option value="BGR">Bulharsko</option>
-                            <option value="BFA">Burkina Faso</option>
-                            <option value="BDI">Burundi</option>
-                            <option value="COK">Cookovy ostrovy</option>
-                            <option value="CUW">Curaçao</option>
-                            <option value="MNE">Černá Hora</option>
-                            <option value="TCD">Čad</option>
-                            <option value="CHN">Čína</option>
-                            <option value="DNK">Dánsko</option>
-                            <option value="DMA">Dominika</option>
-                            <option value="DOM">Dominikánská republika</option>
-                            <option value="DJI">Džibutsko</option>
-                            <option value="ECU">Ekvádor</option>
-                            <option value="ERI">Eritrea</option>
-                            <option value="EST">Estonsko</option>
-                            <option value="ETH">Etiopie</option>
-                            <option value="FRO">Faerské ostrovy</option>
-                            <option value="FLK">Falklandy (Malvíny)</option>
-                            <option value="FJI">Fidži</option>
-                            <option value="PHL">Filipíny</option>
-                            <option value="FIN">Finsko</option>
-                            <option value="FRA">Francie</option>
-                            <option value="GUF">Francouzská Guyana</option>
-                            <option value="PYF">Francouzská Polynésie</option>
-                            <option value="ATF">Francouzská jižní a antarktická území</option>
-                            <option value="GAB">Gabon</option>
-                            <option value="GMB">Gambie</option>
-                            <option value="GHA">Ghana</option>
-                            <option value="GIB">Gibraltar</option>
-                            <option value="GRD">Grenada</option>
-                            <option value="GRL">Grónsko</option>
-                            <option value="GEO">Gruzie</option>
-                            <option value="GLP">Guadeloupe</option>
-                            <option value="GUM">Guam</option>
-                            <option value="GTM">Guatemala</option>
-                            <option value="GGY">Guernsey</option>
-                            <option value="GIN">Guinea</option>
-                            <option value="GNB">Guinea-Bissau</option>
-                            <option value="GUY">Guyana</option>
-                            <option value="HTI">Haiti</option>
-                            <option value="HND">Honduras</option>
-                            <option value="HKG">Hongkong</option>
-                            <option value="CHL">Chile</option>
-                            <option value="HRV">Chorvatsko</option>
-                            <option value="IND">Indie</option>
-                            <option value="IDN">Indonésie</option>
-                            <option value="IRQ">Irák</option>
-                            <option value="IRN">Írán</option>
-                            <option value="IRL">Irsko</option>
-                            <option value="ISL">Island</option>
-                            <option value="ITA">Itálie</option>
-                            <option value="ISR">Izrael</option>
-                            <option value="JAM">Jamajka</option>
-                            <option value="JPN">Japonsko</option>
-                            <option value="YEM">Jemen</option>
-                            <option value="ZAF">Jihoafrická republika</option>
-                            <option value="KOR">Jižní Korea</option>
-                            <option value="SSD">Jižní Súdán</option>
-                            <option value="SGS">Jižní Georgie a Jižní Sandwichovy ostrovy</option>
-                            <option value="JOR">Jordánsko</option>
-                            <option value="YUG">Jugoslávie</option>
-                            <option value="CYM">Kajmanské ostrovy</option>
-                            <option value="KHM">Kambodža</option>
-                            <option value="CMR">Kamerun</option>
-                            <option value="CAN">Kanada</option>
-                            <option value="CPV">Kapverdy</option>
-                            <option value="QAT">Katar</option>
-                            <option value="KAZ">Kazachstán</option>
-                            <option value="KEN">Keňa</option>
-                            <option value="KIR">Kiribati</option>
-                            <option value="CCK">Kokosové ostrovy</option>
-                            <option value="COL">Kolumbie</option>
-                            <option value="COM">Komory</option>
-                            <option value="COD">Demokratická republika Kongo</option>
-                            <option value="COG">Kongo</option>
-                            <option value="CRI">Kostarika</option>
-                            <option value="CUB">Kuba</option>
-                            <option value="KWT">Kuvajt</option>
-                            <option value="CYP">Kypr</option>
-                            <option value="KGZ">Kyrgyzstán</option>
-                            <option value="LAO">Laos</option>
-                            <option value="LSO">Lesotho</option>
-                            <option value="LBN">Libanon</option>
-                            <option value="LBR">Libérie</option>
-                            <option value="LBY">Libye</option>
-                            <option value="LIE">Lichtenštejnsko</option>
-                            <option value="LTU">Litva</option>
-                            <option value="LVA">Lotyšsko</option>
-                            <option value="LUX">Lucembursko</option>
-                            <option value="MAC">Macao</option>
-                            <option value="MDG">Madagaskar</option>
-                            <option value="HUN">Maďarsko</option>
-                            <option value="MKD">Severní Makedonie</option>
-                            <option value="MYS">Malajsie</option>
-                            <option value="MDV">Maledivy</option>
-                            <option value="MWI">Malawi</option>
-                            <option value="MLT">Malta</option>
-                            <option value="MAR">Maroko</option>
-                            <option value="MHL">Marshallovy ostrovy</option>
-                            <option value="MTQ">Martinik</option>
-                            <option value="MUS">Mauricius</option>
-                            <option value="MRT">Mauritánie</option>
-                            <option value="MYT">Mayotte</option>
-                            <option value="UMI">Menší odlehlé ostrovy USA</option>
-                            <option value="MEX">Mexiko</option>
-                            <option value="FSM">Mikronésie</option>
-                            <option value="MDA">Moldavsko</option>
-                            <option value="MCO">Monako</option>
-                            <option value="MNG">Mongolsko</option>
-                            <option value="MSR">Montserrat</option>
-                            <option value="MOZ">Mosambik</option>
-                            <option value="MMR">Myanmar</option>
-                            <option value="NAM">Namibie</option>
-                            <option value="NRU">Nauru</option>
-                            <option value="NPL">Nepál</option>
-                            <option value="DEU">Německo</option>
-                            <option value="NER">Niger</option>
-                            <option value="NGA">Nigérie</option>
-                            <option value="NIC">Nikaragua</option>
-                            <option value="NIU">Niue</option>
-                            <option value="NLD">Nizozemsko</option>
-                            <option value="NFK">Norfolk</option>
-                            <option value="NOR">Norsko</option>
-                            <option value="NCL">Nová Kaledonie</option>
-                            <option value="NZL">Nový Zéland</option>
-                            <option value="OMN">Omán</option>
-                            <option value="IMN">Ostrov Man</option>
-                            <option value="PAK">Pákistán</option>
-                            <option value="PLW">Palau</option>
-                            <option value="PSE">Palestinská autonomie</option>
-                            <option value="PAN">Panama</option>
-                            <option value="PNG">Papua-Nová Guinea</option>
-                            <option value="PRY">Paraguay</option>
-                            <option value="PER">Peru</option>
-                            <option value="PCN">Pitcairnovy ostrovy</option>
-                            <option value="CIV">Pobřeží slonoviny</option>
-                            <option value="POL">Polsko</option>
-                            <option value="PRI">Portoriko</option>
-                            <option value="PRT">Portugalsko</option>
-                            <option value="AUT">Rakousko</option>
-                            <option value="REU">Réunion</option>
-                            <option value="GNQ">Rovníková Guinea</option>
-                            <option value="ROU">Rumunsko</option>
-                            <option value="RUS">Ruské</option>
-                            <option value="RWA">Rwanda</option>
-                            <option value="GRC">Řecko</option>
-                            <option value="SLV">Salvador</option>
-                            <option value="WSM">Samoa</option>
-                            <option value="SMR">San Marino</option>
-                            <option value="SAU">Saúdská Arábie</option>
-                            <option value="SEN">Senegal</option>
-                            <option value="PRK">Severní Korea</option>
-                            <option value="MNP">Severní Mariany</option>
-                            <option value="SYC">Seychely</option>
-                            <option value="SLE">Sierra Leone</option>
-                            <option value="SGP">Singapur</option>
-                            <option value="SVN">Slovinsko</option>
-                            <option value="SOM">Somálsko</option>
-                            <option value="ARE">Spojené arabské emiráty</option>
-                            <option value="GBR">
-                              Spojené království Velké Británie a Severního Irska
-                            </option>
-                            <option value="USA">Spojené státy americké</option>
-                            <option value="SRB">Srbsko</option>
-                            <option value="LKA">Srí Lanka</option>
-                            <option value="CAF">Středoafrická republika</option>
-                            <option value="SDN">Súdán</option>
-                            <option value="SUR">Surinam</option>
-                            <option value="SHN">Svatá Helena, Ascension a Tristan da Cunha</option>
-                            <option value="LCA">Svatá Lucie</option>
-                            <option value="KNA">Svatý Kryštof a Nevis</option>
-                            <option value="BLM">Svatý Bartoloměj</option>
-                            <option value="MAF">Svatý Martin (francouzská část)</option>
-                            <option value="SXM">Svatý Martin (nizozemská část)</option>
-                            <option value="STP">Svatý Tomáš a Princův ostrov</option>
-                            <option value="VCT">Svatý Vincenc a Grenadiny</option>
-                            <option value="SWZ">Svazijsko</option>
-                            <option value="SWE">Švédsko</option>
-                            <option value="CHE">Švýcarsko</option>
-                            <option value="SYR">Sýrie</option>
-                            <option value="SLB">Šalomounovy ostrovy</option>
-                            <option value="ESP">Španělsko</option>
-                            <option value="SJM">Špicberky a Jan Mayen</option>
-                            <option value="TJK">Tádžikistán</option>
-                            <option value="TZA">Tanzanie</option>
-                            <option value="TWN">Tchaj-wan</option>
-                            <option value="THA">Thajsko</option>
-                            <option value="TGO">Togo</option>
-                            <option value="TKL">Tokelau</option>
-                            <option value="TON">Tonga</option>
-                            <option value="TTO">Trinidad a Tobago</option>
-                            <option value="TUN">Tunisko</option>
-                            <option value="TUR">Turecko</option>
-                            <option value="TCA">Turks a Caicos</option>
-                            <option value="TUV">Tuvalu</option>
-                            <option value="TKM">Turkmenistán</option>
-                            <option value="UGA">Uganda</option>
-                            <option value="UKR">Ukrajinské</option>
-                            <option value="URY">Uruguay</option>
-                            <option value="UZB">Uzbekistán</option>
-                            <option value="CXR">Vánoční ostrov</option>
-                            <option value="VUT">Vanuatu</option>
-                            <option value="VAT">Vatikán</option>
-                            <option value="VEN">Venezuela</option>
-                            <option value="VNM">Vietnamské</option>
-                            <option value="TLS">Východní Timor</option>
-                            <option value="WLF">Wallis a Futuna</option>
-                            <option value="ESH">Západní Sahara</option>
-                            <option value="ZMB">Zambie</option>
-                            <option value="ZWE">Zimbabwe</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-date_of_birth" class="required"
-                            >Date of Birth:</label
-                          >
-                          <input
-                            type="date"
-                            name="date_of_birth"
-                            id="frm-memberForm-date_of_birth"
-                            required
-                            data-nette-rules='[{"op":":filled","msg":"This field is required."}]'
-                          />
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-personal_id_number">Personal ID Number:</label>
-                          <input
-                            type="text"
-                            name="personal_id_number"
-                            maxlength="20"
-                            id="frm-memberForm-personal_id_number"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 20 characters.","arg":20}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-city">City:</label>
-                          <input
-                            type="text"
-                            name="city"
-                            maxlength="255"
-                            id="frm-memberForm-city"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 255 characters.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-2">
-                          <label for="frm-memberForm-phone_number">Phone Number:</label>
-                          <input
-                            type="text"
-                            name="phone_number"
-                            maxlength="15"
-                            id="frm-memberForm-phone_number"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 15 characters.","arg":15}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Bankovní údaje</legend>
-
-                      <div class="row">
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-bank_account">Bank Account:</label>
-                          <input
-                            type="text"
-                            name="bank_account"
-                            maxlength="100"
-                            id="frm-memberForm-bank_account"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 100 characters.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                          <label for="frm-memberForm-bank_name">Bank Name:</label>
-                          <input
-                            type="text"
-                            name="bank_name"
-                            maxlength="100"
-                            id="frm-memberForm-bank_name"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 100 characters.","arg":100}]'
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-12 mb-2">
-                          <label for="frm-memberForm-sponsor">Sponsor:</label>
-                          <input
-                            type="text"
-                            name="sponsor"
-                            maxlength="255"
-                            id="frm-memberForm-sponsor"
-                            data-nette-rules='[{"op":":maxLength","msg":"Max. 255 characters.","arg":255}]'
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Omezení a souhlasy</legend>
-
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <label for="frm-memberForm-activity_ban"
-                              ><input
-                                type="checkbox"
-                                name="activity_ban"
-                                id="frm-memberForm-activity_ban"
-                              />Activity Ban</label
+                          <div class="pc-line">
+                            <span class="pc-label">Region:</span> Pražský svaz šipkařů
+                          </div>
+                          <div class="pc-line"><span class="pc-label">IČO:</span> 12345001</div>
+                          <div class="pc-line">
+                            <span class="pc-label">Adresa:</span> Karlova 15, Praha 1, 110 00
+                          </div>
+                          <div class="pc-line">
+                            <span class="pc-label">Web:</span>
+                            <a href="https://www.sipky-praha-stred.cz"
+                              >https://www.sipky-praha-stred.cz</a
                             >
                           </div>
-                        </tr>
-
-                        <div class="row">
-                          <div class="col-lg-6 mb-2">
-                            <label for="frm-memberForm-activity_ban_start">
-                              Activity Ban Start:
-                            </label>
-                            <input
-                              type="date"
-                              name="activity_ban_start"
-                              id="frm-memberForm-activity_ban_start"
-                            />
-                          </div>
-                          <div class="col-lg-6 mb-2">
-                            <label for="frm-memberForm-activity_ban_end">Activity Ban End:</label>
-                            <input
-                              type="date"
-                              name="activity_ban_end"
-                              id="frm-memberForm-activity_ban_end"
-                            />
-                          </div>
+                          <a href="#" class="btn btn-primary w-fit-content mt-2">
+                            <i class="fa fa-edit mr-1" aria-hidden="true"></i>
+                            Editovat
+                          </a>
                         </div>
-
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <label for="frm-memberForm-dual_membership"
-                              ><input
-                                type="checkbox"
-                                name="dual_membership"
-                                id="frm-memberForm-dual_membership"
-                              />Dual Membership</label
-                            >
-                          </div>
-                        </tr>
-
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <label for="frm-memberForm-gdpr_consent"
-                              ><input
-                                type="checkbox"
-                                name="gdpr_consent"
-                                id="frm-memberForm-gdpr_consent"
-                              />GDPR Consent</label
-                            >
-                          </div>
-                        </tr>
-
-                        <tr>
-                          <div class="form-label mt-2">
-                            <label for="frm-memberForm-gdpr_consent_date">GDPR Consent Date:</label>
-                          </div>
-
-                          <div class="mb-10">
-                            <input
-                              type="date"
-                              name="gdpr_consent_date"
-                              id="frm-memberForm-gdpr_consent_date"
-                            />
-                          </div>
-                        </tr>
                       </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend>Další</legend>
-
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2">
-                            <label for="frm-memberForm-internal_note">Internal note:</label>
-                          </div>
-
-                          <div class="mb-10">
-                            <textarea
-                              name="internal_note"
-                              id="frm-memberForm-internal_note"
-                            ></textarea>
-                          </div>
-                        </tr>
-
-                        <tr>
-                          <div class="form-label mt-2">
-                            <label for="frm-memberForm-external_note">External Note:</label>
-                          </div>
-
-                          <div class="mb-10">
-                            <textarea
-                              name="external_note"
-                              id="frm-memberForm-external_note"
-                            ></textarea>
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <div>
-                        <tr>
-                          <div class="form-label mt-2"></div>
-
-                          <div class="mb-10">
-                            <input
-                              type="submit"
-                              name="send"
-                              value="Create"
-                              class="btn btn-primary"
-                            />
-                          </div>
-                        </tr>
-                      </div>
-                    </fieldset>
-
-                    <input type="hidden" name="_do" value="memberForm-submit" />
-                  </form>
+                    </div>
+                  </div>
                 </div>
-                <!-- card-body -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card overflow-visible h-100">
+                <div class="card-body" data-menu-type="primary">
+                  <div
+                    class="border-bottom-1 py-2 d-flex justify-content-between align-items-center gap-3"
+                  >
+                    <div class="fw-medium">SK Šipky Praha Střed A</div>
+                    <div class="d-flex gap-2">
+                      <a href="#" class="btn btn-sm btn-primary">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                        Upraviť
+                      </a>
+                      <a href="#" class="btn btn-sm btn-success">
+                        <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                        Soupiska
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    class="border-bottom-1 py-2 d-flex justify-content-between align-items-center gap-3"
+                  >
+                    <div class="fw-medium">SK Šipky Praha Střed B</div>
+                    <div class="d-flex gap-2">
+                      <a href="#" class="btn btn-sm btn-primary">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                        Upraviť
+                      </a>
+                      <a href="#" class="btn btn-sm btn-success">
+                        <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                        Soupiska
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    class="border-bottom-1 py-2 d-flex justify-content-between align-items-center gap-3"
+                  >
+                    <div class="fw-medium">TJ Šipkaři Vinohrady</div>
+                    <div class="d-flex gap-2">
+                      <a href="#" class="btn btn-sm btn-primary">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                        Upraviť
+                      </a>
+                      <a href="#" class="btn btn-sm btn-success">
+                        <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                        Soupiska
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    class="border-bottom-1 py-2 d-flex justify-content-between align-items-center gap-3"
+                  >
+                    <div class="fw-medium">SK Šipky Praha Střed A</div>
+                    <div class="d-flex gap-2">
+                      <a href="#" class="btn btn-sm btn-primary">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                        Upraviť
+                      </a>
+                      <a href="#" class="btn btn-sm btn-success">
+                        <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                        Soupiska
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card overflow-visible">
+                <div class="card-body" data-menu-type="primary">
+                  <h1 class="h4 mb-4">Administrátoři klubu</h1>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 280px">Administrátoři klubu</th>
+                          <th style="width: 280px">Role</th>
+                          <th>Akce</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Petr Svoboda</td>
+                          <td>Předseda klubu</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">
+                              <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                              Upraviť
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Petr Svoboda</td>
+                          <td>Předseda klubu</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">
+                              <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                              Upraviť
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Eva Procházková</td>
+                          <td>Administrátor</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">
+                              <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                              Upraviť
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Petr Svoboda</td>
+                          <td>Předseda klubu</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">
+                              <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                              Upraviť
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Jan Novák</td>
+                          <td>Předseda klubu</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">
+                              <i class="fa fa-pencil mr-1" aria-hidden="true"></i>
+                              Upraviť
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
