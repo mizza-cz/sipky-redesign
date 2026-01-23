@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body class="light-theme">
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <!-- Evidence -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Evidence </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/member/">Členové</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/club/">Kluby</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/team/">Družstva</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/location/">Hrací místa</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/target-provider/">Poskytovatelé terčů</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/region/">Kraje</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/season/">Sezóny</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/administrator/">Administrátoři</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Liga -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Liga </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Soutěže</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/league/">
+                      Editace (nyní Ligové soutěže)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/league-registration/"> Přihlášky </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Skupiny</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/competition/">
+                      Editace (nyní Ligové skupiny)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/draw/">
+                      Losování (nyní Rozlosování utkání)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/match/"> Výsledky (nyní Výpis utkání) </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Žádosti o změny</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/transfer/pending-approvals">
+                      Čekající na schválení
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/transfer/"> Schválené </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Poplatky a platby</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/charges/"> Typy poplatků </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/payments/"> Proběhlé platby </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Turnaje -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Turnaje </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/tournament-type/"> Typy turnajů </a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/tournament/"> Odehrané (nyní Turnaje) </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Žebříčky -->
+          <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link" href="/admin/rankings/">
+              <span> Žebříčky </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="matchRecord-tabs">
+            <button class="btn btn-primary-light px-4" type="button">
+              Zápis z ligového utkání
+            </button>
+            <button class="btn btn-primary-light px-4" type="button">Soupisky + KHJ</button>
+            <button class="btn btn-primary px-4" type="button">Výsledek utkání</button>
+          </div>
+          <div class="row g-2">
+            <div class="col-lg-9">
+              <main class="matchRecord-main">
+                <section class="card overflow-visible">
+                  <div class="card-body" data-menu-type="primary">
+                    <div class="matchTable">
+                      <!-- HEAD (6 колонок) -->
+                      <div class="matchTable-head">
+                        <div></div>
+                        <div>Zápas</div>
+                        <div>Domácí</div>
+                        <div>Hosté</div>
+                        <div class="text-center">Legy</div>
+                        <div class="text-center">Skóre</div>
+                      </div>
+
+                      <!-- 1 -->
+                      <div class="matchTable-row">
+                        <div>1</div>
+                        <div>Single</div>
+                        <select class="js-select select--green">
+                          <option>D1: Vykysalý Radek</option>
+                        </select>
+                        <select class="js-select select--green">
+                          <option>H3: Hoffmann Martin</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:1</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 2 -->
+                      <div class="matchTable-row">
+                        <div>2</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D2: Páv Josef</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H4: Poklop Karel</option>
+                        </select>
+                        <select class="js-select">
+                          <option>0:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 3 -->
+                      <div class="matchTable-row">
+                        <div>3</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D3: Tauš Václav</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H1: Lexa Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 4 -->
+                      <div class="matchTable-row">
+                        <div>4</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D4: Bystrický Štěpán</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H2: Pitra Jan</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:0</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 5 -->
+                      <div class="matchTable-row">
+                        <div>5</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D1: Vykysalý Radek</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H4: Poklop Karel</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 6 -->
+                      <div class="matchTable-row">
+                        <div>6</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D2: Páv Josef</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H3: Hoffmann Martin</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 7 -->
+                      <div class="matchTable-row">
+                        <div>7</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D3: Tauš Václav</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H6: Puharič Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 8 -->
+                      <div class="matchTable-row">
+                        <div>8</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D4: Bystrický Štěpán</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H1: Lexa Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 9 (Double) -->
+                      <div class="matchTable-row">
+                        <div>9</div>
+                        <div>Double</div>
+
+                        <div class="matchTable-team2">
+                          <select class="js-select">
+                            <option>D1: Vykysalý Radek</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D2: Páv Josef</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D1: Vykysalý Radek</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D2: Páv Josef</option>
+                          </select>
+                        </div>
+
+                        <div class="matchTable-team2">
+                          <select class="js-select">
+                            <option>H4: Poklop Karel</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H1: Lexa Petr</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H4: Poklop Karel</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H1: Lexa Petr</option>
+                          </select>
+                        </div>
+
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 10 (Cricket) -->
+                      <div class="matchTable-row">
+                        <div>10</div>
+                        <div>Cricket</div>
+
+                        <div class="matchTable-team2">
+                          <select class="js-select">
+                            <option>D1: Vykysalý Radek</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D2: Páv Josef</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D1: Vykysalý Radek</option>
+                          </select>
+                          <select class="js-select">
+                            <option>D2: Páv Josef</option>
+                          </select>
+                        </div>
+
+                        <div class="matchTable-team2">
+                          <select class="js-select">
+                            <option>H3: Hoffmann Martin</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H1: Lexa Petr</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H3: Hoffmann Martin</option>
+                          </select>
+                          <select class="js-select">
+                            <option>H1: Lexa Petr</option>
+                          </select>
+                        </div>
+
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 11 -->
+                      <div class="matchTable-row">
+                        <div>11</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D1: Vykysalý Radek</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H2: Pitra Jan</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:0</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 12 -->
+                      <div class="matchTable-row">
+                        <div>12</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D2: Páv Josef</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H1: Lexa Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:1</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 13 -->
+                      <div class="matchTable-row">
+                        <div>13</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D3: Tauš Václav</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H4: Poklop Karel</option>
+                        </select>
+                        <select class="js-select">
+                          <option>0:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 14 -->
+                      <div class="matchTable-row">
+                        <div>14</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D5: Pašek Vladimír</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H3: Hoffmann Martin</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:1</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 15 -->
+                      <div class="matchTable-row">
+                        <div>15</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D1: Vykysalý Radek</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H1: Lexa Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>0:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 16 -->
+                      <div class="matchTable-row">
+                        <div>16</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D2: Páv Josef</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H6: Puharič Petr</option>
+                        </select>
+                        <select class="js-select">
+                          <option>1:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+
+                      <!-- 17 -->
+                      <div class="matchTable-row">
+                        <div>17</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D3: Tauš Václav</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H3: Hoffmann Martin</option>
+                        </select>
+                        <select class="js-select">
+                          <option>2:1</option>
+                        </select>
+                        <input class="form-control text-center score-win" value="1:0" />
+                      </div>
+
+                      <!-- 18 -->
+                      <div class="matchTable-row">
+                        <div>18</div>
+                        <div>Single</div>
+                        <select class="js-select">
+                          <option>D5: Pašek Vladimír</option>
+                        </select>
+                        <select class="js-select">
+                          <option>H4: Poklop Karel</option>
+                        </select>
+                        <select class="js-select">
+                          <option>0:2</option>
+                        </select>
+                        <input class="form-control text-center" value="0:1" />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </main>
+            </div>
+
+            <!-- SIDE как в первом табе -->
+            <div class="col-lg-3">
+              <aside class="matchRecord-side">
+                <div class="matchRecord-side__card">
+                  <div class="text-center fw-medium mb-2">Výsledek ligového utkání</div>
+                  <div class="matchRecord-side__highlight">Autorizovaný výsledek</div>
+
+                  <div class="kv">
+                    <div class="matchRecord-side__label">Skóre:</div>
+                    <div class="matchRecord-side__bigbox">6:12</div>
+                  </div>
+
+                  <div class="kv">
+                    <div class="matchRecord-side__label">Legy:</div>
+                    <div class="matchRecord-side__bigbox">20:28</div>
+                  </div>
+                </div>
+
+                <div class="matchRecord-side__actions">
+                  <button class="btn btn-info" type="button">Autorizováno</button>
+                  <button class="btn btn-primary-light" type="button">Zadat jen výsledek</button>
+                </div>
+
+                <div></div>
+
+                <div class="matchRecord-side__footer">
+                  <div>Poslední změna</div>
+                  <div><strong>Administrator</strong></div>
+                  <div>03.09.2023 20:15:54</div>
+                </div>
+              </aside>
+            </div>
+
+            <!-- footer buttons -->
+            <div class="col-12">
+              <div class="d-flex gap-2 justify-content-center">
+                <button class="btn btn-primary-light px-3" type="button" aria-label="btn-1">
+                  <i class="fa fa-save fa-lg" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary-light px-3" type="button" aria-label="btn-2">
+                  <i class="fa fa-share fa-lg" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="slimadmin/vendors/js/netteForms.js"></script>
+    <script src="slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="slimadmin/vendors/js/datagrid.js"></script>
+    <script src="slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="slimadmin/vendors/js/custom.js"></script>
+    <script src="slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>
