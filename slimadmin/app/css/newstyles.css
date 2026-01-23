@@ -684,3 +684,58 @@ select.select--green
   .select2-selection__rendered {
   color: #333335 !important;
 }
+
+/* el zapis 2  */
+
+.khj-table {
+  display: grid;
+  gap: 6px;
+}
+
+/* STARTERS: code + player + 7 stats = 9 колонок */
+.khj-head--base,
+.khj-row--base {
+  display: grid;
+  grid-template-columns: 44px 1fr 62px 62px 62px 62px 62px 62px 62px;
+  gap: 6px;
+  align-items: center;
+}
+
+/* SUBS: code + player + strida + 7 stats = 10 колонок */
+.khj-head--sub,
+.khj-row--sub {
+  display: grid;
+  grid-template-columns: 44px 1fr 70px 62px 62px 62px 62px 62px 62px 62px;
+  gap: 6px;
+  align-items: center;
+}
+
+.khj-head {
+  font-weight: 700;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.khj-code {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.8;
+  text-align: left;
+}
+
+.khj .form-control {
+  height: 38px !important;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.khj .select2-container {
+  width: 100% !important;
+}
+
+.khj-select--mini + .select2-container--default .select2-selection--single,
+.khj-select--mini.select2-hidden-accessible
+  + .select2-container--default
+  .select2-selection--single {
+  min-width: 70px;
+}
