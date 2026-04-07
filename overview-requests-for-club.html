@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>sipky.org administrace</title>
+    <!-- 
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    -->
+
+    <!-- vendor css -->
+    <link href="slimadmin/app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/spectrum/css/spectrum.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/Jcrop/css/Jcrop.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/jquery-toggles/css/toggles-full.css" rel="stylesheet" />
+    <link href="slimadmin/app/lib/uppy-css/css/index.css" rel="stylesheet" />
+
+    <!-- Styles required by this views -->
+    <link href="slimadmin/vendors/css/datagrid.css" rel="stylesheet" />
+    <link href="slimadmin/vendors/css/datagrid-spinners.css" rel="stylesheet" />
+
+    <!-- Slim CSS -->
+    <link href="slimadmin/app/css/slim.min.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.one.css" rel="stylesheet" />
+    <link href="slimadmin/app/css/slim.default.css?1713527836" rel="stylesheet" />
+
+    <link href="slimadmin/vendors/css/custom.css" rel="stylesheet" />
+
+    <link href="slimadmin/app/css/newstyles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body class="light-theme">
+    <div id="tooltips-container"></div>
+
+    <div class="slim-header with-sidebar">
+      <div class="container-fluid">
+        <div class="slim-header-left">
+          <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          <h2 class="slim-logo">
+            <a href="/admin/?websiteId=1&amp;lang=cz-en"></a>
+          </h2>
+          <script>
+            $(function () {
+              $('#slimSidebarMenu').on('click', function (e) {
+                e.preventDefault();
+                if (window.matchMedia('(min-width: 1200px)').matches) {
+                  $('body').toggleClass('hide-sidebar');
+                } else {
+                  $('body').toggleClass('show-sidebar');
+                }
+              });
+            });
+          </script>
+          <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+        </div>
+        <!-- slim-header-left -->
+        <div class="slim-header-right">
+          <button class="theme-btn" id="theme-toggle">
+            <i class="fa fa-sun-o"></i>
+          </button>
+          <div class="dropdown dropdown-c">
+            <a class="header-notification mg-y-3" data-toggle="dropdown" title="Prepnúť rolu">
+              <i class="icon ion-person tx-primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pd-0" style="min-width: 220px">
+              <div class="dropdown-header pd-y-10 pd-x-20 bg-gray-100">
+                <small class="tx-uppercase tx-11 tx-gray-600 tx-semibold">Prepnúť na rolu</small>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=administr%C3%A1tor&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center active"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-success"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">administrátor</div>
+                    <div class="tx-11 tx-success">Aktuálna rola</div>
+                  </div>
+                  <div class="mg-l-auto">
+                    <i class="icon ion-checkmark tx-success"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=region%C3%A1ln%C3%AD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">regionální sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=klubov%C3%BD+sekret%C3%A1%C5%99&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">klubový sekretář</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-item-wrapper">
+                <a
+                  href="/admin/member/create?roleSwitcher-role=%C4%8Dlen&amp;do=roleSwitcher-switch"
+                  class="dropdown-item pd-y-8 pd-x-20 d-flex align-items-center"
+                >
+                  <div class="wd-8 ht-8 rounded-circle mg-r-10 bg-gray-300"></div>
+                  <div class="flex-fill">
+                    <div class="tx-medium tx-13">člen</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+
+          <div class="dropdown dropdown-c">
+            <a
+              href="#"
+              class="logged-user"
+              data-toggle="dropdown"
+              data-target="logged-user-dropdown"
+            >
+              <img
+                src="https://ui-avatars.com/api/?background=E3EAF2&amp;name=Meno Priezvisko}"
+                alt="Daniel Souček"
+              />
+              <span>Meno Priezvisko</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <div id="logged-user-dropdown" class="dropdown-menu dropdown-menu-right">
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="icon ion-ios-gear"></i> Change password</a>
+                <a href="/admin/sign/out" class="nav-link"
+                  ><i class="icon ion-forward"></i> Log out</a
+                >
+              </nav>
+            </div>
+            <!-- dropdown-menu -->
+          </div>
+          <!-- dropdown -->
+        </div>
+        <!-- header-right -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- slim-header -->
+
+    <div class="slim-body">
+      <div class="slim-sidebar">
+        <ul class="nav nav-sidebar">
+          <!-- Evidence -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Evidence </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/member/">Členové</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/club/">Kluby</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/team/">Družstva</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/location/">Hrací místa</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/target-provider/">Poskytovatelé terčů</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/region/">Kraje</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/season/">Sezóny</a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/administrator/">Administrátoři</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Liga -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Liga </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Soutěže</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/league/">
+                      Editace (nyní Ligové soutěže)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/league-registration/"> Přihlášky </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Skupiny</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/competition/">
+                      Editace (nyní Ligové skupiny)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/draw/">
+                      Losování (nyní Rozlosování utkání)
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/match/"> Výsledky (nyní Výpis utkání) </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Žádosti o změny</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/transfer/pending-approvals">
+                      Čekající na schválení
+                    </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/transfer/"> Schválené </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-sub-item with-sub">
+                <a class="nav-sub-link" href="javascript:void(0)">Poplatky a platby</a>
+
+                <ul class="nav sidebar-nav-sub">
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/charges/"> Typy poplatků </a>
+                  </li>
+                  <li class="nav-sub-item">
+                    <a class="nav-sub-link" href="/admin/payments/"> Proběhlé platby </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Turnaje -->
+          <li class="sidebar-nav-item with-sub">
+            <a class="sidebar-nav-link" href="javascript:void(0)">
+              <span> Turnaje </span>
+            </a>
+
+            <ul class="nav sidebar-nav-sub">
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/tournament-type/"> Typy turnajů </a>
+              </li>
+              <li class="nav-sub-item">
+                <a class="nav-sub-link" href="/admin/tournament/"> Odehrané (nyní Turnaje) </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Žebříčky -->
+          <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link" href="/admin/rankings/">
+              <span> Žebříčky </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- slim-sidebar -->
+
+      <div class="slim-mainpanel">
+        <div class="container">
+          <div class="slim-pageheader">
+            <ol class="breadcrumb slim-breadcrumb"></ol>
+
+            <h6 class="slim-pagetitle">Prehled vsech zadosti pro klub</h6>
+          </div>
+          <!-- slim-pageheader -->
+
+          <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+
+          <div class="requestChanges">
+            <div class="card overflow-visible">
+              <div class="card-body" data-menu-type="primary">
+                <div
+                  class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3"
+                >
+                  <div>
+                    <h1 class="h3 mb-2">Žádosti o změny</h1>
+                    <p class="text-muted mb-0">
+                      Přehled podaných žádostí a možnost vytvořit novou žádost.
+                    </p>
+                  </div>
+
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#newRequestCollapse"
+                    aria-expanded="false"
+                    aria-controls="newRequestCollapse"
+                  >
+                    <span class="icon ion-plus mr-1"></span>
+                    Nová žádost
+                  </button>
+                </div>
+
+                <div class="collapse mt-4" id="newRequestCollapse">
+                  <div class="card-body p-0">
+                    <div class="form-group mb-4">
+                      <label for="requestType">Typ žádosti</label>
+                      <select id="requestType" class="js-select">
+                        <option value="">Vyberte typ žádosti</option>
+                        <option value="change_place">Změna hracího místa družstva</option>
+                        <option value="change_name">Změna názvu družstva</option>
+                        <option value="change_schedule">Změna hracího dne nebo času</option>
+                        <option value="change_match_date">Změna termínu konkrétního utkání</option>
+                      </select>
+                    </div>
+
+                    <div class="request-form-wrapper">
+                      <div class="request-form d-none" data-request-form="change_place">
+                        <div class="border rounded-5 p-4">
+                          <h2 class="h5 mb-4">Změna hracího místa družstva</h2>
+
+                          <form action="#" method="post">
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="placeTeam">Družstvo</label>
+                                <select id="placeTeam" name="team_id" class="js-select">
+                                  <option value="">Vyberte družstvo</option>
+                                  <option value="1">SK Darts Brno A</option>
+                                  <option value="2">SK Darts Brno B</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="newPlace">Nové hrací místo</label>
+                                <select id="newPlace" name="new_place_id" class="js-select">
+                                  <option value="">Vyberte hrací místo</option>
+                                  <option value="101">Sport Bar Alfa</option>
+                                  <option value="102">Herna Beta</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="placeValidFrom">Platnost od</label>
+                                <input
+                                  type="date"
+                                  id="placeValidFrom"
+                                  name="valid_from"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="placeNote">Poznámka</label>
+                              <input
+                                type="text"
+                                id="placeNote"
+                                name="note"
+                                class="form-control"
+                                placeholder="Volitelná poznámka"
+                              />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                          </form>
+                        </div>
+                      </div>
+
+                      <div class="request-form d-none" data-request-form="change_name">
+                        <div class="border rounded-5 p-4">
+                          <h2 class="h5 mb-4">Změna názvu družstva</h2>
+
+                          <form action="#" method="post">
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="nameTeam">Družstvo</label>
+                                <select id="nameTeam" name="team_id" class="js-select">
+                                  <option value="">Vyberte družstvo</option>
+                                  <option value="1">SK Darts Brno A</option>
+                                  <option value="2">SK Darts Brno B</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="currentName">Současný název</label>
+                                <input
+                                  type="text"
+                                  id="currentName"
+                                  name="current_name"
+                                  class="form-control"
+                                  value="SK Darts Brno A"
+                                  readonly
+                                />
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="newName">Nový název</label>
+                                <input
+                                  type="text"
+                                  id="newName"
+                                  name="new_name"
+                                  class="form-control"
+                                  placeholder="Zadejte nový název"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="nameNote">Poznámka</label>
+                              <input
+                                type="text"
+                                id="nameNote"
+                                name="note"
+                                class="form-control"
+                                placeholder="Volitelná poznámka"
+                              />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                          </form>
+                        </div>
+                      </div>
+
+                      <div class="request-form d-none" data-request-form="change_schedule">
+                        <div class="border rounded-5 p-4">
+                          <h2 class="h5 mb-4">Změna hracího dne nebo času</h2>
+
+                          <form action="#" method="post">
+                            <div class="form-row">
+                              <div class="form-group col-md-3">
+                                <label for="scheduleTeam">Družstvo</label>
+                                <select id="scheduleTeam" name="team_id" class="js-select">
+                                  <option value="">Vyberte družstvo</option>
+                                  <option value="1">SK Darts Brno A</option>
+                                  <option value="2">SK Darts Brno B</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-3">
+                                <label for="newDay">Nový den</label>
+                                <select id="newDay" name="new_day" class="js-select">
+                                  <option value="">Vyberte den</option>
+                                  <option value="monday">Pondělí</option>
+                                  <option value="tuesday">Úterý</option>
+                                  <option value="wednesday">Středa</option>
+                                  <option value="thursday">Čtvrtek</option>
+                                  <option value="friday">Pátek</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-3">
+                                <label for="newTime">Nový čas</label>
+                                <input
+                                  type="time"
+                                  id="newTime"
+                                  name="new_time"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="form-group col-md-3">
+                                <label for="scheduleValidFrom">Platnost od</label>
+                                <input
+                                  type="date"
+                                  id="scheduleValidFrom"
+                                  name="valid_from"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="scheduleNote">Poznámka</label>
+                              <input
+                                type="text"
+                                id="scheduleNote"
+                                name="note"
+                                class="form-control"
+                                placeholder="Volitelná poznámka"
+                              />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                          </form>
+                        </div>
+                      </div>
+
+                      <div class="request-form d-none" data-request-form="change_match_date">
+                        <div class="border rounded-5 p-4">
+                          <h2 class="h5 mb-4">Změna termínu konkrétního utkání</h2>
+
+                          <form action="#" method="post">
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="matchSelect">Utkání</label>
+                                <select id="matchSelect" name="match_id" class="js-select">
+                                  <option value="">Vyberte utkání</option>
+                                  <option value="1001">
+                                    SK Darts Brno A vs SK Darts Ostrava A
+                                  </option>
+                                  <option value="1002">SK Darts Brno B vs SK Darts Praha B</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="currentMatchDate">Současný termín</label>
+                                <input
+                                  type="text"
+                                  id="currentMatchDate"
+                                  name="current_match_date"
+                                  class="form-control"
+                                  value="15.03.2026 18:00"
+                                  readonly
+                                />
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label for="newMatchDate">Nový termín</label>
+                                <input
+                                  type="datetime-local"
+                                  id="newMatchDate"
+                                  name="new_match_date"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="matchDateNote">Poznámka</label>
+                              <input
+                                type="text"
+                                id="matchDateNote"
+                                name="note"
+                                class="form-control"
+                                placeholder="Volitelná poznámka"
+                              />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card overflow-visible">
+              <div class="card-body" data-menu-type="primary">
+                <h1 class="h4 mb-4">Zmena hraciho mista druzstva</h1>
+                <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
+                  Žádosti odeslané ke schválení
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vytvoreno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Brno A</td>
+                        <td class="text-center">SK Darts Brno</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Brno A</td>
+                        <td class="text-center">SK Darts Brno</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Brno A</td>
+                        <td class="text-center">SK Darts Brno</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
+                  Zamítnuté žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Praha A</td>
+                        <td class="text-center">SK Darts Praha</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Praha A</td>
+                        <td class="text-center">SK Darts Praha</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
+                  Schválené žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td class="text-center">SK Darts Praha A</td>
+                        <td class="text-center">SK Darts Praha</td>
+                        <td class="text-right">
+                          <a href="#" class="btn-success btn btn-sm">
+                            <span class="icon ion-person mr-1"></span>
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card overflow-visible">
+              <div class="card-body" data-menu-type="primary">
+                <h2 class="h4 mb-4">Zmena nazvu druzstva</h2>
+                <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
+                  Žádosti odeslané ke schválení
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vytvoreno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
+                  Zamítnuté žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
+                  Schválené žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card overflow-visible">
+              <div class="card-body" data-menu-type="primary">
+                <h2 class="h4 mb-4">Zmena hraciho dne nebo casu v rozlosovani druzstva</h2>
+                <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
+                  Žádosti odeslané ke schválení
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vytvoreno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
+                  Zamítnuté žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
+                  Schválené žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Druzstvo</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card overflow-visible">
+              <div class="card-body" data-menu-type="primary">
+                <h2 class="h4 mb-4">Zmena terminu konkretniho utkani</h2>
+                <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
+                  Žádosti odeslané ke schválení
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vytvoreno</th>
+                        <th class="text-center">Utkani</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
+                  Zamítnuté žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Utkani</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
+                  Schválené žádosti
+                </div>
+                <div class="table-responsive mb-4">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Vyrizeno</th>
+                        <th class="text-center">Utkani</th>
+                        <th class="text-center">Zadajici klub</th>
+                        <th class="text-right">Akce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </div>
+      <!-- slim-mainpanel -->
+    </div>
+    <!-- slim-body -->
+
+    <script src="slimadmin/app/lib/jquery/js/jquery.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui/js/jquery-ui.js"></script>
+    <script src="slimadmin/app/lib/jquery-ui-touch-punch-improved/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="slimadmin/app/lib/popper.js/js/popper.js"></script>
+    <script src="slimadmin/app/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="slimadmin/app/lib/select2/js/select2.min.js"></script>
+    <script src="slimadmin/app/lib/select2/js/cs.js"></script>
+    <script src="slimadmin/app/lib/spectrum/js/spectrum.js"></script>
+    <script src="slimadmin/app/lib/Jcrop/js/Jcrop.js"></script>
+    <script src="slimadmin/app/lib/jquery.maskedinput/js/jquery.maskedinput.js"></script>
+    <script src="slimadmin/app/lib/autoNumeric/js/autoNumeric-min.js"></script>
+    <script src="slimadmin/app/lib/jquery-toggles/js/toggles.min.js"></script>
+    <script src="slimadmin/app/lib/uppy-js/js/index.js"></script>
+    <script src="slimadmin/app/lib/uppy-cscz/js/index.js"></script>
+    <script src="slimadmin/vendors/js/netteForms.js"></script>
+    <script src="slimadmin/vendors/js/nette.ajax.js"></script>
+    <script src="slimadmin/vendors/js/datagrid.js"></script>
+    <script src="slimadmin/vendors/js/app.init.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.nette.js?1713527836"></script>
+    <script src="slimadmin/vendors/js/app.slim.js?1737720906"></script>
+    <script src="slimadmin/vendors/js/form.pagebuilder.js?1738343989"></script>
+    <script src="slimadmin/vendors/js/custom.js"></script>
+    <script src="slimadmin/app/lib/chart.js/js/chart.js"></script>
+    <script src="slimadmin/vendors/js/page.chartjs.js?1713527836"></script>
+
+    <script>
+      initApp();
+    </script>
+  </body>
+</html>
+
+<!-- Tracy Debug Bar -->
+<script
+  src="/admin/member/create?_tracy_bar=js&amp;v=2.10.10&amp;XDEBUG_SESSION_STOP=1"
+  data-id="b0b78b8e58"
+></script>

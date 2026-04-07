@@ -109,6 +109,9 @@ body {
   border-color: var(--input-border);
   outline: 0 !important;
 }
+select[multiple].form-control {
+  height: auto;
+}
 .form-control:focus {
   background-color: rgb(var(--form-control-bg-focus));
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.125rem 0px;
@@ -356,7 +359,15 @@ tfoot .select2-container--default .select2-selection--single .select2-selection_
 .nav-sub-item.with-sub .nav-sub-link {
   position: relative;
 }
-.nav-sub-item.with-sub .nav-sub-link[href^='javascript']::after {
+/* .nav-sub-item.with-sub .nav-sub-link[href^="javascript"]::after {
+	position: absolute;
+	content: "\f3d0";
+	font-family: "Ionicons";
+	margin-left: auto;
+	position: relative;
+	opacity: 0.75;
+} */
+.nav-sub-item.with-sub:has(> ul.sidebar-nav-sub) > .nav-sub-link::after {
   position: absolute;
   content: '\f3d0';
   font-family: 'Ionicons';
@@ -391,6 +402,9 @@ tfoot .select2-container--default .select2-selection--single .select2-selection_
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-32 {
+  gap: 32px;
 }
 .fw-medium {
   font-weight: 500;
@@ -893,4 +907,21 @@ select.select--green
 .mr-tr--21 {
   display: grid;
   grid-template-columns: 52px 1fr 100px 100px;
+}
+
+.requestChanges {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.requestChanges .table th {
+  white-space: nowrap;
+}
+.requestChanges .table td:last-child,
+.requestChanges .table th:last-child {
+  width: 80px;
+}
+.requestChanges .table td:first-child,
+.requestChanges .table th:first-child {
+  width: 200px;
 }
