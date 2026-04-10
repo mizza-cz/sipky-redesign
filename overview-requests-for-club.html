@@ -337,7 +337,7 @@
 
                 <div class="collapse mt-4" id="newRequestCollapse">
                   <div class="card-body p-0">
-                    <div class="form-group mb-4">
+                    <div class="mb-4">
                       <label for="requestType">Typ žádosti</label>
                       <select id="requestType" class="js-select">
                         <option value="">Vyberte typ žádosti</option>
@@ -354,8 +354,8 @@
                           <h2 class="h5 mb-4">Změna hracího místa družstva</h2>
 
                           <form action="#" method="post">
-                            <div class="form-row">
-                              <div class="form-group col-md-4">
+                            <div class="row g-2">
+                              <div class="col-lg-3 col-6">
                                 <label for="placeTeam">Družstvo</label>
                                 <select id="placeTeam" name="team_id" class="js-select">
                                   <option value="">Vyberte družstvo</option>
@@ -363,17 +363,7 @@
                                   <option value="2">SK Darts Brno B</option>
                                 </select>
                               </div>
-
-                              <div class="form-group col-md-4">
-                                <label for="newPlace">Nové hrací místo</label>
-                                <select id="newPlace" name="new_place_id" class="js-select">
-                                  <option value="">Vyberte hrací místo</option>
-                                  <option value="101">Sport Bar Alfa</option>
-                                  <option value="102">Herna Beta</option>
-                                </select>
-                              </div>
-
-                              <div class="form-group col-md-4">
+                              <div class="col-lg-3 col-6">
                                 <label for="placeValidFrom">Platnost od</label>
                                 <input
                                   type="date"
@@ -382,20 +372,40 @@
                                   class="form-control"
                                 />
                               </div>
+                              <div class="col-lg-3 col-6">
+                                <label for="currentPlace">Současné hrací místo</label>
+                                <input
+                                  type="text"
+                                  id="currentPlace"
+                                  name="current_place"
+                                  class="form-control"
+                                  value=""
+                                  placeholder="Načte se po výběru družstva"
+                                  readonly
+                                />
+                              </div>
+
+                              <div class="col-lg-3 col-6">
+                                <label for="newPlace">Nové hrací místo</label>
+                                <select id="newPlace" name="new_place_id" class="js-select">
+                                  <option value="">Vyberte hrací místo</option>
+                                  <option value="101">Sport Bar Alfa</option>
+                                  <option value="102">Herna Beta</option>
+                                </select>
+                              </div>
+                              <div class="col-12">
+                                <label for="placeNote">Poznámka</label>
+                                <input
+                                  type="text"
+                                  id="placeNote"
+                                  name="note"
+                                  class="form-control"
+                                  placeholder="Volitelná poznámka"
+                                />
+                              </div>
                             </div>
 
-                            <div class="form-group">
-                              <label for="placeNote">Poznámka</label>
-                              <input
-                                type="text"
-                                id="placeNote"
-                                name="note"
-                                class="form-control"
-                                placeholder="Volitelná poznámka"
-                              />
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
                           </form>
                         </div>
                       </div>
@@ -405,8 +415,8 @@
                           <h2 class="h5 mb-4">Změna názvu družstva</h2>
 
                           <form action="#" method="post">
-                            <div class="form-row">
-                              <div class="form-group col-md-4">
+                            <div class="row">
+                              <div class="col-md-4">
                                 <label for="nameTeam">Družstvo</label>
                                 <select id="nameTeam" name="team_id" class="js-select">
                                   <option value="">Vyberte družstvo</option>
@@ -415,7 +425,7 @@
                                 </select>
                               </div>
 
-                              <div class="form-group col-md-4">
+                              <div class="col-md-4">
                                 <label for="currentName">Současný název</label>
                                 <input
                                   type="text"
@@ -427,7 +437,7 @@
                                 />
                               </div>
 
-                              <div class="form-group col-md-4">
+                              <div class="col-md-4">
                                 <label for="newName">Nový název</label>
                                 <input
                                   type="text"
@@ -437,20 +447,19 @@
                                   placeholder="Zadejte nový název"
                                 />
                               </div>
+                              <div class="col-12">
+                                <label for="nameNote">Poznámka</label>
+                                <input
+                                  type="text"
+                                  id="nameNote"
+                                  name="note"
+                                  class="form-control"
+                                  placeholder="Volitelná poznámka"
+                                />
+                              </div>
                             </div>
 
-                            <div class="form-group">
-                              <label for="nameNote">Poznámka</label>
-                              <input
-                                type="text"
-                                id="nameNote"
-                                name="note"
-                                class="form-control"
-                                placeholder="Volitelná poznámka"
-                              />
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
                           </form>
                         </div>
                       </div>
@@ -460,8 +469,8 @@
                           <h2 class="h5 mb-4">Změna hracího dne nebo času</h2>
 
                           <form action="#" method="post">
-                            <div class="form-row">
-                              <div class="form-group col-md-3">
+                            <div class="row">
+                              <div class="col-lg-4 col-6">
                                 <label for="scheduleTeam">Družstvo</label>
                                 <select id="scheduleTeam" name="team_id" class="js-select">
                                   <option value="">Vyberte družstvo</option>
@@ -470,7 +479,42 @@
                                 </select>
                               </div>
 
-                              <div class="form-group col-md-3">
+                              <div class="col-lg-4 col-6">
+                                <label for="currentDay">Současný den</label>
+                                <input
+                                  type="text"
+                                  id="currentDay"
+                                  name="current_day"
+                                  class="form-control"
+                                  value=""
+                                  placeholder="Načte se po výběru družstva"
+                                  readonly
+                                />
+                              </div>
+
+                              <div class="col-lg-4 col-6">
+                                <label for="currentTime">Současný čas</label>
+                                <input
+                                  type="text"
+                                  id="currentTime"
+                                  name="current_time"
+                                  class="form-control"
+                                  value=""
+                                  placeholder="Načte se po výběru družstva"
+                                  readonly
+                                />
+                              </div>
+
+                              <div class="col-lg-4 col-6">
+                                <label for="scheduleValidFrom">Platnost od</label>
+                                <input
+                                  type="date"
+                                  id="scheduleValidFrom"
+                                  name="valid_from"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="col-lg-4 col-6">
                                 <label for="newDay">Nový den</label>
                                 <select id="newDay" name="new_day" class="js-select">
                                   <option value="">Vyberte den</option>
@@ -482,7 +526,7 @@
                                 </select>
                               </div>
 
-                              <div class="form-group col-md-3">
+                              <div class="col-lg-4 col-6">
                                 <label for="newTime">Nový čas</label>
                                 <input
                                   type="time"
@@ -491,30 +535,19 @@
                                   class="form-control"
                                 />
                               </div>
-
-                              <div class="form-group col-md-3">
-                                <label for="scheduleValidFrom">Platnost od</label>
+                              <div class="col-12">
+                                <label for="scheduleNote">Poznámka</label>
                                 <input
-                                  type="date"
-                                  id="scheduleValidFrom"
-                                  name="valid_from"
+                                  type="text"
+                                  id="scheduleNote"
+                                  name="note"
                                   class="form-control"
+                                  placeholder="Volitelná poznámka"
                                 />
                               </div>
                             </div>
 
-                            <div class="form-group">
-                              <label for="scheduleNote">Poznámka</label>
-                              <input
-                                type="text"
-                                id="scheduleNote"
-                                name="note"
-                                class="form-control"
-                                placeholder="Volitelná poznámka"
-                              />
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
                           </form>
                         </div>
                       </div>
@@ -524,8 +557,8 @@
                           <h2 class="h5 mb-4">Změna termínu konkrétního utkání</h2>
 
                           <form action="#" method="post">
-                            <div class="form-row">
-                              <div class="form-group col-md-4">
+                            <div class="row">
+                              <div class="col-md-4">
                                 <label for="matchSelect">Utkání</label>
                                 <select id="matchSelect" name="match_id" class="js-select">
                                   <option value="">Vyberte utkání</option>
@@ -536,7 +569,7 @@
                                 </select>
                               </div>
 
-                              <div class="form-group col-md-4">
+                              <div class="col-md-4">
                                 <label for="currentMatchDate">Současný termín</label>
                                 <input
                                   type="text"
@@ -548,7 +581,7 @@
                                 />
                               </div>
 
-                              <div class="form-group col-md-4">
+                              <div class="col-md-4">
                                 <label for="newMatchDate">Nový termín</label>
                                 <input
                                   type="datetime-local"
@@ -557,20 +590,19 @@
                                   class="form-control"
                                 />
                               </div>
+                              <div class="col-12">
+                                <label for="matchDateNote">Poznámka</label>
+                                <input
+                                  type="text"
+                                  id="matchDateNote"
+                                  name="note"
+                                  class="form-control"
+                                  placeholder="Volitelná poznámka"
+                                />
+                              </div>
                             </div>
 
-                            <div class="form-group">
-                              <label for="matchDateNote">Poznámka</label>
-                              <input
-                                type="text"
-                                id="matchDateNote"
-                                name="note"
-                                class="form-control"
-                                placeholder="Volitelná poznámka"
-                              />
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Vytvoriť</button>
+                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
                           </form>
                         </div>
                       </div>
@@ -581,300 +613,908 @@
             </div>
             <div class="card overflow-visible">
               <div class="card-body" data-menu-type="primary">
-                <h1 class="h4 mb-4">Zmena hraciho mista druzstva</h1>
+                <h1 class="h4 mb-4">Změna hracího místa družstva</h1>
+
                 <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
                   Žádosti odeslané ke schválení
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vytvoreno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vytvořeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Brno A</td>
-                        <td class="text-center">SK Darts Brno</td>
+                        <td>SK Darts Brno A</td>
+                        <td>SK Darts Brno</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Brno A</td>
-                        <td class="text-center">SK Darts Brno</td>
+                        <td>SK Darts Brno A</td>
+                        <td>SK Darts Brno</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Brno A</td>
-                        <td class="text-center">SK Darts Brno</td>
+                        <td>SK Darts Brno A</td>
+                        <td>SK Darts Brno</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 1 až 3 z 3</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPagePlacePending" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPagePlacePending"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
                   Zamítnuté žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Praha A</td>
-                        <td class="text-center">SK Darts Praha</td>
+                        <td>SK Darts Praha A</td>
+                        <td>SK Darts Praha</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Praha A</td>
-                        <td class="text-center">SK Darts Praha</td>
+                        <td>SK Darts Praha A</td>
+                        <td>SK Darts Praha</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 1 až 2 z 2</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPagePlaceRejected" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPagePlaceRejected"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
                   Schválené žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>13.03.2026</td>
-                        <td class="text-center">SK Darts Praha A</td>
-                        <td class="text-center">SK Darts Praha</td>
+                        <td>SK Darts Praha A</td>
+                        <td>SK Darts Praha</td>
                         <td class="text-right">
-                          <a href="#" class="btn-success btn btn-sm">
-                            <span class="icon ion-person mr-1"></span>
-                            Detail
-                          </a>
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 1 až 1 z 1</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPagePlaceApproved" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPagePlaceApproved"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="card overflow-visible">
               <div class="card-body" data-menu-type="primary">
-                <h2 class="h4 mb-4">Zmena nazvu druzstva</h2>
+                <h2 class="h4 mb-4">Změna názvu družstva</h2>
+
                 <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
                   Žádosti odeslané ke schválení
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vytvoreno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vytvořeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td>13.03.2026</td>
+                        <td>SK Darts Brno A</td>
+                        <td>SK Darts Brno</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>12.03.2026</td>
+                        <td>SK Darts Brno B</td>
+                        <td>SK Darts Brno</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 1 až 2 z 2</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageNamePending" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageNamePending"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
                   Zamítnuté žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageNameRejected" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageNameRejected"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
                   Schválené žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageNameApproved" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageNameApproved"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="card overflow-visible">
               <div class="card-body" data-menu-type="primary">
-                <h2 class="h4 mb-4">Zmena hraciho dne nebo casu v rozlosovani druzstva</h2>
+                <h2 class="h4 mb-4">Změna hracího dne nebo času v rozlosování družstva</h2>
+
                 <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
                   Žádosti odeslané ke schválení
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vytvoreno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vytvořeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageSchedulePending" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageSchedulePending"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
                   Zamítnuté žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageScheduleRejected" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageScheduleRejected"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
                   Schválené žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Druzstvo</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Družstvo</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageScheduleApproved" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageScheduleApproved"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="card overflow-visible">
               <div class="card-body" data-menu-type="primary">
-                <h2 class="h4 mb-4">Zmena terminu konkretniho utkani</h2>
+                <h2 class="h4 mb-4">Změna termínu konkrétního utkání</h2>
+
                 <div class="bg-info text-white text-md-bold py-3 px-4 rounded-5">
                   Žádosti odeslané ke schválení
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vytvoreno</th>
-                        <th class="text-center">Utkani</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vytvořeno</th>
+                        <th>Utkání</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageMatchPending" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageMatchPending"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-danger text-white text-md-bold py-3 px-4 rounded-5">
                   Zamítnuté žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Utkani</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Utkání</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageMatchRejected" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageMatchRejected"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="bg-success text-white text-md-bold py-3 px-4 rounded-5">
                   Schválené žádosti
                 </div>
+
                 <div class="table-responsive mb-4">
-                  <table class="table table-hover">
+                  <table class="table table-hover mb-0">
                     <thead>
                       <tr>
-                        <th>Vyrizeno</th>
-                        <th class="text-center">Utkani</th>
-                        <th class="text-center">Zadajici klub</th>
+                        <th>Vyřízeno</th>
+                        <th>Utkání</th>
+                        <th>Žádající klub</th>
                         <th class="text-right">Akce</th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Filtrovat"
+                          />
+                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr></tr>
+                      <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                          Žádné položky nenalezeny.
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 border rounded-5 px-3 py-2 mt-1"
+                  >
+                    <div class="text-muted small">Položky: 0 až 0 z 0</div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="perPageMatchApproved" class="mb-0 text-muted small text-nowrap"
+                        >Na stránku</label
+                      >
+                      <select
+                        id="perPageMatchApproved"
+                        class="form-control form-control-sm"
+                        style="width: 80px"
+                      >
+                        <option selected>15</option>
+                        <option>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

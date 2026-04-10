@@ -412,6 +412,12 @@ tfoot .select2-container--default .select2-selection--single .select2-selection_
 .fw-medium {
   font-weight: 500;
 }
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-bold {
+  font-weight: 700;
+}
 .row.g-2 {
   margin-left: -8px;
   margin-right: -8px;
@@ -928,3 +934,20 @@ select.select--green
 .requestChanges .table th:first-child {
   width: 200px;
 }
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.select2-selection__rendered {
+  min-width: 55px;
+}
+.selectPage {
+  height: 32px;
+  overflow: hidden;
+}
+
+.bg-primary-1 {
+  background: var(--primary01);
+}
+ 
