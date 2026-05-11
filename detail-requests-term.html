@@ -303,107 +303,65 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Žádost o změnu</h6>
+            <h6 class="slim-pagetitle">Změna termínu konkrétního utkání</h6>
           </div>
           <!-- slim-pageheader -->
 
           <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
+          <!-- Žádost o změnu názvu družstva -->
 
           <div class="requestChangesDetail">
-            <div class="row g-2">
-              <div class="col-xl-7 col-lg-6">
-                <div class="card overflow-visible h-100">
-                  <div class="card-body" data-menu-type="primary">
-                    <div class="row g-2">
-                      <div class="col-12">
-                        <div class="badge badge-warning py-1 px-2">Žádost čeká na vyjádření</div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="border rounded-5 p-3 h-100">
-                          <h2 class="text-info section-title mb-3 mt-0">Současný stav</h2>
-                          <div class="d-flex flex-column gap-3">
-                            <div>
-                              <div class="text-md-bold mb-1">Klub</div>
-                              <div class="text-muted text-base-medium">SK Darts Brno</div>
-                            </div>
+            <div class="card overflow-visible h-100">
+              <div class="card-body" data-menu-type="primary">
+                <form action="#" method="post">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label for="matchSelect">Utkání</label>
+                      <select id="matchSelect" name="match_id" class="js-select">
+                        <option value="">Vyberte utkání</option>
+                        <option value="1001">SK Darts Brno A vs SK Darts Ostrava A</option>
+                        <option value="1002">SK Darts Brno B vs SK Darts Praha B</option>
+                      </select>
+                    </div>
 
-                            <div>
-                              <div class="text-md-bold mb-1">Družstvo</div>
-                              <div class="text-muted text-base-medium">SK Darts Brno A</div>
-                            </div>
+                    <div class="col-md-4">
+                      <label for="currentMatchDate">Současný termín</label>
+                      <input
+                        type="text"
+                        id="currentMatchDate"
+                        name="current_match_date"
+                        class="form-control"
+                        value="15.03.2026 18:00"
+                        readonly
+                      />
+                    </div>
 
-                            <div>
-                              <div class="text-md-bold mb-1">Současné hrací místo</div>
-                              <div class="text-muted text-base-medium">
-                                Sport Bar Brno, Kounicova 12
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="border rounded-5 p-3">
-                          <h2 class="text-success section-title mb-3 mt-0">Navrhovaná změna</h2>
-
-                          <div class="d-flex flex-column gap-3">
-                            <div>
-                              <div class="text-md-bold mb-1">Nové hrací místo</div>
-                              <div class="text-muted text-base-medium">Sport Bar Alfa</div>
-                            </div>
-
-                            <div>
-                              <div class="text-md-bold mb-1">Platnost od</div>
-                              <div class="text-muted text-base-medium">01.04.2026</div>
-                            </div>
-
-                            <div>
-                              <div class="text-md-bold mb-1">Poznámka klubu</div>
-                              <div class="text-muted text-base-medium">
-                                Prosíme o změnu z důvodu přesunu domácích utkání.
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="col-md-4">
+                      <label for="newMatchDate">Nový termín</label>
+                      <input
+                        type="datetime-local"
+                        id="newMatchDate"
+                        name="new_match_date"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="matchDateNote">Poznámka</label>
+                      <input
+                        type="text"
+                        id="matchDateNote"
+                        name="note"
+                        class="form-control"
+                        placeholder="Volitelná poznámka"
+                      />
                     </div>
                   </div>
-                </div>
-              </div>
+                  <div class="d-flex align-items-center gap-3 mt-4">
+                    <a href="#" class="btn btn-danger">Zpět</a>
 
-              <div class="col-lg-6 col-xl-5">
-                <div class="card overflow-visible h-100">
-                  <div class="card-body" data-menu-type="primary">
-                    <h2 class="section-title mt-0 mb-3">Poznámka administrátora</h2>
-
-                    <form action="#" method="post">
-                      <div class="form-group">
-                        <textarea
-                          id="adminNote"
-                          name="admin_note"
-                          class="form-control"
-                          rows="10"
-                          style="height: auto"
-                          placeholder="Volitelně doplňte důvod rozhodnutí"
-                        ></textarea>
-                      </div>
-
-                      <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                        <button type="submit" name="decision" value="reject" class="btn btn-danger">
-                          Zamítnout
-                        </button>
-                        <button
-                          type="submit"
-                          name="decision"
-                          value="approve"
-                          class="btn btn-success"
-                        >
-                          Schválit
-                        </button>
-                      </div>
-                    </form>
+                    <button type="submit" class="btn btn-success">Odeslat žádost</button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>

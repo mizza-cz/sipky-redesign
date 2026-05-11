@@ -303,66 +303,49 @@
           <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb"></ol>
 
-            <h6 class="slim-pagetitle">Žádost o změnu</h6>
+            <h6 class="slim-pagetitle">Žádost o ukončení členství hráče v klubu</h6>
           </div>
           <!-- slim-pageheader -->
 
           <div class="sticky-top z-index-200 sticky-flashes" id="snippet--flashes"></div>
 
-          <div class="requestChangesDetail">
+          <div class="requestMembershipTerminationDetail">
             <div class="row g-2">
-              <div class="col-xl-7 col-lg-6">
+              <div class="col-xl-6">
                 <div class="card overflow-visible h-100">
-                  <div class="card-body" data-menu-type="primary">
-                    <div class="row g-2">
-                      <div class="col-12">
-                        <div class="badge badge-warning py-1 px-2">Žádost čeká na vyjádření</div>
+                  <div class="card-body">
+                    <div class="d-flex flex-column flex-md-row gap-4">
+                      <div class="flex-shrink-0">
+                        <img
+                          class="rounded-4 object-fit-cover"
+                          src="images/trainer.png"
+                          alt="Hráč"
+                          style="width: 140px; height: 140px"
+                        />
                       </div>
-                      <div class="col-md-6">
-                        <div class="border rounded-5 p-3 h-100">
-                          <h2 class="text-info section-title mb-3 mt-0">Současný stav</h2>
-                          <div class="d-flex flex-column gap-3">
-                            <div>
-                              <div class="text-md-bold mb-1">Klub</div>
-                              <div class="text-muted text-base-medium">SK Darts Brno</div>
-                            </div>
 
-                            <div>
-                              <div class="text-md-bold mb-1">Družstvo</div>
-                              <div class="text-muted text-base-medium">SK Darts Brno A</div>
-                            </div>
+                      <div class="flex-grow-1">
+                        <h1 class="h3 mb-3">Jan Novák</h1>
 
-                            <div>
-                              <div class="text-md-bold mb-1">Současné hrací místo</div>
-                              <div class="text-muted text-base-medium">
-                                Sport Bar Brno, Kounicova 12
-                              </div>
-                            </div>
+                        <div class="row g-2">
+                          <div class="col-sm-6">
+                            <div class="text-uppercase text-muted small mb-1">ID hráče</div>
+                            <div class="h5 mb-0">10258</div>
                           </div>
-                        </div>
-                      </div>
 
-                      <div class="col-md-6">
-                        <div class="border rounded-5 p-3">
-                          <h2 class="text-success section-title mb-3 mt-0">Navrhovaná změna</h2>
+                          <div class="col-sm-6">
+                            <div class="text-uppercase text-muted small mb-1">Datum narození</div>
+                            <div class="h5 mb-0">15.03.1992</div>
+                          </div>
 
-                          <div class="d-flex flex-column gap-3">
-                            <div>
-                              <div class="text-md-bold mb-1">Nové hrací místo</div>
-                              <div class="text-muted text-base-medium">Sport Bar Alfa</div>
-                            </div>
+                          <div class="col-sm-6">
+                            <div class="text-uppercase text-muted small mb-1">Klub</div>
+                            <div class="h5 mb-0">SK Šipky Praha Střed</div>
+                          </div>
 
-                            <div>
-                              <div class="text-md-bold mb-1">Platnost od</div>
-                              <div class="text-muted text-base-medium">01.04.2026</div>
-                            </div>
-
-                            <div>
-                              <div class="text-md-bold mb-1">Poznámka klubu</div>
-                              <div class="text-muted text-base-medium">
-                                Prosíme o změnu z důvodu přesunu domácích utkání.
-                              </div>
-                            </div>
+                          <div class="col-sm-6">
+                            <div class="text-uppercase text-muted small mb-1">Status hráče</div>
+                            <div class="h5 mb-0">Aktivní člen</div>
                           </div>
                         </div>
                       </div>
@@ -371,37 +354,25 @@
                 </div>
               </div>
 
-              <div class="col-lg-6 col-xl-5">
+              <div class="col-xl-6">
                 <div class="card overflow-visible h-100">
                   <div class="card-body" data-menu-type="primary">
-                    <h2 class="section-title mt-0 mb-3">Poznámka administrátora</h2>
+                    <h2 class="section-title mt-0 mb-3">Informace k žádosti</h2>
 
-                    <form action="#" method="post">
-                      <div class="form-group">
-                        <textarea
-                          id="adminNote"
-                          name="admin_note"
-                          class="form-control"
-                          rows="10"
-                          style="height: auto"
-                          placeholder="Volitelně doplňte důvod rozhodnutí"
-                        ></textarea>
-                      </div>
+                    <div class="alert alert-info mb-3">
+                      Ukončení členství se provede k nejbližšímu přestupnímu termínu, buď letnímu
+                      nebo zimnímu, a hráč od tohoto momentu bude ve statusu
+                      <strong>volný</strong> a může tedy být přidán do jakéhokoliv klubu. Poplatek
+                      za ukončení členství hráče v klubu je <strong>200 Kč</strong>.
+                    </div>
 
-                      <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                        <button type="submit" name="decision" value="reject" class="btn btn-danger">
-                          Zamítnout
-                        </button>
-                        <button
-                          type="submit"
-                          name="decision"
-                          value="approve"
-                          class="btn btn-success"
-                        >
-                          Schválit
-                        </button>
-                      </div>
-                    </form>
+                    <div class="d-flex align-items-center gap-3">
+                      <a href="#" class="btn btn-danger">Zpět</a>
+
+                      <button type="submit" class="btn btn-success">
+                        Odeslat žádost o ukončení
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
