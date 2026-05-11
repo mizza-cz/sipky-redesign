@@ -337,275 +337,35 @@
 
                 <div class="collapse mt-4" id="newRequestCollapse">
                   <div class="card-body p-0">
-                    <div class="mb-4">
-                      <label for="requestType">Typ žádosti</label>
-                      <select id="requestType" class="js-select">
-                        <option value="">Vyberte typ žádosti</option>
-                        <option value="change_place">Změna hracího místa družstva</option>
-                        <option value="change_name">Změna názvu družstva</option>
-                        <option value="change_schedule">Změna hracího dne nebo času</option>
-                        <option value="change_match_date">Změna termínu konkrétního utkání</option>
-                      </select>
-                    </div>
+                    <div class="border rounded-5 p-4">
+                      <h2 class="h5 mb-3">Nová žádost</h2>
 
-                    <div class="request-form-wrapper">
-                      <div class="request-form d-none" data-request-form="change_place">
-                        <div class="border rounded-5 p-4">
-                          <h2 class="h5 mb-4">Změna hracího místa družstva</h2>
+                      <form action="#" method="get">
+                        <div class="row g-2 align-items-end">
+                          <div class="col-lg-9">
+                            <label for="requestType">Typ žádosti</label>
+                            <select id="requestType" name="request_type" class="js-select">
+                              <option value="">Vyberte typ žádosti</option>
+                              <option value="change_place">Změna hracího místa družstva</option>
+                              <option value="change_name">Změna názvu družstva</option>
+                              <option value="change_schedule">Změna hracího dne nebo času</option>
+                              <option value="change_match_date">
+                                Změna termínu konkrétního utkání
+                              </option>
+                            </select>
+                          </div>
 
-                          <form action="#" method="post">
-                            <div class="row g-2">
-                              <div class="col-lg-3 col-6">
-                                <label for="placeTeam">Družstvo</label>
-                                <select id="placeTeam" name="team_id" class="js-select">
-                                  <option value="">Vyberte družstvo</option>
-                                  <option value="1">SK Darts Brno A</option>
-                                  <option value="2">SK Darts Brno B</option>
-                                </select>
-                              </div>
-                              <div class="col-lg-3 col-6">
-                                <label for="placeValidFrom">Platnost od</label>
-                                <input
-                                  type="date"
-                                  id="placeValidFrom"
-                                  name="valid_from"
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="col-lg-3 col-6">
-                                <label for="currentPlace">Současné hrací místo</label>
-                                <input
-                                  type="text"
-                                  id="currentPlace"
-                                  name="current_place"
-                                  class="form-control"
-                                  value=""
-                                  placeholder="Načte se po výběru družstva"
-                                  readonly
-                                />
-                              </div>
-
-                              <div class="col-lg-3 col-6">
-                                <label for="newPlace">Nové hrací místo</label>
-                                <select id="newPlace" name="new_place_id" class="js-select">
-                                  <option value="">Vyberte hrací místo</option>
-                                  <option value="101">Sport Bar Alfa</option>
-                                  <option value="102">Herna Beta</option>
-                                </select>
-                              </div>
-                              <div class="col-12">
-                                <label for="placeNote">Poznámka</label>
-                                <input
-                                  type="text"
-                                  id="placeNote"
-                                  name="note"
-                                  class="form-control"
-                                  placeholder="Volitelná poznámka"
-                                />
-                              </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
-                          </form>
+                          <div class="col-lg-3">
+                            <button
+                              type="submit"
+                              class="btn btn-primary w-100"
+                              style="height: 44px"
+                            >
+                              Pokračovat
+                            </button>
+                          </div>
                         </div>
-                      </div>
-
-                      <div class="request-form d-none" data-request-form="change_name">
-                        <div class="border rounded-5 p-4">
-                          <h2 class="h5 mb-4">Změna názvu družstva</h2>
-
-                          <form action="#" method="post">
-                            <div class="row">
-                              <div class="col-md-4">
-                                <label for="nameTeam">Družstvo</label>
-                                <select id="nameTeam" name="team_id" class="js-select">
-                                  <option value="">Vyberte družstvo</option>
-                                  <option value="1">SK Darts Brno A</option>
-                                  <option value="2">SK Darts Brno B</option>
-                                </select>
-                              </div>
-
-                              <div class="col-md-4">
-                                <label for="currentName">Současný název</label>
-                                <input
-                                  type="text"
-                                  id="currentName"
-                                  name="current_name"
-                                  class="form-control"
-                                  value="SK Darts Brno A"
-                                  readonly
-                                />
-                              </div>
-
-                              <div class="col-md-4">
-                                <label for="newName">Nový název</label>
-                                <input
-                                  type="text"
-                                  id="newName"
-                                  name="new_name"
-                                  class="form-control"
-                                  placeholder="Zadejte nový název"
-                                />
-                              </div>
-                              <div class="col-12">
-                                <label for="nameNote">Poznámka</label>
-                                <input
-                                  type="text"
-                                  id="nameNote"
-                                  name="note"
-                                  class="form-control"
-                                  placeholder="Volitelná poznámka"
-                                />
-                              </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
-                          </form>
-                        </div>
-                      </div>
-
-                      <div class="request-form d-none" data-request-form="change_schedule">
-                        <div class="border rounded-5 p-4">
-                          <h2 class="h5 mb-4">Změna hracího dne nebo času</h2>
-
-                          <form action="#" method="post">
-                            <div class="row">
-                              <div class="col-lg-4 col-6">
-                                <label for="scheduleTeam">Družstvo</label>
-                                <select id="scheduleTeam" name="team_id" class="js-select">
-                                  <option value="">Vyberte družstvo</option>
-                                  <option value="1">SK Darts Brno A</option>
-                                  <option value="2">SK Darts Brno B</option>
-                                </select>
-                              </div>
-
-                              <div class="col-lg-4 col-6">
-                                <label for="currentDay">Současný den</label>
-                                <input
-                                  type="text"
-                                  id="currentDay"
-                                  name="current_day"
-                                  class="form-control"
-                                  value=""
-                                  placeholder="Načte se po výběru družstva"
-                                  readonly
-                                />
-                              </div>
-
-                              <div class="col-lg-4 col-6">
-                                <label for="currentTime">Současný čas</label>
-                                <input
-                                  type="text"
-                                  id="currentTime"
-                                  name="current_time"
-                                  class="form-control"
-                                  value=""
-                                  placeholder="Načte se po výběru družstva"
-                                  readonly
-                                />
-                              </div>
-
-                              <div class="col-lg-4 col-6">
-                                <label for="scheduleValidFrom">Platnost od</label>
-                                <input
-                                  type="date"
-                                  id="scheduleValidFrom"
-                                  name="valid_from"
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="col-lg-4 col-6">
-                                <label for="newDay">Nový den</label>
-                                <select id="newDay" name="new_day" class="js-select">
-                                  <option value="">Vyberte den</option>
-                                  <option value="monday">Pondělí</option>
-                                  <option value="tuesday">Úterý</option>
-                                  <option value="wednesday">Středa</option>
-                                  <option value="thursday">Čtvrtek</option>
-                                  <option value="friday">Pátek</option>
-                                </select>
-                              </div>
-
-                              <div class="col-lg-4 col-6">
-                                <label for="newTime">Nový čas</label>
-                                <input
-                                  type="time"
-                                  id="newTime"
-                                  name="new_time"
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="col-12">
-                                <label for="scheduleNote">Poznámka</label>
-                                <input
-                                  type="text"
-                                  id="scheduleNote"
-                                  name="note"
-                                  class="form-control"
-                                  placeholder="Volitelná poznámka"
-                                />
-                              </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
-                          </form>
-                        </div>
-                      </div>
-
-                      <div class="request-form d-none" data-request-form="change_match_date">
-                        <div class="border rounded-5 p-4">
-                          <h2 class="h5 mb-4">Změna termínu konkrétního utkání</h2>
-
-                          <form action="#" method="post">
-                            <div class="row">
-                              <div class="col-md-4">
-                                <label for="matchSelect">Utkání</label>
-                                <select id="matchSelect" name="match_id" class="js-select">
-                                  <option value="">Vyberte utkání</option>
-                                  <option value="1001">
-                                    SK Darts Brno A vs SK Darts Ostrava A
-                                  </option>
-                                  <option value="1002">SK Darts Brno B vs SK Darts Praha B</option>
-                                </select>
-                              </div>
-
-                              <div class="col-md-4">
-                                <label for="currentMatchDate">Současný termín</label>
-                                <input
-                                  type="text"
-                                  id="currentMatchDate"
-                                  name="current_match_date"
-                                  class="form-control"
-                                  value="15.03.2026 18:00"
-                                  readonly
-                                />
-                              </div>
-
-                              <div class="col-md-4">
-                                <label for="newMatchDate">Nový termín</label>
-                                <input
-                                  type="datetime-local"
-                                  id="newMatchDate"
-                                  name="new_match_date"
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="col-12">
-                                <label for="matchDateNote">Poznámka</label>
-                                <input
-                                  type="text"
-                                  id="matchDateNote"
-                                  name="note"
-                                  class="form-control"
-                                  placeholder="Volitelná poznámka"
-                                />
-                              </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
-                          </form>
-                        </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
