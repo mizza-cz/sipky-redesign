@@ -100,20 +100,4 @@ $(function () {
   }
 })();
 
-$(function () {
-  function toggleRequestForms() {
-    const selectedType = $('#requestType').val();
-
-    $('.request-form').addClass('d-none');
-
-    if (!selectedType) {
-      return;
-    }
-
-    $('.request-form[data-request-form="' + selectedType + '"]').removeClass('d-none');
-  }
-
-  $('#requestType').on('change', toggleRequestForms);
-
-  toggleRequestForms();
-});
+ 

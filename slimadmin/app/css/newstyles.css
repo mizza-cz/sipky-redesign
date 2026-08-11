@@ -641,7 +641,8 @@ tfoot .select2-container--default .select2-selection--single .select2-selection_
   color: rgba(255, 255, 255, 1);
 }
 .matchRecord-side__actions {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .matchRecord-side .btn {
@@ -950,4 +951,72 @@ select.select--green
 .bg-primary-1 {
   background: var(--primary01);
 }
- 
+.competitionFormShedule,
+.competitionFormPlace,
+.competitionFormName,
+.competitionFormSheduleChange,
+.competitionFormDate {
+  table {
+    width: 100%;
+  }
+  tbody {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+    gap: 12px 0;
+  }
+  tr {
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    flex: 100%;
+    max-width: 100%;
+    @media (max-width: 640px) {
+      max-width: 100%;
+      flex: 100%;
+    }
+  }
+}
+.competitionFormSheduleChange {
+  .required {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.competitionFormDate,
+.competitionFormName,
+.competitionFormPlace {
+  .required:first-child {
+    max-width: 100%;
+    flex: 100%;
+  }
+  .required {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.breadcrumb {
+  background-color: rgb(var(--light-rgb));
+
+  a {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  .breadcrumb-item.active {
+    color: var(--default-text-color);
+  }
+}
+.select2-search--dropdown {
+  border: 1px solid var(--primary-color);
+  border-bottom: none;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  background-color: rgb(var(--form-control-bg));
+  border: 1px solid var(--input-border) !important;
+  outline: none;
+  padding: 9px 12px;
+  color: var(--default-text-color);
+}
