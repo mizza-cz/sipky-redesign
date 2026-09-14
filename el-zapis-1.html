@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
   <head>
     <!-- Required meta tags -->
@@ -306,12 +306,12 @@
             <button class="btn btn-primary-light px-4" type="button">Výsledek utkání</button>
           </div>
           <div class="row g-2">
-            <div class="col-lg-9">
+            <div class="col-12">
               <main class="matchRecord-main">
                 <section class="card overflow-visible">
                   <div class="card-body" data-menu-type="primary">
                     <div class="row pr-2">
-                      <div class="col-9">
+                      <div class="col-12">
                         <div class="matchRecord-top">
                           <label for="game" class="fw-medium">Soutěž:</label>
                           <input id="game" class="form-control" value="1. kolo - ..." />
@@ -338,55 +338,48 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-3 position-relative">
-                        <div class="matchRecord-listbox">
-                          <div class="matchRecord-listbox__title">Terče na hracím místě</div>
-                          <ul>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00107</li>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00107</li>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00107</li>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00107</li>
-                            <li>108-00061</li>
-                            <li>108-00062</li>
-                            <li>108-00107</li>
-                            <li>108-00061</li>
-                          </ul>
-                        </div>
-                      </div>
                     </div>
                     <div class="matchRecord-teams">
-                      <div class="meta-head">
+                      <div class="matchRecord-teams__head">
                         <div></div>
-                        <div class="h jmeno">Domácí</div>
-                        <div class="h dt">Hosté</div>
-                        <div></div>
+                        <div class="h">Domácí</div>
+                        <div class="h">Hosté</div>
                       </div>
-                      <div class="matchRecord-teams__col">
-                        <div class="fw-medium">Družstvo:</div>
-                        <input class="form-control" value="Fanatics Sedlec" />
-                        <input class="form-control" value="Sgt. Pepík's Band Praha" />
-                        <button class="btn btn-success" type="button">Záměna družstev</button>
 
-                        <div class="fw-medium">Kapitán:</div>
-                        <select class="js-select">
-                          <option>Tauš Václav</option>
-                          <option>...</option>
-                        </select>
-                        <select class="js-select">
-                          <option>Moravec Jiří</option>
-                          <option>...</option>
-                        </select>
-                        <button class="btn btn-success" type="button">Soupisky družstev</button>
+                      <div class="matchRecord-teams__row">
+                        <div class="fw-medium matchRecord-teams__label">Družstvo:</div>
+
+                        <div class="matchRecord-field" data-label="Domácí">
+                          <input class="form-control" value="Bastards Praha" readonly />
+                        </div>
+
+                        <div class="matchRecord-field" data-label="Hosté">
+                          <input class="form-control" value="Mustang Ivanovice na Hané" readonly />
+                        </div>
+                      </div>
+
+                      <div class="matchRecord-teams__row">
+                        <div class="fw-medium matchRecord-teams__label">Kapitán:</div>
+
+                        <div class="matchRecord-field" data-label="Domácí">
+                          <select id="homeCaptainId" class="js-select" data-field="home_captain_id">
+                            <option value="">-- Vyberte kapitána --</option>
+                            <option value="45">Kolář Adam</option>
+                            <option value="6">Kučeravá Klára</option>
+                            <option value="222">Šimek Ladislav</option>
+                            <option value="223">Vlasák Jan</option>
+                          </select>
+                        </div>
+
+                        <div class="matchRecord-field" data-label="Hosté">
+                          <select id="awayCaptainId" class="js-select" data-field="away_captain_id">
+                            <option value="">-- Vyberte kapitána --</option>
+                            <option value="217">Březovský Bořivoj</option>
+                            <option value="216">Dofek Leoš</option>
+                            <option value="17">Polák Stanislav</option>
+                            <option value="14">Sedláčeková Michaela</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -436,32 +429,54 @@
                         >
                       </div>
                     </div>
-                    <div class="meta">
+                    <div class="meta mt-4">
                       <div class="meta-head">
                         <div></div>
-                        <div class="h jmeno">Jméno</div>
-                        <div class="h dt">Datum a čas</div>
+                        <div class="h">Jméno</div>
+                        <div class="h">Datum a čas</div>
                       </div>
 
-                      <div class="meta-grid">
-                        <div class="fw-medium">Zadal:</div>
-                        <input class="form-control" value="Tauš Václav" />
-                        <input class="form-control" value="03.09.2023 18:58:08" />
+                      <div class="meta-row">
+                        <div class="fw-medium meta-row__label">Zadal:</div>
 
-                        <div class="fw-medium">Opravil:</div>
-                        <input class="form-control" value="Hlavatý Tomáš" />
-                        <input class="form-control" value="03.09.2023 20:15:54" />
+                        <div class="matchRecord-field" data-label="Jméno">
+                          <input class="form-control" value="" readonly />
+                        </div>
 
-                        <div class="fw-medium">Autorizoval:</div>
-                        <input class="form-control" value="Automat" />
-                        <input class="form-control" value="09.09.2023 02:00:03" />
+                        <div class="matchRecord-field" data-label="Datum a čas">
+                          <input class="form-control" value="" readonly />
+                        </div>
+                      </div>
+
+                      <div class="meta-row">
+                        <div class="fw-medium meta-row__label">Opravil:</div>
+
+                        <div class="matchRecord-field" data-label="Jméno">
+                          <input class="form-control" value="" readonly />
+                        </div>
+
+                        <div class="matchRecord-field" data-label="Datum a čas">
+                          <input class="form-control" value="" readonly />
+                        </div>
+                      </div>
+
+                      <div class="meta-row">
+                        <div class="fw-medium meta-row__label">Autorizoval:</div>
+
+                        <div class="matchRecord-field" data-label="Jméno">
+                          <input class="form-control" value="" readonly />
+                        </div>
+
+                        <div class="matchRecord-field" data-label="Datum a čas">
+                          <input class="form-control" value="" readonly />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </section>
               </main>
             </div>
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
               <aside class="matchRecord-side">
                 <div class="matchRecord-side__card">
                   <div class="text-center fw-medium mb-2">Výsledek ligového utkání</div>
@@ -491,7 +506,7 @@
                   <div>03.09.2023 20:15:54</div>
                 </div>
               </aside>
-            </div>
+            </div> -->
             <div class="col-12">
               <div class="d-flex gap-2 justify-content-center">
                 <button class="btn btn-primary-light px-3" type="button" aria-label="btn-1">
