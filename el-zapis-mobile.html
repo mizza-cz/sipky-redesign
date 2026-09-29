@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>UŠO – elektronický zápis</title>
+  <style>
+    :root{--bg:#121220;--top:#0e0e1a;--card:#22223a;--input:#2a2a44;--border:#3a3a54;--muted:#9393ac;--light:#d0d0e0;--white:#fff;--green:#5cb85c;--yellow:#f4c542;--red:#c54b47;--overlay:#241640}
+    *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button{font:inherit;color:inherit}.app{min-height:100dvh;max-width:780px;margin:0 auto;background:var(--bg);position:relative;padding-bottom:92px}
+    .topbar{height:56px;background:var(--top);border-bottom:1px solid var(--input);display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:sticky;top:0;z-index:20}
+    .brand,.top-actions{display:flex;align-items:center;gap:8px}.brand{font-weight:800}.icon-btn{width:36px;height:36px;border:0;border-radius:50%;background:transparent;display:grid;place-items:center;cursor:pointer}.avatar{width:28px;height:28px;border-radius:50%;background:var(--input);display:grid;place-items:center;font-size:12px;font-weight:700}
+    .view{display:none;padding:8px 12px 24px}.view.active{display:block}.match-result{margin:8px 4px 10px;background:var(--card);border:1px solid var(--input);border-radius:8px;padding:8px 20px 8px 8px;display:flex;align-items:center;gap:8px}.match-result__teams{min-width:0;flex:1;display:grid;gap:4px}.team{display:flex;gap:4px;align-items:center;font-size:12px;font-weight:600;line-height:16px}.team span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lead{width:10px;text-align:center;color:var(--green);font-size:8px}.match-result__score{font-size:28px;line-height:34px;font-weight:800;display:flex;gap:4px}.match-result__score i{font-style:normal;color:var(--muted)}
+    .targets{height:50px;margin:0 4px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--light)}.targets__buttons{display:flex;gap:6px}.target-btn{min-width:30px;height:26px;border:1px solid var(--border);background:transparent;border-radius:6px;font-weight:700;cursor:pointer}.target-btn.active{background:var(--green);border-color:var(--green);color:#171724}
+    .matches{margin-top:0}.match-row{min-height:58px;border-bottom:1px solid rgba(58,58,84,.55);display:flex;align-items:center;gap:8px;padding:9px}.match-row__index{width:32px;flex:0 0 32px;color:var(--muted);font-size:10px}.match-row__index strong{display:block;font-size:12px;margin-bottom:4px}.match-row__players{min-width:0;flex:1;display:grid;gap:3px}.player-line{display:flex;align-items:baseline;gap:4px;min-width:0;font-size:13px}.player-code{width:18px;flex:0 0 18px;color:var(--muted);font-size:10px}.player-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.player-line.away{color:var(--light)}.row-score{width:38px;text-align:center;font-weight:700}.row-score small{display:block;color:var(--muted);font-weight:500}.play-btn{width:80px;height:30px;border:0;border-radius:999px;background:var(--green);color:#1a1a2e;font-size:12px;font-weight:800;text-transform:uppercase;cursor:pointer}.play-btn.wait{background:transparent;color:var(--muted);font-weight:500;text-transform:none}.play-btn.done{background:var(--input);color:var(--light)}
+    .bottom{position:fixed;z-index:18;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,780px);height:80px;background:#151528;border-top:1px solid var(--border);padding:15px 16px;display:flex;gap:8px}.bottom button{height:48px;border-radius:999px;border:1px solid #14142a;background:var(--overlay);cursor:pointer;font-weight:700}.bottom .round{width:48px;flex:0 0 48px}.bottom .danger{flex:1;background:var(--red);border-color:var(--red);font-size:16px}
+    .detail-nav{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 8px}.detail-nav button{border:0;background:transparent;color:var(--muted);font-size:24px;cursor:pointer}.detail-nav strong{font-size:13px}.game-card{background:var(--card);border:1px solid var(--input);border-radius:8px;overflow:hidden}.game-card__head{height:30px;padding:0 10px;display:flex;align-items:center;justify-content:space-between;background:#1a1a30;color:var(--muted);font-size:11px;font-weight:700}.players-bar{display:grid;grid-template-columns:1fr 76px 1fr;align-items:center;padding:10px 8px 14px;border-bottom:1px solid var(--border)}.side-player small{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}.side-player:last-child{text-align:right}.player-select{border:0;background:transparent;color:var(--white);font-size:13px;font-weight:600;padding:0;max-width:100%;cursor:pointer}.detail-score{text-align:center;font-size:28px;font-weight:800}.detail-score small{display:block;color:var(--muted);font-size:9px;font-weight:600}
+    .stats{padding:12px 8px 16px}.stats-title{font-size:11px;color:var(--muted);margin:4px 0 6px}.stat-grid{display:grid;gap:8px}.stat-grid.three{grid-template-columns:repeat(3,1fr)}.stat-grid.four{grid-template-columns:repeat(4,1fr)}.stat-field label{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}.value{width:100%;height:34px;border:1px solid #d1aa28;border-radius:6px;background:var(--yellow);color:#1a1a1a;font-weight:800;text-align:center;cursor:pointer}.separator{height:1px;background:var(--border);margin:14px 0}.pair-note{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+    .detail-actions{display:flex;gap:8px;padding:12px 4px}.detail-actions button{height:44px;border-radius:999px;border:1px solid var(--border);background:var(--overlay);font-weight:700;cursor:pointer}.detail-actions .save{flex:1;background:var(--green);border-color:var(--green);color:#171724}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.66);z-index:50;display:none;align-items:flex-end;justify-content:center}.modal-backdrop.open{display:flex}.modal{width:min(100%,520px);background:var(--card);border:1px solid var(--border);border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}.modal h3{font-size:16px;margin:0 0 4px}.modal p{margin:0 0 16px;color:var(--muted);font-size:12px}.stepper{display:grid;grid-template-columns:56px 1fr 56px;gap:10px;align-items:center}.stepper button{height:56px;border:0;border-radius:12px;background:var(--input);font-size:28px;cursor:pointer}.stepper input{height:56px;width:100%;border:1px solid #d1aa28;border-radius:12px;background:var(--yellow);text-align:center;font-size:24px;font-weight:800;color:#1a1a1a}.modal-actions{display:flex;gap:8px;margin-top:16px}.modal-actions button{height:44px;border:0;border-radius:999px;cursor:pointer;font-weight:700}.modal-actions .cancel{width:44px;background:var(--input)}.modal-actions .confirm{flex:1;background:var(--green);color:#171724}
+    .auth{padding:8px 4px}.auth-card{background:var(--card);border:1px solid var(--input);border-radius:8px;padding:16px}.status{display:inline-flex;border-radius:999px;padding:6px 10px;background:rgba(244,197,66,.12);color:var(--yellow);font-size:12px;font-weight:700}.audit{margin-top:18px;display:grid;gap:12px}.audit-row{display:grid;grid-template-columns:90px 1fr;gap:8px;font-size:12px}.audit-row span{color:var(--muted)}.notes{margin-top:16px}.notes textarea{width:100%;min-height:90px;resize:vertical;background:var(--input);border:1px solid var(--border);border-radius:8px;color:var(--white);padding:10px}.auth-actions{display:grid;gap:8px;margin-top:16px}.auth-actions button{height:46px;border:0;border-radius:999px;font-weight:700;cursor:pointer}.authorize{background:var(--green);color:#171724}.secondary{background:var(--input)}
+    @media(min-width:600px){.view{padding-left:16px;padding-right:16px}.matches{display:grid;grid-template-columns:1fr 1fr;column-gap:12px}.match-row{border:1px solid var(--input);border-radius:8px;margin-bottom:10px;background:rgba(34,34,58,.5)}.game-card{max-width:620px;margin:0 auto}.detail-actions{max-width:620px;margin:0 auto}.modal{border-radius:18px;margin-bottom:24px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><span>◈</span><span>UŠO</span></div>
+    <div class="top-actions"><button class="icon-btn" type="button" aria-label="Poznámky" onclick="showAuth()">✎</button><div class="avatar">DG</div></div>
+  </div>
+
+  <main id="listView" class="view active">
+    <div class="match-result">
+      <div class="match-result__teams">
+        <div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div>
+        <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
+      </div>
+      <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+    </div>
+
+    <div class="targets"><span>Terče:</span><div class="targets__buttons"><button class="target-btn active" data-targets="1">1</button><button class="target-btn" data-targets="2">2</button></div></div>
+
+    <div class="matches" id="matches">
+      <div class="match-row"><div class="match-row__index"><strong>1</strong>Single</div><div class="match-row__players"><div class="player-line"><span class="player-code">D1</span><span class="player-name">Buvol Libor</span></div><div class="player-line away"><span class="player-code">H3</span><span class="player-name">Nymburk Ladislav</span></div></div><div class="row-score">2 : 0<small>1 : 0</small></div><button class="play-btn" onclick="openGame(1,false)">Hrát</button></div>
+      <div class="match-row"><div class="match-row__index"><strong>2</strong>Single</div><div class="match-row__players"><div class="player-line"><span class="player-code">D2</span><span class="player-name">Řídký Michal</span></div><div class="player-line away"><span class="player-code">H4</span><span class="player-name">Nymburk Tomáš</span></div></div><div class="row-score">0 : 0<small>0 : 0</small></div><button class="play-btn" onclick="openGame(2,false)">Hrát</button></div>
+      <div class="match-row"><div class="match-row__index"><strong>3</strong>Single</div><div class="match-row__players"><div class="player-line"><span class="player-code">D3</span><span class="player-name">Kučera Pavel</span></div><div class="player-line away"><span class="player-code">H1</span><span class="player-name">Novák Petr</span></div></div><div class="row-score">1 : 2<small>0 : 1</small></div><button class="play-btn done" onclick="openGame(3,false)">Detail</button></div>
+      <div class="match-row"><div class="match-row__index"><strong>4</strong>Single</div><div class="match-row__players"><div class="player-line"><span class="player-code">D4</span><span class="player-name">Svoboda Jan</span></div><div class="player-line away"><span class="player-code">H2</span><span class="player-name">Dvořák Martin</span></div></div><div class="row-score">0 : 0<small>0 : 0</small></div><button class="play-btn" onclick="openGame(4,false)">Hrát</button></div>
+      <div class="match-row"><div class="match-row__index"><strong>5</strong>Pairs</div><div class="match-row__players"><div class="player-line"><span class="player-code">D1</span><span class="player-name">Buvol / Řídký</span></div><div class="player-line away"><span class="player-code">H1</span><span class="player-name">Novák / Dvořák</span></div></div><div class="row-score">0 : 0<small>0 : 0</small></div><button class="play-btn" onclick="openGame(5,true)">Hrát</button></div>
+      <div class="match-row"><div class="match-row__index"><strong>6</strong>Single</div><div class="match-row__players"><div class="player-line"><span class="player-code">D1</span><span class="player-name">Buvol Libor</span></div><div class="player-line away"><span class="player-code">H1</span><span class="player-name">Novák Petr</span></div></div><div class="row-score">0 : 0<small>0 : 0</small></div><button class="play-btn wait">Čeká</button></div>
+    </div>
+  </main>
+
+  <main id="detailView" class="view">
+    <div class="match-result">
+      <div class="match-result__teams"><div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div><div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div></div>
+      <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+    </div>
+    <div class="detail-nav"><button type="button" onclick="shiftGame(-1)">‹</button><strong id="gameTitle">Zápas 1 / Single</strong><button type="button" onclick="shiftGame(1)">›</button></div>
+    <section class="game-card">
+      <div class="game-card__head"><span id="gameType">SINGLE</span><span>Legy do 3</span></div>
+      <div class="players-bar">
+        <div class="side-player"><small>D1</small><button class="player-select" type="button">Buvol Libor⌄</button></div>
+        <div class="detail-score">2 : 0<small>LEGY</small></div>
+        <div class="side-player"><small>H3</small><button class="player-select" type="button">Nymburk Ladislav⌄</button></div>
+      </div>
+      <div class="stats" id="statsBlock">
+        <div class="stats-title">Domácí</div>
+        <div class="stat-grid three"><div class="stat-field"><label>95+</label><button class="value" data-label="95+" data-value="2">2</button></div><div class="stat-field"><label>133+</label><button class="value" data-label="133+" data-value="1">1</button></div><div class="stat-field"><label>170+</label><button class="value" data-label="170+" data-value="0">0</button></div></div>
+        <div class="stat-grid four" style="margin-top:8px"><div class="stat-field"><label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button></div><div class="stat-field"><label>5.k</label><button class="value" data-label="5.k" data-value="1">1</button></div><div class="stat-field"><label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button></div><div class="stat-field"><label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button></div></div>
+        <div class="separator"></div>
+        <div class="stats-title">Hosté</div>
+        <div class="stat-grid three"><div class="stat-field"><label>95+</label><button class="value" data-label="95+" data-value="1">1</button></div><div class="stat-field"><label>133+</label><button class="value" data-label="133+" data-value="0">0</button></div><div class="stat-field"><label>170+</label><button class="value" data-label="170+" data-value="0">0</button></div></div>
+        <div class="stat-grid four" style="margin-top:8px"><div class="stat-field"><label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button></div><div class="stat-field"><label>5.k</label><button class="value" data-label="5.k" data-value="0">0</button></div><div class="stat-field"><label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button></div><div class="stat-field"><label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button></div></div>
+      </div>
+      <div class="pair-note" id="pairNote" hidden>U zápasů dvojic se individuální statistiky neevidují.</div>
+    </section>
+    <div class="detail-actions"><button type="button" onclick="showList()">Zpět</button><button class="save" type="button" onclick="saveGame()">Uložit a další zápas</button></div>
+  </main>
+
+  <main id="authView" class="view">
+    <div class="auth">
+      <div class="match-result" style="margin:0 0 12px"><div class="match-result__teams"><div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div><div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div></div><div class="match-result__score"><span>2</span><i>:</i><span>0</span></div></div>
+      <div class="auth-card"><span class="status">Neautorizováno</span><div class="audit"><div class="audit-row"><span>Vytvořil</span><strong>Administrator<br>03.09.2026 16:02</strong></div><div class="audit-row"><span>Poslední změna</span><strong>Administrator<br>03.09.2026 20:15</strong></div><div class="audit-row"><span>Autorizoval</span><strong>—</strong></div></div><div class="notes"><label for="notes">Poznámky</label><textarea id="notes" placeholder="Poznámka k utkání"></textarea></div><div class="auth-actions"><button class="authorize" type="button">Autorizovat utkání</button><button class="secondary" type="button" onclick="showList()">Zpět na zápasy</button></div></div>
+    </div>
+  </main>
+
+  <div class="bottom" id="bottomBar"><button class="round" type="button" aria-label="Poznámky" onclick="showAuth()">✎</button><button class="round" type="button" aria-label="Autorizace" onclick="showAuth()">✓</button><button class="danger" type="button" onclick="showAuth()">Ukončit utkání</button></div>
+</div>
+
+<div class="modal-backdrop" id="valueModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><h3 id="modalTitle">Upravit hodnotu</h3><p id="modalHint">Zadejte hodnotu nebo použijte − / +.</p><div class="stepper"><button type="button" id="minus">−</button><input id="modalValue" type="number" min="0" value="0"><button type="button" id="plus">+</button></div><div class="modal-actions"><button class="cancel" type="button" id="cancelModal">×</button><button class="confirm" type="button" id="confirmModal">Potvrdit</button></div></div>
+</div>
+
+<script>
+  const views=[...document.querySelectorAll('.view')], bottom=document.getElementById('bottomBar');
+  let currentGame=1, currentField=null, targetCount=1;
+  function activate(id){views.forEach(v=>v.classList.toggle('active',v.id===id));bottom.style.display=id==='listView'?'flex':'none';window.scrollTo({top:0,behavior:'smooth'})}
+  function showList(){activate('listView')} function showAuth(){activate('authView')}
+  function openGame(n,pair){currentGame=n;document.getElementById('gameTitle').textContent='Zápas '+n+' / '+(pair?'Pairs':'Single');document.getElementById('gameType').textContent=pair?'PAIRS':'SINGLE';document.getElementById('statsBlock').hidden=pair;document.getElementById('pairNote').hidden=!pair;activate('detailView')}
+  function shiftGame(dir){let next=currentGame+dir;if(next<1)next=6;if(next>6)next=1;openGame(next,next===5)}
+  function saveGame(){shiftGame(1)}
+  document.querySelectorAll('.target-btn').forEach(btn=>btn.addEventListener('click',()=>{targetCount=Number(btn.dataset.targets);document.querySelectorAll('.target-btn').forEach(b=>b.classList.toggle('active',b===btn));}));
+  const modal=document.getElementById('valueModal'), input=document.getElementById('modalValue');
+  document.addEventListener('click',e=>{const field=e.target.closest('.value');if(!field)return;currentField=field;input.value=field.dataset.value;document.getElementById('modalTitle').textContent='Upravit '+field.dataset.label;modal.classList.add('open');setTimeout(()=>input.select(),50)});
+  document.getElementById('minus').onclick=()=>input.value=Math.max(0,(Number(input.value)||0)-1);
+  document.getElementById('plus').onclick=()=>input.value=(Number(input.value)||0)+1;
+  document.getElementById('cancelModal').onclick=()=>modal.classList.remove('open');
+  document.getElementById('confirmModal').onclick=()=>{if(currentField){const v=Math.max(0,Number(input.value)||0);currentField.dataset.value=v;currentField.textContent=v}modal.classList.remove('open')};
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+</script>
+</body>
+</html>
