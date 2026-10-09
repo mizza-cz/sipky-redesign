@@ -555,9 +555,13 @@
         background: var(--input);
         box-shadow: inset 3px 0 var(--green);
       }
-      .player-picker__item:disabled {
-        opacity: 0.35;
+      .player-picker__item.is-used {
+        color: var(--muted);
+        opacity: 0.45;
         cursor: not-allowed;
+      }
+      .player-picker__item.is-used .player-picker__note {
+        color: var(--muted);
       }
       .player-picker__note {
         color: var(--muted);
@@ -712,10 +716,7 @@
           margin-bottom: 10px;
           background: rgba(34, 34, 58, 0.5);
         }
-        .game-card {
-          max-width: 620px;
-          margin: 0 auto;
-        }
+       
         .detail-actions {
           max-width: 620px;
           margin: 0 auto;
@@ -1144,6 +1145,11 @@
           'Jan Novák',
         ],
       };
+      // Demo states for the static prototype; replace with real lineup data.
+      const alreadyAssignedPlayers = {
+        home: ['Svoboda Robert', 'Zmrzlý Jan'],
+        away: ['Nymburk Jan', 'Nymburk Lukáš'],
+      };
       let pickerSide = 'home';
       function openPlayerPicker(side) {
         pickerSide = side;
@@ -1161,11 +1167,17 @@
           item.className = 'player-picker__item';
           const isCurrent = name === current;
           if (isCurrent) item.classList.add('is-current');
+          const isUsed = !isCurrent && alreadyAssignedPlayers[side].includes(name);
+          if (isUsed) {
+            item.classList.add('is-used');
+            item.disabled = true;
+            item.setAttribute('aria-disabled', 'true');
+          }
           const nameText = document.createElement('span');
           nameText.textContent = name;
           const note = document.createElement('span');
           note.className = 'player-picker__note';
-          note.textContent = isCurrent ? 'Aktuální' : '';
+          note.textContent = isCurrent ? 'Aktuální' : isUsed ? 'Již nasazen' : '';
           item.append(nameText, note);
           item.addEventListener('click', () => {
             button.textContent = name;
