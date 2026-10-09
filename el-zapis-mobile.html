@@ -450,10 +450,11 @@
       }
       .side-player { min-width: 0; }
       .player-select {
+        position: relative;
         display: block;
         width: 100%;
         min-height: 30px;
-        padding: 5px 6px;
+        padding: 5px 8px;
         border: 1px solid #68688f;
         border-radius: 5px;
         background: transparent;
@@ -467,8 +468,11 @@
         white-space: nowrap;
       }
       .side-player:last-child .player-select { text-align: right; }
+      .player-select__arrow { display: inline-block; margin-left: 3px; font-size: 10px; vertical-align: middle; }
+      .side-player:last-child .player-select__arrow { margin-left: 3px; }
       .player-select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
       .detail-score {
+        align-self: center;
         text-align: center;
         font-size: 28px;
         font-weight: 800;
@@ -920,12 +924,12 @@
         <section class="game-card">
           <div class="players-bar">
             <div class="side-player">
-              <small>D1</small><button class="player-select" type="button" data-player-side="home" onclick="openPlayerPicker('home')">Buvol Libor⌄</button>
+              <small>D1</small><button class="player-select" type="button" data-player-side="home" onclick="openPlayerPicker('home')"><span class="player-select__name">Buvol Libor</span><span class="player-select__arrow" aria-hidden="true">⌄</span></button>
             </div>
             <div class="detail-score"><div class="detail-score__value">2 : 0</div><small>LEGY</small></div>
             <div class="side-player">
               <small>H3</small
-              ><button class="player-select" type="button" data-player-side="away" onclick="openPlayerPicker('away')">Nymburk Ladislav⌄</button>
+              ><button class="player-select" type="button" data-player-side="away" onclick="openPlayerPicker('away')"><span class="player-select__name">Nymburk Ladislav</span><span class="player-select__arrow" aria-hidden="true">⌄</span></button>
             </div>
           </div>
           <div class="stats" id="statsBlock">
@@ -1015,6 +1019,18 @@
       </main>
 
       <main id="playerPickerView" class="view">
+        <div class="detail-nav">
+          <button type="button" onclick="closePlayerPicker()" aria-label="Zpět">‹</button>
+          <strong id="pickerGameTitle">Zápas 1 / Single</strong>
+          <span style="width:24px" aria-hidden="true"></span>
+        </div>
+        <div class="match-result">
+          <div class="match-result__teams">
+            <div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div>
+            <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
+          </div>
+          <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+        </div>
         <div class="player-picker">
           <div class="player-picker__header">
             <span id="playerPickerTitle">Vybrat hráče — D1</span>
@@ -1097,27 +1113,32 @@
       function openPlayerPicker(side) {
         pickerSide = side;
         const button = document.querySelector('[data-player-side="' + side + '"]');
-        const current = button.textContent.replace(/⌄\s*$/, '').trim();
+        const current = button.querySelector('.player-select__name').textContent.trim();
+        document.getElementById('pickerGameTitle').textContent =
+          document.getElementById('gameTitle').textContent;
         document.getElementById('playerPickerTitle').textContent =
           'Vybrat hráče — ' + (side === 'home' ? 'D1' : 'H3');
         const options = document.getElementById('playerPickerOptions');
         options.replaceChildren();
         const roster = playerRosters[side];
         const names = roster.includes(current) ? roster : [current, ...roster];
-        names.forEach((name) => {
+        names.forEach((name, index) => {
           const item = document.createElement('button');
           item.type = 'button';
           item.className = 'player-picker__item';
           const isCurrent = name === current;
           if (isCurrent) item.classList.add('is-current');
+          // Demonstration only: actual lineup eligibility must come from match data.
+          const alreadyUsed = !isCurrent && index >= 2 && index <= 3;
+          if (alreadyUsed) item.disabled = true;
           const nameText = document.createElement('span');
           nameText.textContent = name;
           const note = document.createElement('span');
           note.className = 'player-picker__note';
-          note.textContent = isCurrent ? 'Aktuální' : '';
+          note.textContent = isCurrent ? 'Aktuální' : alreadyUsed ? 'Již nasazen' : '';
           item.append(nameText, note);
           item.addEventListener('click', () => {
-            button.textContent = name + '⌄';
+            button.querySelector('.player-select__name').textContent = name;
             activate('detailView');
           });
           options.append(item);
