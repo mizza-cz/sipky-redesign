@@ -432,12 +432,20 @@
       }
 
       .players-bar {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
-        align-items: center;
-        gap: 8px;
         padding: 10px 8px 14px;
         border-bottom: 1px solid var(--border);
+      }
+      .players-bar__row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
+        align-items: flex-end;
+        gap: 8px;
+      }
+      .players-bar__descr {
+        font-size: 8px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 6px;
       }
       .side-player small {
         display: block;
@@ -448,7 +456,9 @@
       .side-player:last-child {
         text-align: right;
       }
-      .side-player { min-width: 0; }
+      .side-player {
+        min-width: 0;
+      }
       .player-select {
         display: block;
         width: 100%;
@@ -466,11 +476,16 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      .side-player:last-child .player-select { text-align: right; }
-      .player-select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+      .side-player:last-child .player-select {
+        text-align: right;
+      }
+      .player-select:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 2px;
+      }
       .detail-score {
         text-align: center;
-        font-size: 28px;
+        font-size: 22px;
         font-weight: 800;
       }
       .detail-score__value {
@@ -479,6 +494,7 @@
         border-radius: 5px;
         background: #1a1a30;
         white-space: nowrap;
+        height: 36px;
       }
       .detail-score small {
         display: block;
@@ -529,7 +545,9 @@
         font-size: 15px;
         cursor: pointer;
       }
-      .player-picker__item:last-child { border-bottom: 0; }
+      .player-picker__item:last-child {
+        border-bottom: 0;
+      }
       .player-picker__item.is-current {
         background: var(--input);
         box-shadow: inset 3px 0 var(--green);
@@ -538,7 +556,11 @@
         opacity: 0.35;
         cursor: not-allowed;
       }
-      .player-picker__note { color: var(--muted); font-size: 12px; white-space: nowrap; }
+      .player-picker__note {
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
       .stats {
         padding: 12px 8px 16px;
       }
@@ -919,14 +941,34 @@
         </div>
         <section class="game-card">
           <div class="players-bar">
-            <div class="side-player">
-              <small>D1</small><button class="player-select" type="button" data-player-side="home" onclick="openPlayerPicker('home')">Buvol Libor⌄</button>
+            <div class="players-bar__row">
+              <div class="side-player">
+                <small>D1</small
+                ><button
+                  class="player-select"
+                  type="button"
+                  data-player-side="home"
+                  onclick="openPlayerPicker('home')"
+                >
+                  Buvol Libor
+                </button>
+              </div>
+              <div class="detail-score">
+                <div class="detail-score__value">2 : 0</div>
+              </div>
+              <div class="side-player">
+                <small>H3</small
+                ><button
+                  class="player-select"
+                  type="button"
+                  data-player-side="away"
+                  onclick="openPlayerPicker('away')"
+                >
+                  Nymburk Ladislav
+                </button>
+              </div>
             </div>
-            <div class="detail-score"><div class="detail-score__value">2 : 0</div><small>LEGY</small></div>
-            <div class="side-player">
-              <small>H3</small
-              ><button class="player-select" type="button" data-player-side="away" onclick="openPlayerPicker('away')">Nymburk Ladislav⌄</button>
-            </div>
+            <div class="players-bar__descr">LEGY</div>
           </div>
           <div class="stats" id="statsBlock">
             <div class="stats-title">Domácí</div>
@@ -1018,7 +1060,14 @@
         <div class="player-picker">
           <div class="player-picker__header">
             <span id="playerPickerTitle">Vybrat hráče — D1</span>
-            <button class="player-picker__close" type="button" onclick="closePlayerPicker()" aria-label="Zavřít výběr hráče">×</button>
+            <button
+              class="player-picker__close"
+              type="button"
+              onclick="closePlayerPicker()"
+              aria-label="Zavřít výběr hráče"
+            >
+              ×
+            </button>
           </div>
           <div id="playerPickerOptions"></div>
         </div>
@@ -1090,8 +1139,22 @@
         activate('detailView');
       }
       const playerRosters = {
-        home: ['Buvol Libor', 'Řídký Michal', 'Svoboda Robert', 'Zmrzlý Jan', 'Pavel Procházka', 'Jakub Veselý'],
-        away: ['Nymburk Ladislav', 'Nymburk Tomáš', 'Nymburk Jan', 'Nymburk Lukáš', 'Petr Svoboda', 'Jan Novák'],
+        home: [
+          'Buvol Libor',
+          'Řídký Michal',
+          'Svoboda Robert',
+          'Zmrzlý Jan',
+          'Pavel Procházka',
+          'Jakub Veselý',
+        ],
+        away: [
+          'Nymburk Ladislav',
+          'Nymburk Tomáš',
+          'Nymburk Jan',
+          'Nymburk Lukáš',
+          'Petr Svoboda',
+          'Jan Novák',
+        ],
       };
       let pickerSide = 'home';
       function openPlayerPicker(side) {
@@ -1124,7 +1187,9 @@
         });
         activate('playerPickerView');
       }
-      function closePlayerPicker() { activate('detailView'); }
+      function closePlayerPicker() {
+        activate('detailView');
+      }
       function shiftGame(dir) {
         let next = currentGame + dir;
         if (next < 1) next = 6;
