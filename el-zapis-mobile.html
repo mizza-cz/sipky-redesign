@@ -430,17 +430,7 @@
         border-radius: 8px;
         overflow: hidden;
       }
-      .game-card__head {
-        height: 30px;
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #1a1a30;
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 700;
-      }
+
       .players-bar {
         display: grid;
         grid-template-columns: 1fr 76px 1fr;
@@ -890,7 +880,6 @@
           ><button type="button" onclick="shiftGame(1)">›</button>
         </div>
         <section class="game-card">
-          <div class="game-card__head"><span id="gameType">SINGLE</span><span>Legy do 3</span></div>
           <div class="players-bar">
             <div class="side-player">
               <small>D1</small><button class="player-select" type="button">Buvol Libor⌄</button>
@@ -1045,11 +1034,13 @@
       }
       function openGame(n, pair) {
         currentGame = n;
+
         document.getElementById('gameTitle').textContent =
           'Zápas ' + n + ' / ' + (pair ? 'Pairs' : 'Single');
-        document.getElementById('gameType').textContent = pair ? 'PAIRS' : 'SINGLE';
+
         document.getElementById('statsBlock').hidden = pair;
         document.getElementById('pairNote').hidden = !pair;
+
         activate('detailView');
       }
       function shiftGame(dir) {
