@@ -522,12 +522,15 @@
       .player-picker__close {
         width: 36px;
         height: 36px;
-        border: 1px solid var(--muted);
+        border: 1px solid #7272aa;
         border-radius: 50%;
         background: transparent;
-        color: var(--white);
+        color: #d0d0e0;
         font-size: 24px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
       }
       .player-picker__item {
         width: 100%;
@@ -1057,6 +1060,13 @@
       </main>
 
       <main id="playerPickerView" class="view">
+        <div class="match-result">
+          <div class="match-result__teams">
+            <div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div>
+            <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
+          </div>
+          <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+        </div>
         <div class="player-picker">
           <div class="player-picker__header">
             <span id="playerPickerTitle">Vybrat hráče — D1</span>
@@ -1180,7 +1190,7 @@
           note.textContent = isCurrent ? 'Aktuální' : '';
           item.append(nameText, note);
           item.addEventListener('click', () => {
-            button.textContent = name + '⌄';
+            button.textContent = name;
             activate('detailView');
           });
           options.append(item);
