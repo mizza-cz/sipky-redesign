@@ -9,7 +9,7 @@
         --bg: #121220;
         --top: #0e0e1a;
         --card: #22223a;
-        --input: #2a2a44;
+        --input: #28284a;
         --border: #3a3a54;
         --muted: #9393ac;
         --light: #d0d0e0;
@@ -96,11 +96,82 @@
         background: var(--card);
         border: 1px solid var(--input);
         border-radius: 8px;
-        padding: 8px 20px 8px 8px;
+        padding: 8px;
         display: flex;
         align-items: center;
         gap: 8px;
       }
+
+      .match-result__right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      /* Score + status */
+      #listView .match-result__right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        flex-shrink: 0;
+      }
+
+      #listView .match-result__score {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      #listView .match-result__score i {
+        font-style: normal;
+        color: var(--muted);
+      }
+
+      /* Status */
+      .match-result__status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        flex-shrink: 0;
+        font-size: 11px;
+        line-height: 16px;
+        white-space: nowrap;
+      }
+
+      /* Probíhá */
+      .match-result__status--progress {
+        padding: 6px 10px;
+        border: 1px solid var(--yellow);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--yellow);
+      }
+
+      /* Yellow dot */
+      .match-result__statusDot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow: 0 0 0 3px rgba(244, 197, 66, 0.15);
+      }
+
+      /* Čeká */
+      .match-result__status--waiting {
+        color: var(--muted);
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
       .match-result__teams {
         min-width: 0;
         flex: 1;
@@ -164,34 +235,53 @@
         border-color: var(--green);
         color: #171724;
       }
+
       .matches {
         margin-top: 0;
       }
+
       .match-row {
         min-height: 58px;
-        border-bottom: 1px solid rgba(58, 58, 84, 0.55);
         display: flex;
         align-items: center;
         gap: 8px;
         padding: 9px;
       }
+
+      /* Aktivní zápas */
+      .match-row--play {
+        background: var(--input);
+        border-radius: 6px;
+        overflow: hidden;
+        border-bottom-color: transparent;
+      }
+
+      /* Čekající a dokončené zápasy */
+      .match-row--waiting,
+      .match-row--result {
+        background: transparent;
+      }
+
       .match-row__index {
         width: 32px;
         flex: 0 0 32px;
         color: var(--muted);
         font-size: 10px;
       }
+
       .match-row__index strong {
         display: block;
         font-size: 12px;
         margin-bottom: 4px;
       }
+
       .match-row__players {
         min-width: 0;
         flex: 1;
         display: grid;
         gap: 3px;
       }
+
       .player-line {
         display: flex;
         align-items: baseline;
@@ -199,25 +289,66 @@
         min-width: 0;
         font-size: 13px;
       }
+
       .player-code {
         width: 18px;
         flex: 0 0 18px;
         color: var(--muted);
         font-size: 10px;
       }
+
       .player-name {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       .player-line.away {
         color: var(--light);
       }
+
+      /* Výsledek */
       .row-score {
-        width: 38px;
+        width: 40px;
+        flex: 0 0 40px;
         text-align: center;
+        font-size: 1rem;
         font-weight: 700;
+        line-height: 18px;
+        white-space: nowrap;
       }
+
+      .row-score small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      /* Tlačítko Hrát */
+      .play-btn {
+        width: 80px;
+        flex: 0 0 80px;
+        height: 30px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--green);
+        color: #1a1a2e;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      /* Čeká */
+      .match-row__waiting {
+        width: 80px;
+        flex: 0 0 80px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+
       .row-score small {
         display: block;
         color: var(--muted);
@@ -602,7 +733,13 @@
             <div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div>
             <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
           </div>
-          <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+          <div class="match-result__right">
+            <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
+            <span class="match-result__status match-result__status--progress">
+              <span class="match-result__statusDot"></span>
+              Probíhá
+            </span>
+          </div>
         </div>
 
         <div class="targets">
@@ -614,83 +751,127 @@
         </div>
 
         <div class="matches" id="matches">
-          <div class="match-row">
-            <div class="match-row__index"><strong>1</strong>Single</div>
+          <!-- 1. Výsledek -->
+          <div class="match-row match-row--result">
+            <div class="match-row__index">
+              <strong>1</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D1</span><span class="player-name">Buvol Libor</span>
+                <span class="player-code">D1</span>
+                <span class="player-name">Buvol Libor</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H3</span><span class="player-name">Nymburk Ladislav</span>
+                <span class="player-code">H3</span>
+                <span class="player-name">Nymburk Ladislav</span>
               </div>
             </div>
-            <div class="row-score">2 : 0<small>1 : 0</small></div>
-            <button class="play-btn" onclick="openGame(1,false)">Hrát</button>
+            <div class="row-score">
+              2 : 0
+              <small>1 : 0</small>
+            </div>
           </div>
-          <div class="match-row">
-            <div class="match-row__index"><strong>2</strong>Single</div>
+
+          <!-- 2. Výsledek -->
+          <div class="match-row match-row--result">
+            <div class="match-row__index">
+              <strong>2</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D2</span><span class="player-name">Řídký Michal</span>
+                <span class="player-code">D2</span>
+                <span class="player-name">Řídký Michal</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H4</span><span class="player-name">Nymburk Tomáš</span>
+                <span class="player-code">H4</span>
+                <span class="player-name">Nymburk Tomáš</span>
               </div>
             </div>
-            <div class="row-score">0 : 0<small>0 : 0</small></div>
-            <button class="play-btn" onclick="openGame(2,false)">Hrát</button>
+            <div class="row-score">
+              2 : 1
+              <small>2 : 0</small>
+            </div>
           </div>
-          <div class="match-row">
-            <div class="match-row__index"><strong>3</strong>Single</div>
+
+          <!-- 3. Výsledek -->
+          <div class="match-row match-row--result">
+            <div class="match-row__index">
+              <strong>3</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D3</span><span class="player-name">Kučera Pavel</span>
+                <span class="player-code">D3</span>
+                <span class="player-name">Svoboda Robert</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H1</span><span class="player-name">Novák Petr</span>
+                <span class="player-code">H1</span>
+                <span class="player-name">Nymburk Jan</span>
               </div>
             </div>
-            <div class="row-score">1 : 2<small>0 : 1</small></div>
-            <button class="play-btn done" onclick="openGame(3,false)">Detail</button>
+            <div class="row-score">
+              1 : 2
+              <small>2 : 1</small>
+            </div>
           </div>
-          <div class="match-row">
-            <div class="match-row__index"><strong>4</strong>Single</div>
+
+          <!-- 4. Hrát - aktivní řádek -->
+          <div class="match-row match-row--play">
+            <div class="match-row__index">
+              <strong>4</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D4</span><span class="player-name">Svoboda Jan</span>
+                <span class="player-code">D4</span>
+                <span class="player-name">Zmrzlý Jan</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H2</span><span class="player-name">Dvořák Martin</span>
+                <span class="player-code">H2</span>
+                <span class="player-name">Nymburk Lukáš</span>
               </div>
             </div>
-            <div class="row-score">0 : 0<small>0 : 0</small></div>
-            <button class="play-btn" onclick="openGame(4,false)">Hrát</button>
+            <button class="play-btn" type="button" onclick="openGame(4,false)">Hrát</button>
           </div>
-          <div class="match-row">
-            <div class="match-row__index"><strong>5</strong>Pairs</div>
+
+          <!-- 5. Čeká -->
+          <div class="match-row match-row--waiting">
+            <div class="match-row__index">
+              <strong>5</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D1</span><span class="player-name">Buvol / Řídký</span>
+                <span class="player-code">D1</span>
+                <span class="player-name">Buvol Libor</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H1</span><span class="player-name">Novák / Dvořák</span>
+                <span class="player-code">H4</span>
+                <span class="player-name">Nymburk Tomáš</span>
               </div>
             </div>
-            <div class="row-score">0 : 0<small>0 : 0</small></div>
-            <button class="play-btn" onclick="openGame(5,true)">Hrát</button>
+            <span class="match-row__waiting">Čeká</span>
           </div>
-          <div class="match-row">
-            <div class="match-row__index"><strong>6</strong>Single</div>
+
+          <!-- 6. Čeká -->
+          <div class="match-row match-row--waiting">
+            <div class="match-row__index">
+              <strong>6</strong>
+              Single
+            </div>
             <div class="match-row__players">
               <div class="player-line">
-                <span class="player-code">D1</span><span class="player-name">Buvol Libor</span>
+                <span class="player-code">D2</span>
+                <span class="player-name">Řídký Michal</span>
               </div>
               <div class="player-line away">
-                <span class="player-code">H1</span><span class="player-name">Novák Petr</span>
+                <span class="player-code">H3</span>
+                <span class="player-name">Nymburk Ladislav</span>
               </div>
             </div>
-            <div class="row-score">0 : 0<small>0 : 0</small></div>
-            <button class="play-btn wait">Čeká</button>
+            <span class="match-row__waiting">Čeká</span>
           </div>
         </div>
       </main>
@@ -818,9 +999,7 @@
       </main>
 
       <div class="bottom" id="bottomBar">
-        <button class="round" type="button" aria-label="Poznámky" onclick="showAuth()">✎</button
-        ><button class="round" type="button" aria-label="Autorizace" onclick="showAuth()">✓</button
-        ><button class="danger" type="button" onclick="showAuth()">Ukončit utkání</button>
+        <button class="danger" type="button" onclick="showAuth()">Ukončit utkání</button>
       </div>
     </div>
 
