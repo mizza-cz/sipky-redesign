@@ -448,32 +448,35 @@
       .side-player:last-child {
         text-align: right;
       }
+      .side-player { min-width: 0; }
       .player-select {
         display: block;
         width: 100%;
-        min-height: 36px;
-        padding: 6px 8px;
+        min-height: 30px;
+        padding: 5px 6px;
         border: 1px solid #68688f;
-        border-radius: 6px;
+        border-radius: 5px;
         background: transparent;
         color: var(--white);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         text-align: left;
         cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .side-player:last-child .player-select { text-align: right; }
-      .side-player { min-width: 0; }
-      .player-select { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .player-select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
       .detail-score {
         text-align: center;
         font-size: 28px;
         font-weight: 800;
       }
       .detail-score__value {
-        padding: 6px 4px;
+        padding: 3px 2px;
         border: 1px solid var(--border);
-        border-radius: 6px;
+        border-radius: 5px;
         background: #1a1a30;
         white-space: nowrap;
       }
@@ -484,6 +487,58 @@
         font-size: 9px;
         font-weight: 600;
       }
+      .player-picker {
+        margin: 12px 4px;
+        border: 1px solid var(--input);
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--card);
+      }
+      .player-picker__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 700;
+        border-bottom: 1px solid var(--border);
+      }
+      .player-picker__close {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--muted);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--white);
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .player-picker__item {
+        width: 100%;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 0;
+        border-bottom: 1px solid var(--border);
+        background: transparent;
+        color: var(--white);
+        text-align: left;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      .player-picker__item:last-child { border-bottom: 0; }
+      .player-picker__item.is-current {
+        background: var(--input);
+        box-shadow: inset 3px 0 var(--green);
+      }
+      .player-picker__item:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+      .player-picker__note { color: var(--muted); font-size: 12px; white-space: nowrap; }
       .stats {
         padding: 12px 8px 16px;
       }
@@ -865,12 +920,12 @@
         <section class="game-card">
           <div class="players-bar">
             <div class="side-player">
-              <small>D1</small><button class="player-select" type="button">Buvol Libor⌄</button>
+              <small>D1</small><button class="player-select" type="button" data-player-side="home" onclick="openPlayerPicker('home')">Buvol Libor⌄</button>
             </div>
             <div class="detail-score"><div class="detail-score__value">2 : 0</div><small>LEGY</small></div>
             <div class="side-player">
               <small>H3</small
-              ><button class="player-select" type="button">Nymburk Ladislav⌄</button>
+              ><button class="player-select" type="button" data-player-side="away" onclick="openPlayerPicker('away')">Nymburk Ladislav⌄</button>
             </div>
           </div>
           <div class="stats" id="statsBlock">
@@ -959,6 +1014,16 @@
         </div>
       </main>
 
+      <main id="playerPickerView" class="view">
+        <div class="player-picker">
+          <div class="player-picker__header">
+            <span id="playerPickerTitle">Vybrat hráče — D1</span>
+            <button class="player-picker__close" type="button" onclick="closePlayerPicker()" aria-label="Zavřít výběr hráče">×</button>
+          </div>
+          <div id="playerPickerOptions"></div>
+        </div>
+      </main>
+
       <main id="authView" class="view">
         <div class="auth">
           <div class="match-result" style="margin: 0 0 12px">
@@ -1024,6 +1089,42 @@
 
         activate('detailView');
       }
+      const playerRosters = {
+        home: ['Buvol Libor', 'Řídký Michal', 'Svoboda Robert', 'Zmrzlý Jan', 'Pavel Procházka', 'Jakub Veselý'],
+        away: ['Nymburk Ladislav', 'Nymburk Tomáš', 'Nymburk Jan', 'Nymburk Lukáš', 'Petr Svoboda', 'Jan Novák'],
+      };
+      let pickerSide = 'home';
+      function openPlayerPicker(side) {
+        pickerSide = side;
+        const button = document.querySelector('[data-player-side="' + side + '"]');
+        const current = button.textContent.replace(/⌄\s*$/, '').trim();
+        document.getElementById('playerPickerTitle').textContent =
+          'Vybrat hráče — ' + (side === 'home' ? 'D1' : 'H3');
+        const options = document.getElementById('playerPickerOptions');
+        options.replaceChildren();
+        const roster = playerRosters[side];
+        const names = roster.includes(current) ? roster : [current, ...roster];
+        names.forEach((name) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'player-picker__item';
+          const isCurrent = name === current;
+          if (isCurrent) item.classList.add('is-current');
+          const nameText = document.createElement('span');
+          nameText.textContent = name;
+          const note = document.createElement('span');
+          note.className = 'player-picker__note';
+          note.textContent = isCurrent ? 'Aktuální' : '';
+          item.append(nameText, note);
+          item.addEventListener('click', () => {
+            button.textContent = name + '⌄';
+            activate('detailView');
+          });
+          options.append(item);
+        });
+        activate('playerPickerView');
+      }
+      function closePlayerPicker() { activate('detailView'); }
       function shiftGame(dir) {
         let next = currentGame + dir;
         if (next < 1) next = 6;
