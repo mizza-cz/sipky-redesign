@@ -528,12 +528,24 @@
         font-weight: 700;
         cursor: pointer;
         opacity: 0.45;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-      .score-switch__button--plus { background: var(--green); }
-      .score-switch__button--minus { background: var(--red); }
+      .score-switch__button span {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .score-switch__button--plus {
+        background: var(--green);
+      }
+      .score-switch__button--minus {
+        background: var(--red);
+      }
       .score-switch__button.active {
         opacity: 1;
-        box-shadow: 0 0 0 3px rgba(255,255,255,0.18);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+        color: #fff;
       }
       .separator {
         height: 1px;
@@ -553,6 +565,7 @@
       }
       .detail-actions button {
         height: 44px;
+        min-width: 64px;
         border-radius: 999px;
         border: 1px solid var(--border);
         background: var(--overlay);
@@ -904,9 +917,25 @@
           </div>
         </section>
         <div class="score-switch" role="group" aria-label="Režim úpravy skóre">
-          <button class="score-switch__button score-switch__button--plus active" type="button" data-score-mode="plus" aria-pressed="true" aria-label="Přičítat skóre">+</button>
+          <button
+            class="score-switch__button score-switch__button--plus active"
+            type="button"
+            data-score-mode="plus"
+            aria-pressed="true"
+            aria-label="Přičítat skóre"
+          >
+            <span>+</span>
+          </button>
           <span class="score-switch__label">Přepínač</span>
-          <button class="score-switch__button score-switch__button--minus" type="button" data-score-mode="minus" aria-pressed="false" aria-label="Odečítat skóre">−</button>
+          <button
+            class="score-switch__button score-switch__button--minus"
+            type="button"
+            data-score-mode="minus"
+            aria-pressed="false"
+            aria-label="Odečítat skóre"
+          >
+            <span> −</span>
+          </button>
         </div>
         <div class="detail-actions">
           <button type="button" onclick="showList()">Zpět</button
