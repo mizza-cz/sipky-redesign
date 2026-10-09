@@ -18,6 +18,7 @@
         --yellow: #e8d44d;
         --red: #c54b47;
         --overlay: #241640;
+        --purple: #9b59b6;
       }
       * {
         box-sizing: border-box;
@@ -33,6 +34,9 @@
       button {
         font: inherit;
         color: inherit;
+      }
+      .text-purple {
+        color: var(--purple);
       }
       .app {
         min-height: 100dvh;
@@ -678,28 +682,160 @@
         border-color: var(--green);
         color: #171724;
       }
-      .app.auth-mode > .topbar { display: none; }
-      .app.auth-mode { padding-bottom: 90px; }
-      #authView { padding: 0 8px 24px; }
-      .auth-top { height: 64px; margin: 0 -8px 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--input); background: var(--top); }
-      .auth-top button { width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--overlay); font-size: 26px; cursor: pointer; }
-      .auth-top__title { display: grid; text-align: center; gap: 2px; font-size: 14px; }
-      .auth-top__title small { color: var(--muted); font-size: 11px; font-weight: 400; }
-      .auth-card { background: var(--card); border: 1px solid var(--input); border-radius: 8px; padding: 14px 12px; margin: 8px 4px; }
-      .auth-card h2 { margin: 0 0 12px; font-size: 16px; }
-      .auth-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--yellow); border-radius: 999px; padding: 5px 10px; color: var(--yellow); font-size: 11px; font-weight: 700; }
-      .auth-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-      .auth-status.is-authorized { color: var(--green); border-color: var(--green); }
-      .auth-stat { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 14px; font-weight: 700; }
-      .auth-stat__value { min-width: 86px; padding: 8px 12px; border-radius: 4px; background: #8740a9; text-align: center; color: #fff; font-size: 22px; }
-      .auth-note-button { width: 100%; min-height: 42px; margin-top: 8px; border: 2px solid #7777a6; border-radius: 10px; background: transparent; font-size: 12px; font-weight: 700; cursor: pointer; }
-      .auth-note { width: 100%; min-height: 72px; margin-top: 6px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--input); color: var(--white); resize: vertical; }
-      .auth-hint { margin: 16px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
-      .auth-audit { margin: 16px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-      .auth-audit p { margin: 0 0 10px; }
-      .auth-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: min(100%,780px); padding: 12px 16px max(12px,env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--border); z-index: 21; }
-      .auth-submit { width: 100%; min-height: 48px; border: 0; border-radius: 999px; background: var(--green); color: #171724; font-weight: 800; cursor: pointer; }
-      .auth-submit.is-authorized { background: var(--red); color: white; }
+      .app.auth-mode > .topbar {
+        display: none;
+      }
+      .app.auth-mode {
+        padding-bottom: 90px;
+      }
+      #authView {
+        padding: 0 8px 24px;
+      }
+      .auth-top {
+        height: 64px;
+        margin: 0 -8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--input);
+        background: var(--top);
+      }
+      .auth-top button {
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--overlay);
+        font-size: 26px;
+        cursor: pointer;
+      }
+      .auth-top__title {
+        display: grid;
+        text-align: center;
+        gap: 2px;
+        font-size: 14px;
+      }
+      .auth-top__title small {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 400;
+      }
+      .auth-card {
+        background: var(--card);
+        border: 1px solid var(--input);
+        border-radius: 8px;
+        padding: 14px 12px;
+        margin: 8px 4px;
+      }
+      .auth-card h2 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      .auth-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--yellow);
+        border-radius: 999px;
+        padding: 5px 10px;
+        color: var(--yellow);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .auth-status::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .auth-status.is-authorized {
+        color: var(--green);
+        border-color: var(--green);
+      }
+      .auth-stat {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .auth-stat__value {
+        min-width: 86px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: #8740a9;
+        text-align: center;
+        color: #fff;
+        font-size: 22px;
+      }
+      .auth-note-button {
+        width: 100%;
+        min-height: 42px;
+        margin-top: 8px;
+        border: 2px solid #7777a6;
+        border-radius: 10px;
+        background: transparent;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .auth-note-button:first-of-type {
+        margin-top: 16px;
+      }
+      .auth-note {
+        width: 100%;
+        min-height: 72px;
+        margin-top: 6px;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--input);
+        color: var(--white);
+        resize: vertical;
+      }
+      .auth-hint {
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .auth-audit {
+        margin: 16px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      .auth-audit p {
+        margin: 0 0 10px;
+      }
+      .auth-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(100%, 780px);
+        padding: 12px 16px max(12px, env(safe-area-inset-bottom));
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        z-index: 21;
+      }
+      .auth-submit {
+        width: 100%;
+        min-height: 48px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--green);
+        color: #171724;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .auth-submit.is-authorized {
+        background: var(--red);
+        color: white;
+      }
       @media (min-width: 600px) {
         .view {
           padding-left: 16px;
@@ -716,7 +852,7 @@
           margin-bottom: 10px;
           background: rgba(34, 34, 58, 0.5);
         }
-       
+
         .detail-actions {
           max-width: 620px;
           margin: 0 auto;
@@ -1045,8 +1181,10 @@
       <main id="authView" class="view">
         <div class="auth-top">
           <button type="button" onclick="showList()" aria-label="Zpět na zápasy">‹</button>
-          <div class="auth-top__title"><strong>Utkání</strong><small>Autorizace výsledku</small></div>
-          <span style="width:42px" aria-hidden="true"></span>
+          <div class="auth-top__title">
+            <strong>Utkání</strong><small>Autorizace výsledku</small>
+          </div>
+          <span style="width: 42px" aria-hidden="true"></span>
         </div>
         <div class="match-result">
           <div class="match-result__teams">
@@ -1058,20 +1196,51 @@
         <section class="auth-card">
           <h2>Výsledek ligového utkání</h2>
           <span id="authStatus" class="auth-status">Neautorizováno</span>
-          <div class="auth-stat"><span>Skóre:</span><strong class="auth-stat__value">0:18</strong></div>
-          <div class="auth-stat"><span>Legy:</span><strong class="auth-stat__value">0:36</strong></div>
-          <button class="auth-note-button" type="button" data-note="homeNote" aria-expanded="false">Poznámka kapitána domácích</button>
-          <textarea class="auth-note" id="homeNote" aria-label="Poznámka kapitána domácích" hidden></textarea>
-          <button class="auth-note-button" type="button" data-note="awayNote" aria-expanded="false">Poznámka kapitána hostů</button>
-          <textarea class="auth-note" id="awayNote" aria-label="Poznámka kapitána hostů" hidden></textarea>
-          <p class="auth-hint">Autorizací potvrzujete výsledek za domácí. Konečný je až po potvrzení kapitánem hostů.</p>
+          <div class="auth-stat">
+            <span>Skóre:</span><strong class="auth-stat__value">0:18</strong>
+          </div>
+          <div class="auth-stat">
+            <span>Legy:</span><strong class="auth-stat__value">0:36</strong>
+          </div>
+          <button class="auth-note-button" type="button" data-note="homeNote" aria-expanded="false">
+            Poznámka kapitána domácích
+          </button>
+          <textarea
+            class="auth-note"
+            id="homeNote"
+            aria-label="Poznámka kapitána domácích"
+            hidden
+          ></textarea>
+          <button class="auth-note-button" type="button" data-note="awayNote" aria-expanded="false">
+            Poznámka kapitána hostů
+          </button>
+          <textarea
+            class="auth-note"
+            id="awayNote"
+            aria-label="Poznámka kapitána hostů"
+            hidden
+          ></textarea>
+          <p class="auth-hint">
+            Autorizací potvrzujete výsledek za domácí. Konečný je až po potvrzení kapitánem hostů.
+          </p>
         </section>
         <div class="auth-audit">
-          <p>Zapsal:<br><strong>Novák Jan</strong> • 18.08.2026 12:13:32</p>
-          <p>Poslední změna:<br><strong>Novák Jan</strong> • 18.08.2026 12:14:59</p>
-          <p id="authAuditAuthorized" hidden>Autorizoval:<br><strong>Novák Jan</strong> • 18.08.2026 12:14:59</p>
+          <p>
+            Zapsal:<br /><strong>Novák Jan</strong> <span class="text-purple">•</span> 18.08.2026
+            12:13:32
+          </p>
+          <p>
+            Poslední změna:<br /><strong>Novák Jan</strong>
+            <span class="text-purple">•</span> 18.08.2026 12:14:59
+          </p>
+          <p id="authAuditAuthorized" hidden>
+            Autorizoval:<br /><strong>Novák Jan</strong>
+            <span class="text-purple">•</span> 18.08.2026 12:14:59
+          </p>
         </div>
-        <div class="auth-bottom"><button id="authSubmit" class="auth-submit" type="button">Autorizovat</button></div>
+        <div class="auth-bottom">
+          <button id="authSubmit" class="auth-submit" type="button">Autorizovat</button>
+        </div>
       </main>
 
       <div class="bottom" id="bottomBar">
