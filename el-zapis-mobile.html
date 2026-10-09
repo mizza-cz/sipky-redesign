@@ -433,8 +433,9 @@
 
       .players-bar {
         display: grid;
-        grid-template-columns: 1fr 76px 1fr;
+        grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
         align-items: center;
+        gap: 8px;
         padding: 10px 8px 14px;
         border-bottom: 1px solid var(--border);
       }
@@ -448,22 +449,37 @@
         text-align: right;
       }
       .player-select {
-        border: 0;
+        display: block;
+        width: 100%;
+        min-height: 36px;
+        padding: 6px 8px;
+        border: 1px solid #68688f;
+        border-radius: 6px;
         background: transparent;
         color: var(--white);
         font-size: 13px;
         font-weight: 600;
-        padding: 0;
-        max-width: 100%;
+        text-align: left;
         cursor: pointer;
       }
+      .side-player:last-child .player-select { text-align: right; }
+      .side-player { min-width: 0; }
+      .player-select { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .detail-score {
         text-align: center;
         font-size: 28px;
         font-weight: 800;
       }
+      .detail-score__value {
+        padding: 6px 4px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: #1a1a30;
+        white-space: nowrap;
+      }
       .detail-score small {
         display: block;
+        margin-top: 6px;
         color: var(--muted);
         font-size: 9px;
         font-weight: 600;
@@ -851,7 +867,7 @@
             <div class="side-player">
               <small>D1</small><button class="player-select" type="button">Buvol Libor⌄</button>
             </div>
-            <div class="detail-score">2 : 0<small>LEGY</small></div>
+            <div class="detail-score"><div class="detail-score__value">2 : 0</div><small>LEGY</small></div>
             <div class="side-player">
               <small>H3</small
               ><button class="player-select" type="button">Nymburk Ladislav⌄</button>
