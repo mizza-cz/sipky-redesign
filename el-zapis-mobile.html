@@ -678,70 +678,28 @@
         border-color: var(--green);
         color: #171724;
       }
-      .auth {
-        padding: 8px 4px;
-      }
-      .auth-card {
-        background: var(--card);
-        border: 1px solid var(--input);
-        border-radius: 8px;
-        padding: 16px;
-      }
-      .status {
-        display: inline-flex;
-        border-radius: 999px;
-        padding: 6px 10px;
-        background: rgba(244, 197, 66, 0.12);
-        color: var(--yellow);
-        font-size: 12px;
-        font-weight: 700;
-      }
-      .audit {
-        margin-top: 18px;
-        display: grid;
-        gap: 12px;
-      }
-      .audit-row {
-        display: grid;
-        grid-template-columns: 90px 1fr;
-        gap: 8px;
-        font-size: 12px;
-      }
-      .audit-row span {
-        color: var(--muted);
-      }
-      .notes {
-        margin-top: 16px;
-      }
-      .notes textarea {
-        width: 100%;
-        min-height: 90px;
-        resize: vertical;
-        background: var(--input);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        color: var(--white);
-        padding: 10px;
-      }
-      .auth-actions {
-        display: grid;
-        gap: 8px;
-        margin-top: 16px;
-      }
-      .auth-actions button {
-        height: 46px;
-        border: 0;
-        border-radius: 999px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .authorize {
-        background: var(--green);
-        color: #171724;
-      }
-      .secondary {
-        background: var(--input);
-      }
+      .app.auth-mode > .topbar { display: none; }
+      .app.auth-mode { padding-bottom: 90px; }
+      #authView { padding: 0 8px 24px; }
+      .auth-top { height: 64px; margin: 0 -8px 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--input); background: var(--top); }
+      .auth-top button { width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--overlay); font-size: 26px; cursor: pointer; }
+      .auth-top__title { display: grid; text-align: center; gap: 2px; font-size: 14px; }
+      .auth-top__title small { color: var(--muted); font-size: 11px; font-weight: 400; }
+      .auth-card { background: var(--card); border: 1px solid var(--input); border-radius: 8px; padding: 14px 12px; margin: 8px 4px; }
+      .auth-card h2 { margin: 0 0 12px; font-size: 16px; }
+      .auth-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--yellow); border-radius: 999px; padding: 5px 10px; color: var(--yellow); font-size: 11px; font-weight: 700; }
+      .auth-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+      .auth-status.is-authorized { color: var(--green); border-color: var(--green); }
+      .auth-stat { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 14px; font-weight: 700; }
+      .auth-stat__value { min-width: 86px; padding: 8px 12px; border-radius: 4px; background: #8740a9; text-align: center; color: #fff; font-size: 22px; }
+      .auth-note-button { width: 100%; min-height: 42px; margin-top: 8px; border: 2px solid #7777a6; border-radius: 10px; background: transparent; font-size: 12px; font-weight: 700; cursor: pointer; }
+      .auth-note { width: 100%; min-height: 72px; margin-top: 6px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--input); color: var(--white); resize: vertical; }
+      .auth-hint { margin: 16px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+      .auth-audit { margin: 16px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+      .auth-audit p { margin: 0 0 10px; }
+      .auth-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: min(100%,780px); padding: 12px 16px max(12px,env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--border); z-index: 21; }
+      .auth-submit { width: 100%; min-height: 48px; border: 0; border-radius: 999px; background: var(--green); color: #171724; font-weight: 800; cursor: pointer; }
+      .auth-submit.is-authorized { background: var(--red); color: white; }
       @media (min-width: 600px) {
         .view {
           padding-left: 16px;
@@ -1088,35 +1046,35 @@
       </main>
 
       <main id="authView" class="view">
-        <div class="auth">
-          <div class="match-result" style="margin: 0 0 12px">
-            <div class="match-result__teams">
-              <div class="team"><span class="lead">▲</span><span>SK Šipky Praha Střed A</span></div>
-              <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
-            </div>
-            <div class="match-result__score"><span>2</span><i>:</i><span>0</span></div>
-          </div>
-          <div class="auth-card">
-            <span class="status">Neautorizováno</span>
-            <div class="audit">
-              <div class="audit-row">
-                <span>Vytvořil</span><strong>Administrator<br />03.09.2026 16:02</strong>
-              </div>
-              <div class="audit-row">
-                <span>Poslední změna</span><strong>Administrator<br />03.09.2026 20:15</strong>
-              </div>
-              <div class="audit-row"><span>Autorizoval</span><strong>—</strong></div>
-            </div>
-            <div class="notes">
-              <label for="notes">Poznámky</label
-              ><textarea id="notes" placeholder="Poznámka k utkání"></textarea>
-            </div>
-            <div class="auth-actions">
-              <button class="authorize" type="button">Autorizovat utkání</button
-              ><button class="secondary" type="button" onclick="showList()">Zpět na zápasy</button>
-            </div>
-          </div>
+        <div class="auth-top">
+          <button type="button" onclick="showList()" aria-label="Zpět na zápasy">‹</button>
+          <div class="auth-top__title"><strong>Utkání</strong><small>Autorizace výsledku</small></div>
+          <span style="width:42px" aria-hidden="true"></span>
         </div>
+        <div class="match-result">
+          <div class="match-result__teams">
+            <div class="team"><span class="lead"></span><span>SK Šipky Praha Střed A</span></div>
+            <div class="team"><span class="lead"></span><span>TJ Šipkaři Vinohrady</span></div>
+          </div>
+          <div class="match-result__score"><span>0</span><i>:</i><span>18</span></div>
+        </div>
+        <section class="auth-card">
+          <h2>Výsledek ligového utkání</h2>
+          <span id="authStatus" class="auth-status">Neautorizováno</span>
+          <div class="auth-stat"><span>Skóre:</span><strong class="auth-stat__value">0:18</strong></div>
+          <div class="auth-stat"><span>Legy:</span><strong class="auth-stat__value">0:36</strong></div>
+          <button class="auth-note-button" type="button" data-note="homeNote" aria-expanded="false">Poznámka kapitána domácích</button>
+          <textarea class="auth-note" id="homeNote" aria-label="Poznámka kapitána domácích" hidden></textarea>
+          <button class="auth-note-button" type="button" data-note="awayNote" aria-expanded="false">Poznámka kapitána hostů</button>
+          <textarea class="auth-note" id="awayNote" aria-label="Poznámka kapitána hostů" hidden></textarea>
+          <p class="auth-hint">Autorizací potvrzujete výsledek za domácí. Konečný je až po potvrzení kapitánem hostů.</p>
+        </section>
+        <div class="auth-audit">
+          <p>Zapsal:<br><strong>Novák Jan</strong> • 18.08.2026 12:13:32</p>
+          <p>Poslední změna:<br><strong>Novák Jan</strong> • 18.08.2026 12:14:59</p>
+          <p id="authAuditAuthorized" hidden>Autorizoval:<br><strong>Novák Jan</strong> • 18.08.2026 12:14:59</p>
+        </div>
+        <div class="auth-bottom"><button id="authSubmit" class="auth-submit" type="button">Autorizovat</button></div>
       </main>
 
       <div class="bottom" id="bottomBar">
@@ -1133,6 +1091,7 @@
       function activate(id) {
         views.forEach((v) => v.classList.toggle('active', v.id === id));
         bottom.style.display = id === 'listView' ? 'flex' : 'none';
+        document.querySelector('.app').classList.toggle('auth-mode', id === 'authView');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       function showList() {
@@ -1141,6 +1100,25 @@
       function showAuth() {
         activate('authView');
       }
+      document.querySelectorAll('[data-note]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const note = document.getElementById(button.dataset.note);
+          note.hidden = !note.hidden;
+          button.setAttribute('aria-expanded', String(!note.hidden));
+          if (!note.hidden) note.focus();
+        });
+      });
+      let isAuthorized = false;
+      document.getElementById('authSubmit').addEventListener('click', () => {
+        isAuthorized = !isAuthorized;
+        const status = document.getElementById('authStatus');
+        const button = document.getElementById('authSubmit');
+        status.textContent = isAuthorized ? 'Autorizováno' : 'Neautorizováno';
+        status.classList.toggle('is-authorized', isAuthorized);
+        button.textContent = isAuthorized ? 'Zrušit autorizaci' : 'Autorizovat';
+        button.classList.toggle('is-authorized', isAuthorized);
+        document.getElementById('authAuditAuthorized').hidden = !isAuthorized;
+      });
       function openGame(n, pair) {
         currentGame = n;
 
