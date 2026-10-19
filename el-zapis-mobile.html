@@ -113,8 +113,9 @@
         flex-shrink: 0;
       }
 
-      /* Score + status */
-      #listView .match-result__right {
+      /* Shared score and status on match list and match detail */
+      #listView .match-result__right,
+      #detailView .match-result__right {
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -122,7 +123,8 @@
         flex-shrink: 0;
       }
 
-      #listView .match-result__score {
+      #listView .match-result__score,
+      #detailView .match-result__score {
         display: flex;
         align-items: center;
         gap: 4px;
@@ -132,7 +134,8 @@
         white-space: nowrap;
       }
 
-      #listView .match-result__score i {
+      #listView .match-result__score i,
+      #detailView .match-result__score i {
         font-style: normal;
         color: var(--muted);
       }
