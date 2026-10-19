@@ -607,6 +607,7 @@
         text-align: center;
         cursor: pointer;
       }
+      .value { touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
       .score-switch {
         display: flex;
         align-items: center;
@@ -836,6 +837,24 @@
         background: var(--red);
         color: white;
       }
+      .tablet-targets { display: none; }
+      @media (min-width: 768px) {
+        .app:has(#detailView.active) { max-width: 1100px; }
+        #detailView .detail-mobile-card { display: none; }
+        #detailView .tablet-targets { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; margin: 18px 4px 0; }
+        #detailView .tablet-target { min-width: 0; }
+        .tablet-target__heading { background: var(--green); color: #171724; font-weight: 800; text-align: center; padding: 10px; font-size: 12px; }
+        #detailView .tablet-target .players-bar__row { grid-template-columns: minmax(0,1fr) 70px minmax(0,1fr); gap: 8px; }
+        #detailView .tablet-target .tablet-stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+        #detailView .tablet-target .tablet-stat-side { min-width: 0; }
+        #detailView .tablet-target .stat-grid { gap: 3px; }
+        #detailView .tablet-target .stat-field label { font-size: 9px; }
+        #detailView .tablet-target .value { height: 36px; }
+        #detailView .tablet-target .stats-title, #detailView .tablet-target .separator { display: none; }
+        #detailView .tablet-target .detail-score__value { font-size: 22px; }
+        #detailView .tablet-target .player-select { font-size: 11px; }
+        #detailView .detail-actions { max-width: none; }
+      }
       @media (min-width: 600px) {
         .view {
           padding-left: 16px;
@@ -1043,7 +1062,122 @@
           ><strong id="gameTitle">Zápas 1 / Single</strong
           ><button type="button" onclick="shiftGame(1)">›</button>
         </div>
-        <section class="game-card">
+        <div class="tablet-targets" aria-label="Dva terče"><section class="game-card tablet-target" data-target="1">
+<div class="tablet-target__heading">ZÁPAS 1 — TERČ 1</div>
+<div class="players-bar"><div class="players-bar__row">
+<div class="side-player"><small>D1</small><button class="player-select" type="button" data-player-side="home" data-target="1" onclick="openPlayerPicker('home',1)">Jan Novák</button></div>
+<div class="detail-score"><div class="detail-score__value">2 : 0</div></div>
+<div class="side-player"><small>H1</small><button class="player-select" type="button" data-player-side="away" data-target="1" onclick="openPlayerPicker('away',1)">Karel Horák</button></div>
+</div><div class="players-bar__descr">LEGY</div></div>
+<div class="stats tablet-stats"><div class="tablet-stat-side">            <div class="stat-grid three">
+              <div class="stat-field">
+                <label>95+</label><button class="value" data-label="95+" data-value="2">2</button>
+              </div>
+              <div class="stat-field">
+                <label>133+</label><button class="value" data-label="133+" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>170+</label><button class="value" data-label="170+" data-value="0">0</button>
+              </div>
+            </div>
+            <div class="stat-grid four" style="margin-top: 8px">
+              <div class="stat-field">
+                <label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>5.k</label><button class="value" data-label="5.k" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button>
+              </div>
+            </div>
+</div><div class="tablet-stat-side">            <div class="stat-grid three">
+              <div class="stat-field">
+                <label>95+</label><button class="value" data-label="95+" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>133+</label><button class="value" data-label="133+" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>170+</label><button class="value" data-label="170+" data-value="0">0</button>
+              </div>
+            </div>
+            <div class="stat-grid four" style="margin-top: 8px">
+              <div class="stat-field">
+                <label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>5.k</label><button class="value" data-label="5.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button>
+              </div>
+            </div>
+</div></div></section><section class="game-card tablet-target" data-target="2">
+<div class="tablet-target__heading">ZÁPAS 1 — TERČ 2</div>
+<div class="players-bar"><div class="players-bar__row">
+<div class="side-player"><small>D1</small><button class="player-select" type="button" data-player-side="home" data-target="2" onclick="openPlayerPicker('home',2)">Jan Novák</button></div>
+<div class="detail-score"><div class="detail-score__value">2 : 0</div></div>
+<div class="side-player"><small>H1</small><button class="player-select" type="button" data-player-side="away" data-target="2" onclick="openPlayerPicker('away',2)">Karel Horák</button></div>
+</div><div class="players-bar__descr">LEGY</div></div>
+<div class="stats tablet-stats"><div class="tablet-stat-side">            <div class="stat-grid three">
+              <div class="stat-field">
+                <label>95+</label><button class="value" data-label="95+" data-value="2">2</button>
+              </div>
+              <div class="stat-field">
+                <label>133+</label><button class="value" data-label="133+" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>170+</label><button class="value" data-label="170+" data-value="0">0</button>
+              </div>
+            </div>
+            <div class="stat-grid four" style="margin-top: 8px">
+              <div class="stat-field">
+                <label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>5.k</label><button class="value" data-label="5.k" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button>
+              </div>
+            </div>
+</div><div class="tablet-stat-side">            <div class="stat-grid three">
+              <div class="stat-field">
+                <label>95+</label><button class="value" data-label="95+" data-value="1">1</button>
+              </div>
+              <div class="stat-field">
+                <label>133+</label><button class="value" data-label="133+" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>170+</label><button class="value" data-label="170+" data-value="0">0</button>
+              </div>
+            </div>
+            <div class="stat-grid four" style="margin-top: 8px">
+              <div class="stat-field">
+                <label>6.k</label><button class="value" data-label="6.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>5.k</label><button class="value" data-label="5.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>4.k</label><button class="value" data-label="4.k" data-value="0">0</button>
+              </div>
+              <div class="stat-field">
+                <label>3.k</label><button class="value" data-label="3.k" data-value="0">0</button>
+              </div>
+            </div>
+</div></div></section></div>
+        <section class="game-card detail-mobile-card">
           <div class="players-bar">
             <div class="players-bar__row">
               <div class="side-player">
@@ -1326,9 +1460,9 @@
         away: ['Nymburk Jan', 'Nymburk Lukáš'],
       };
       let pickerSide = 'home';
-      function openPlayerPicker(side) {
+      function openPlayerPicker(side, target = null) {
         pickerSide = side;
-        const button = document.querySelector('[data-player-side="' + side + '"]');
+        const button = target === null ? document.querySelector('.detail-mobile-card [data-player-side="' + side + '"]') : document.querySelector('.tablet-target[data-target="' + target + '"] [data-player-side="' + side + '"]');
         const current = button.textContent.replace(/⌄\s*$/, '').trim();
         document.getElementById('playerPickerTitle').textContent =
           'Vybrat hráče — ' + (side === 'home' ? 'D1' : 'H3');
@@ -1394,7 +1528,7 @@
           });
         });
       });
-      document.getElementById('statsBlock').addEventListener('click', (event) => {
+      document.getElementById('detailView').addEventListener('click', (event) => {
         const field = event.target.closest('button.value');
         if (!field) return;
         const current = Number(field.dataset.value) || 0;
