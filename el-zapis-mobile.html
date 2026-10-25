@@ -586,6 +586,42 @@
       }
       .legs-editor__scores input::-webkit-outer-spin-button,
       .legs-editor__scores input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+      .legs-editor__scores input {
+        cursor: pointer;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .legs-editor__scores input.is-selected {
+        border-color: var(--green);
+        box-shadow: 0 0 0 2px rgba(85, 185, 91, .18);
+      }
+      .legs-editor__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 22px;
+      }
+      .legs-editor__toggle button {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border: 0;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 800;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .legs-editor__toggle button[data-leg-mode="plus"] { background: var(--green); }
+      .legs-editor__toggle button[data-leg-mode="minus"] { background: #773845; }
+      .legs-editor__toggle button.active { outline: 4px solid #686781; outline-offset: 2px; }
+      .legs-editor__toggle span { color: var(--muted); font-size: 12px; }
+      .legs-editor__hint { margin: 12px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
       .legs-editor__actions { margin-top: 30px; }
       .legs-editor__actions .confirm {
         display: block;
@@ -1420,10 +1456,16 @@
               <span id="legsHomeName">Jan Novák</span><span aria-hidden="true"></span><span id="legsAwayName">Karel Horák</span>
             </div>
             <div class="legs-editor__scores">
-              <input id="legsHomeScore" name="homeLegs" type="number" min="0" max="99" step="1" inputmode="numeric" required aria-label="Legy domácích" />
+              <input id="legsHomeScore" name="homeLegs" type="number" min="0" max="99" step="1" readonly required aria-label="Legy domácích, klepnutím změnit" />
               <strong>:</strong>
-              <input id="legsAwayScore" name="awayLegs" type="number" min="0" max="99" step="1" inputmode="numeric" required aria-label="Legy hostů" />
+              <input id="legsAwayScore" name="awayLegs" type="number" min="0" max="99" step="1" readonly required aria-label="Legy hostů, klepnutím změnit" />
             </div>
+            <div class="legs-editor__toggle" role="group" aria-label="Přepínač přičítání a odečítání">
+              <button type="button" data-leg-mode="plus" class="active" aria-pressed="true">+</button>
+              <span>Přepínač</span>
+              <button type="button" data-leg-mode="minus" aria-pressed="false">−</button>
+            </div>
+            <p class="legs-editor__hint">Klepnutím na skóre přičtete nebo odečtete leg.</p>
             <div class="legs-editor__actions">
               <button class="confirm" type="submit">Potvrdit</button>
             </div>
@@ -1637,6 +1679,29 @@
         activate('detailView');
       }
       let editedLegsButton = null;
+      let legEditMode = 'plus';
+      const legEditInputs = [
+        document.getElementById('legsHomeScore'),
+        document.getElementById('legsAwayScore'),
+      ];
+      document.querySelectorAll('[data-leg-mode]').forEach((button) => {
+        button.addEventListener('click', () => {
+          legEditMode = button.dataset.legMode;
+          document.querySelectorAll('[data-leg-mode]').forEach((item) => {
+            const active = item === button;
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+        });
+      });
+      legEditInputs.forEach((input) => {
+        input.addEventListener('click', () => {
+          const current = Number(input.value) || 0;
+          input.value = String(Math.max(0, Math.min(99, current + (legEditMode === 'plus' ? 1 : -1))));
+          input.classList.add('is-selected');
+          legEditInputs.filter((item) => item !== input).forEach((item) => item.classList.remove('is-selected'));
+        });
+      });
       function openLegsEditor(button) {
         editedLegsButton = button;
         document.getElementById('legsEditorMatchTitle').textContent = 'Zápas ' + currentGame + ' / 14';
