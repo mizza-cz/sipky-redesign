@@ -503,6 +503,72 @@
         white-space: nowrap;
         height: 36px;
       }
+      .detail-score__value {
+        width: 100%;
+        color: var(--white);
+      }
+      button.detail-score__value {
+        display: block;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      button.detail-score__value:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 2px;
+      }
+      .legs-editor {
+        margin: 14px 4px;
+        background: var(--card);
+        border: 1px solid var(--input);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .legs-editor__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .legs-editor__head h2 { margin: 0; font-size: 18px; }
+      .legs-editor__players {
+        display: grid;
+        grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+        align-items: center;
+        gap: 12px;
+        padding: 22px 16px 12px;
+        text-align: center;
+        font-weight: 700;
+      }
+      .legs-editor__players span { overflow-wrap: anywhere; }
+      .legs-editor__players strong { color: var(--muted); }
+      .legs-editor__scores {
+        display: grid;
+        grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+        gap: 12px;
+        align-items: center;
+        padding: 8px 16px 24px;
+      }
+      .legs-editor__scores input {
+        min-width: 0;
+        width: 100%;
+        height: 62px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--white);
+        font-size: 28px;
+        font-weight: 800;
+        text-align: center;
+      }
+      .legs-editor__scores strong { font-size: 24px; }
+      .legs-editor__actions { display: flex; gap: 10px; padding: 16px; border-top: 1px solid var(--border); }
+      .legs-editor__actions button { border: 1px solid var(--border); border-radius: 999px; padding: 12px 18px; cursor: pointer; font-weight: 700; }
+      .legs-editor__actions .confirm { flex: 1; background: var(--green); color: #171724; border-color: var(--green); }
+      .legs-editor__actions .cancel { background: var(--overlay); }
       .detail-score small {
         display: block;
         margin-top: 6px;
@@ -1069,7 +1135,7 @@
 <div class="tablet-target__heading">ZÁPAS 1 — TERČ 1</div>
 <div class="players-bar"><div class="players-bar__row">
 <div class="side-player"><small>D1</small><button class="player-select" type="button" data-player-side="home" data-target="1" onclick="openPlayerPicker('home',1)">Jan Novák</button></div>
-<div class="detail-score"><div class="detail-score__value">2 : 0</div></div>
+<div class="detail-score"><button class="detail-score__value" type="button" onclick="openLegsEditor(this)" aria-label="Upravit skóre legů">2 : 0</button></div>
 <div class="side-player"><small>H1</small><button class="player-select" type="button" data-player-side="away" data-target="1" onclick="openPlayerPicker('away',1)">Karel Horák</button></div>
 </div><div class="players-bar__descr">LEGY</div></div>
 <div class="stats tablet-stats"><div class="tablet-stat-side">            <div class="stat-grid three">
@@ -1126,7 +1192,7 @@
 <div class="tablet-target__heading">ZÁPAS 1 — TERČ 2</div>
 <div class="players-bar"><div class="players-bar__row">
 <div class="side-player"><small>D1</small><button class="player-select" type="button" data-player-side="home" data-target="2" onclick="openPlayerPicker('home',2)">Jan Novák</button></div>
-<div class="detail-score"><div class="detail-score__value">2 : 0</div></div>
+<div class="detail-score"><button class="detail-score__value" type="button" onclick="openLegsEditor(this)" aria-label="Upravit skóre legů">2 : 0</button></div>
 <div class="side-player"><small>H1</small><button class="player-select" type="button" data-player-side="away" data-target="2" onclick="openPlayerPicker('away',2)">Karel Horák</button></div>
 </div><div class="players-bar__descr">LEGY</div></div>
 <div class="stats tablet-stats"><div class="tablet-stat-side">            <div class="stat-grid three">
@@ -1195,7 +1261,7 @@
                 </button>
               </div>
               <div class="detail-score">
-                <div class="detail-score__value">2 : 0</div>
+                <button class="detail-score__value" type="button" onclick="openLegsEditor(this)" aria-label="Upravit skóre legů">2 : 0</button>
               </div>
               <div class="side-player">
                 <small>H3</small
@@ -1294,6 +1360,29 @@
         <div class="detail-actions">
           <button type="button" onclick="showList()">Zpět</button
           ><button class="save" type="button" onclick="saveGame()">Uložit a další zápas</button>
+        </div>
+      </main>
+
+      <main id="legsEditorView" class="view">
+        <div class="legs-editor">
+          <div class="legs-editor__head">
+            <h2>Upravit skóre legů</h2>
+            <button class="player-picker__close" type="button" onclick="closeLegsEditor()" aria-label="Zavřít">×</button>
+          </div>
+          <form id="legsEditorForm">
+            <div class="legs-editor__players">
+              <span id="legsHomeName">Domácí</span><strong>:</strong><span id="legsAwayName">Hosté</span>
+            </div>
+            <div class="legs-editor__scores">
+              <input id="legsHomeScore" name="homeLegs" type="number" min="0" max="99" step="1" inputmode="numeric" required aria-label="Legy domácích" />
+              <strong>:</strong>
+              <input id="legsAwayScore" name="awayLegs" type="number" min="0" max="99" step="1" inputmode="numeric" required aria-label="Legy hostů" />
+            </div>
+            <div class="legs-editor__actions">
+              <button class="cancel" type="button" onclick="closeLegsEditor()">Zpět</button>
+              <button class="confirm" type="submit">Potvrdit</button>
+            </div>
+          </form>
         </div>
       </main>
 
@@ -1502,6 +1591,33 @@
       function closePlayerPicker() {
         activate('detailView');
       }
+      let editedLegsButton = null;
+      function openLegsEditor(button) {
+        editedLegsButton = button;
+        const card = button.closest('.game-card');
+        const names = card.querySelectorAll('.player-select');
+        document.getElementById('legsHomeName').textContent = names[0]?.textContent.trim() || 'Domácí';
+        document.getElementById('legsAwayName').textContent = names[1]?.textContent.trim() || 'Hosté';
+        const values = button.textContent.split(':').map(value => Number(value.trim()));
+        document.getElementById('legsHomeScore').value = Number.isFinite(values[0]) ? values[0] : 0;
+        document.getElementById('legsAwayScore').value = Number.isFinite(values[1]) ? values[1] : 0;
+        activate('legsEditorView');
+      }
+      function closeLegsEditor() {
+        activate('detailView');
+      }
+      document.getElementById('legsEditorForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity() || !editedLegsButton) return;
+        const home = Number(document.getElementById('legsHomeScore').value);
+        const away = Number(document.getElementById('legsAwayScore').value);
+        if (![home, away].every(value => Number.isInteger(value) && value >= 0 && value <= 99)) return;
+        editedLegsButton.textContent = home + ' : ' + away;
+        editedLegsButton.dataset.homeLegs = String(home);
+        editedLegsButton.dataset.awayLegs = String(away);
+        closeLegsEditor();
+      });
       function shiftGame(dir) {
         let next = currentGame + dir;
         if (next < 1) next = 6;
