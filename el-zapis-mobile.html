@@ -519,7 +519,7 @@
         outline-offset: 2px;
       }
       /* Leg score editor: mobile-first layout based on the approved mockup */
-      .app:has(#legsEditorView.active) { max-width: 100%; }
+      .app:has(#legsEditorView.active) { max-width: 1100px; }
       #legsEditorView { max-width: 620px; margin: 0 auto; padding: 0 14px 24px; }
       .legs-editor__top {
         display: grid;
@@ -621,7 +621,6 @@
       .legs-editor__toggle button[data-leg-mode="minus"] { background: #773845; }
       .legs-editor__toggle button.active { outline: 4px solid #686781; outline-offset: 2px; }
       .legs-editor__toggle span { color: var(--muted); font-size: 12px; }
-      .legs-editor__hint { margin: 12px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
       .legs-editor__actions { margin-top: 30px; }
       .legs-editor__actions .confirm {
         display: block;
@@ -1465,7 +1464,6 @@
               <span>Přepínač</span>
               <button type="button" data-leg-mode="minus" aria-pressed="false">−</button>
             </div>
-            <p class="legs-editor__hint">Klepnutím na skóre přičtete nebo odečtete leg.</p>
             <div class="legs-editor__actions">
               <button class="confirm" type="submit">Potvrdit</button>
             </div>
