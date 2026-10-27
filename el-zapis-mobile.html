@@ -621,17 +621,22 @@
       .legs-editor__toggle button[data-leg-mode="minus"] { background: #773845; }
       .legs-editor__toggle button.active { outline: 4px solid #686781; outline-offset: 2px; }
       .legs-editor__toggle span { color: var(--muted); font-size: 12px; }
-      .legs-editor__actions { margin-top: 30px; }
+      .legs-editor__actions { width: 100%; margin-top: 30px; }
       .legs-editor__actions .confirm {
         display: block;
         width: 100%;
-        min-height: 66px;
+        height: 48px;
+        min-height: 48px;
+        padding: 0 16px;
         border: 0;
         border-radius: 999px;
         background: var(--green);
         color: #171724;
-        font-size: 21px;
-        font-weight: 800;
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0;
         cursor: pointer;
       }
       @media (max-width: 380px) {
