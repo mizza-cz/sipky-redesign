@@ -37,7 +37,7 @@
         margin: 0 auto;
         background: var(--bg);
         position: relative;
-        padding-bottom: 120px;
+        padding-bottom: 92px;
       }
       .topbar {
         height: 56px;
@@ -87,8 +87,8 @@
       }
       .view.active {
         display: block;
-        padding-bottom: 120px;
       }
+      #listView.active, #detailView.active { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
       .match-result {
         margin: 8px 4px 10px;
         background: var(--card);
@@ -633,10 +633,12 @@
         letter-spacing: 0;
         cursor: pointer;
       }
+      @media (max-width: 599px) {
+        .legs-editor__scores input { width: 72px; height: 72px; font-size: 40px; }
+      }
       @media (max-width: 380px) {
         .legs-editor { padding: 20px 12px; }
         .legs-editor__players { font-size: 15px; }
-        .legs-editor__scores input { height: 92px; font-size: 50px; }
       }
       .detail-score small {
         display: block;
